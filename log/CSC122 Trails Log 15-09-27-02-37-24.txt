@@ -1,0 +1,1 @@
+02:37:24: -Main: Constructing application threads
