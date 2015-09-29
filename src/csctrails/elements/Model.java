@@ -1,6 +1,9 @@
 package csctrails.elements;
 
+import static csctrails.elements.B2DVars.PPM;
+
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 
 
@@ -16,11 +19,14 @@ import com.badlogic.gdx.physics.box2d.Body;
  * 
  * Change Log:
  * 15.9.20gha: First Edition
+ * 15.9.29gha: Moved getSprite functionality from sub to super
+ *             Moved variables from sub to super
  *
  */
 
 public abstract class Model {
-	
+	protected int textureHeight; // moved from subs - gha 15.9.29
+	protected int textureWidth; // moved from subs - gha 15.9.29
 	protected Body body;
 	protected Sprite sprite;
 	protected String name;
@@ -34,10 +40,11 @@ public abstract class Model {
 	public Body getBody(){ return body; }
 	public String getName(){ return name; }
 	
-	/**
-	 * Considered updating the sprite position/rotation before returning 
-	 * but decided to leave that functionality up to the subclass. I am
-	 * un sure of the best way to handle this at the time. - gha 15.9.21
-	*/
-	public Sprite getSprite(){ return sprite; }
+
+	public Sprite getSprite(){ 
+		Vector2 pos = body.getPosition();
+		sprite.setPosition(pos.x*PPM - textureWidth/2, pos.y*PPM - textureHeight/2); // TODO: offset to align with Box2D Body - gha 15.9.20
+		sprite.setRotation((float) Math.toDegrees(body.getAngle()));
+		return sprite; 
+	}
 }

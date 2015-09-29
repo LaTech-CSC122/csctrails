@@ -19,12 +19,11 @@ import com.badlogic.gdx.physics.box2d.World;
  * 
  * Change Log:
  * 15.9.29mhk: First Edition
+ * 15.9.29gha: Moved getSprite() and vars from sub to super
  *
  */
 
 public class Boss extends Model{
-	private int textureHeight;
-	private int textureWidth;
 	
 	public Boss(World world, int xpos, int ypos) {
 		super(null, null, "filler");

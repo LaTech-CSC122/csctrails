@@ -16,12 +16,15 @@ import com.badlogic.gdx.physics.box2d.World;
 
 /**
  * WARNING: Class is incomplete and not fully tested
+ * 
+ * Change Log:
+ *   .  .  gha: First Edition
+ * 15.09.29gha: Moved getSprite() and vars from sub to super
  */
 
 public class Player extends Model {
 
-	private int textureHeight;
-	private int textureWidth;
+	
 	
 	public Player(World world, String name, String type, int xpos, int ypos) {
 		super(null, null, name);
@@ -60,14 +63,6 @@ public class Player extends Model {
 		Fixture fix = this.body.createFixture(fdef);
 		fix.setUserData("player_foot");
 		
-	}
-
-	public Sprite getSprite() {
-		// Update position of sprite before returning
-		Vector2 pos = body.getPosition();
-		sprite.setPosition(pos.x*PPM - textureWidth/2, pos.y*PPM - textureHeight/2); // TODO: offset to align with Box2D Body - gha 15.9.20
-		sprite.setRotation((float) Math.toDegrees(body.getAngle()));
-		return sprite;
 	}
 
 }
