@@ -87,6 +87,18 @@ public class PlayState extends GameState {
 				
 	public void handleInput() {
 		if(MyInput.isPressed(MyInput.BUTTON_ESC)) gsm.popState();
+		
+		if(MyInput.isDown(MyInput.BUTTON_LEFT)){
+			Vector2 pos = user.getBody().getPosition();
+			user.getBody().setTransform(pos.x-0.02f, pos.y, 0);
+		}
+		if(MyInput.isDown(MyInput.BUTTON_RIGHT)){
+			Vector2 pos = user.getBody().getPosition();
+			user.getBody().setTransform(pos.x+0.02f, pos.y, 0);
+		}
+		if(MyInput.isPressed(MyInput.BUTTON_UP)){
+			user.getBody().applyForceToCenter(0, 100f, true);
+		}
 	}
 	
 	public void update(float dt) {
