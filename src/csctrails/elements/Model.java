@@ -42,6 +42,7 @@ public abstract class Model {
 	
 
 	public Sprite getSprite(){ 
+		if(sprite == null) return null;
 		Vector2 pos = body.getPosition();
 		sprite.setPosition(pos.x*PPM - textureWidth/2, pos.y*PPM - textureHeight/2); // TODO: offset to align with Box2D Body - gha 15.9.20
 		sprite.setRotation((float) Math.toDegrees(body.getAngle()));

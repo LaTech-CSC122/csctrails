@@ -8,12 +8,17 @@ import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 
 import csctrails.elements.Boss;
 import csctrails.elements.Model;
+import csctrails.elements.Platform;
 import csctrails.elements.Player;
 import csctrails.handlers.GameStateManager;
 import csctrails.handlers.MyInput;
@@ -43,6 +48,10 @@ public class PlayState extends GameState {
 	
 	//Fonts
 	BitmapFont font;
+	
+	//tiled
+	TiledMap map;
+	OrthogonalTiledMapRenderer tmr;
 
 	public PlayState(GameStateManager gsm) {
 		super(gsm, "Play");
@@ -55,6 +64,14 @@ public class PlayState extends GameState {
 		world.setContactListener(cl);
 		b2dCamera = new OrthographicCamera();
 		b2dCamera.setToOrtho(false, Game.V_WIDTH*Game.SCALE/PPM, Game.V_HEIGHT*Game.SCALE/PPM);
+		
+		//Game State Map
+		map = new TmxMapLoader().load(Paths.TILEDMAP_PLAY_01);
+		tmr = new OrthogonalTiledMapRenderer(map);
+		tmr.setView(camera);
+		
+		TiledMapTileLayer tml = (TiledMapTileLayer) map.getLayers().get("red_squares");
+		models.addAll(Platform.loadPlatforms(world, tml));
 		
 		//Game State Layout
 		Game.logger.log("GS: Creating Models for " + title);
@@ -82,6 +99,8 @@ public class PlayState extends GameState {
 		// Clear previous screen
 		Gdx.gl10.glClear(GL10.GL_COLOR_BUFFER_BIT);
 
+		tmr.render();
+		
 		//SpriteBatch to GPU
 		sb.setProjectionMatrix(camera.combined);
 		sb.begin();
