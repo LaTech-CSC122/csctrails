@@ -60,7 +60,7 @@ public class Player extends Model {
 		//Create foot sensor (this is for ground detection) - gha 15.9.25
 		ChainShape cs = new ChainShape();
 		Vector2[] v = new Vector2[2];
-		v[0] = new Vector2(0/PPM, 0/PPM);
+		v[0] = new Vector2(0/PPM, (-textureHeight/2+5)/PPM);
 		v[1] = new Vector2(0/PPM, (-textureHeight/2-5) /PPM);
 		cs.createChain(v);
 		fdef = new FixtureDef();
@@ -78,6 +78,7 @@ public class Player extends Model {
 	}
 	
 	public void moveLeft(){
+		body.setAwake(true);
 		Vector2 pos = body.getPosition();
 		body.setTransform(pos.x-speed, pos.y, 0);
 		if(dirFacing != false){
@@ -86,6 +87,7 @@ public class Player extends Model {
 		}
 	}	
 	public void moveRight(){
+		body.setAwake(true);
 		Vector2 pos = body.getPosition();
 		body.setTransform(pos.x+speed, pos.y, 0);
 		sprite.flip(false, false);
@@ -96,8 +98,9 @@ public class Player extends Model {
 	}
 	public boolean jump(){
 		if(groundContacts > 0){
-			body.applyForceToCenter(0, JUMP_HEIGHT, false);
-			groundContacts = 0;
+			//body.applyForceToCenter(0, JUMP_HEIGHT, false);
+			body.applyLinearImpulse(new Vector2(0f, 2f), body.getWorldCenter(), false);
+		groundContacts = 0;
 			return true;
 		}
 		else{
@@ -108,6 +111,7 @@ public class Player extends Model {
 		if(ladderContacts > 0){
 			Vector2 pos = body.getPosition();
 			body.setTransform(pos.x, pos.y+speed, 0);
+			System.out.println(ladderContacts);
 			return true;
 		}
 		else{
@@ -118,6 +122,8 @@ public class Player extends Model {
 		if(ladderContacts > 0){
 			Vector2 pos = body.getPosition();
 			body.setTransform(pos.x, pos.y-speed, 0);
+			System.out.println(ladderContacts);
+			
 			return true;
 		}
 		else{
@@ -137,6 +143,7 @@ public class Player extends Model {
 	}
 
 	public void addLadderContact(){
+		body.setLinearVelocity(0f, 0f);
 		ladderContacts ++;
 		body.setGravityScale(0f);
 	}
