@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
@@ -22,7 +23,7 @@ import com.badlogic.gdx.physics.box2d.World;
 
 public class Platform extends Model{
 
-	private static final int PLATFORM_HEIGHT = 16;
+	private static final int PLATFORM_HEIGHT = 8;
 	private static final int PLATFORM_WIDTH = 32;
 
 	public static ArrayList<Platform> loadPlatforms(World world, TiledMapTileLayer tileLayer){
@@ -60,8 +61,9 @@ public class Platform extends Model{
 		fdef.shape = shape;
 		
 		this.body = world.createBody(bdef);
-		this.body.createFixture(fdef);
-		
+		this.body.setUserData(this);
+		Fixture f = this.body.createFixture(fdef);
+		f.setUserData("ground");
 		
 	}
 

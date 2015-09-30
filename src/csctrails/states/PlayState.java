@@ -17,6 +17,7 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 
 import csctrails.elements.Boss;
+import csctrails.elements.Ladder;
 import csctrails.elements.Model;
 import csctrails.elements.Platform;
 import csctrails.elements.Player;
@@ -69,16 +70,18 @@ public class PlayState extends GameState {
 		map = new TmxMapLoader().load(Paths.TILEDMAP_PLAY_01);
 		tmr = new OrthogonalTiledMapRenderer(map);
 		tmr.setView(camera);
-		
 		TiledMapTileLayer tml = (TiledMapTileLayer) map.getLayers().get("red_squares");
 		models.addAll(Platform.loadPlatforms(world, tml));
 		
 		//Game State Layout
 		Game.logger.log("GS: Creating Models for " + title);
-		user = new Player(world, "player", Paths.SPRITE_MAN_STANDING,  100, 200);
+		user = new Player(world, "player", Paths.SPRITE_MAN_STANDING,  16*1, 16*4);
 		models.add(user); // Model must be added to modelList or it will not be rendered - gha 15.9.25
-		Boss B1 = new Boss (world, 50, 50);
+		Boss B1 = new Boss (world, Game.V_WIDTH-16*7, Game.V_HEIGHT-16*5 );
 		models.add(B1);
+		
+		Ladder ladder = new Ladder(world, 16*13, 16*5);
+
 		//Fonts
 		font = new BitmapFont();
 		
@@ -89,15 +92,20 @@ public class PlayState extends GameState {
 		if(MyInput.isPressed(MyInput.BUTTON_ESC)) gsm.popState();
 		
 		if(MyInput.isDown(MyInput.BUTTON_LEFT)){
-			Vector2 pos = user.getBody().getPosition();
-			user.getBody().setTransform(pos.x-0.02f, pos.y, 0);
+			user.moveLeft();
 		}
 		if(MyInput.isDown(MyInput.BUTTON_RIGHT)){
-			Vector2 pos = user.getBody().getPosition();
-			user.getBody().setTransform(pos.x+0.02f, pos.y, 0);
+			user.moveRight();
 		}
 		if(MyInput.isPressed(MyInput.BUTTON_UP)){
-			user.getBody().applyForceToCenter(0, 100f, true);
+			if(user.climbUp());
+			else if(user.jump());
+		}
+		if(MyInput.isDown(MyInput.BUTTON_UP)){
+			user.climbUp();
+		}
+		if(MyInput.isDown(MyInput.BUTTON_DOWN)){
+			user.climbDown();
 		}
 	}
 	

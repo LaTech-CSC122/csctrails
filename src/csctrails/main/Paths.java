@@ -11,10 +11,11 @@ public abstract class Paths {
 	//Sprites
 	public static final String SPRITE_MAN_STANDING = DIR_IMAGES + "man_1.png";
 	public static final String SPRITE_PLATFORM = DIR_MAPS + "platform.png";
-	public static final String TILEDMAP_PLAY_01 = DIR_MAPS + "tiledmap_play_01.tmx";
+	public static final String SPRITE_BOSS_1 = DIR_IMAGES + "boss_1.png"; 
 	
 	//Audio
 	
 	//Tiled Maps
+	public static final String TILEDMAP_PLAY_01 = DIR_MAPS + "tiledmap_play_01.tmx";
 	
 }

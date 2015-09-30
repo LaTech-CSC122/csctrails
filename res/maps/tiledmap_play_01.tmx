@@ -5,7 +5,7 @@
  </tileset>
  <layer name="red_squares" width="14" height="16">
   <data encoding="base64" compression="zlib">
-   eJxjYCAfMEIxPQAjiXigwWB372B3HzoY7O4l1X0wDABgCABB
+   eJxjYBi8gBGK0fnE4oECo+6kLsDllsHkTlLDEoYBXoAAQA==
   </data>
  </layer>
 </map>
