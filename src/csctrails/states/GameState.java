@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.utils.Array;
 
+import csctrails.elements.HudCounter;
 import csctrails.elements.Model;
 import csctrails.handlers.GameStateManager;
 import csctrails.main.Game;
@@ -36,16 +37,20 @@ public abstract class GameState {
 	protected SpriteBatch sb;
 	protected OrthographicCamera camera;
 	protected ArrayList<Model> models; // A list of all Models that exist. Missing objects will not be rendered by default. - gha 15.9.20
-	
+	protected HudCounter hud;
 	
 	protected GameState(GameStateManager gsm, String title) {
+		//Params
 		this.gsm = gsm;
-		game = gsm.getGame();
 		this.title = title;
+		//Log File
 		Game.logger.log(title + ": Constructing Game State");
-
+		// Fields from Game
+		game = gsm.getGame();
 		sb = game.getSpriteBatch();
 		camera = game.getCamera();
+		hud = game.getHud();
+		//Field initialization
 		models = new ArrayList<Model>();
 	}
 	

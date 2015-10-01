@@ -6,10 +6,11 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.ChainShape;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
 
@@ -26,7 +27,7 @@ public class Platform extends Model{
 	private static final int PLATFORM_HEIGHT = 8;
 	private static final int PLATFORM_WIDTH = 32;
 
-	public static ArrayList<Platform> loadPlatforms(World world, TiledMapTileLayer tileLayer){
+	public static ArrayList<Platform> loadPlatforms(World world, TiledMapTileLayer tileLayer, String name){
 		ArrayList<Platform> platforms = new ArrayList<Platform>();
 		float tileHeight = tileLayer.getTileHeight();
 		float tileWidth = tileLayer.getTileWidth();
@@ -37,33 +38,39 @@ public class Platform extends Model{
 				if(cell == null) continue;
 				if(cell.getTile() == null) continue;
 				
-				platforms.add(new Platform(world, "platform:(" + col + "," + row + ")", 
-						(int)((col+0.5)*tileWidth), (int)((row+1)*tileHeight-PLATFORM_HEIGHT/2), // position (align to center top)
-						PLATFORM_WIDTH, PLATFORM_HEIGHT)); // size
+				//platforms.add(new Platform(world, name, 
+				//		(int)((col+0.5)*tileWidth), (int)((row+1)*tileHeight-PLATFORM_HEIGHT/2), // position (align to center top)
+				//		PLATFORM_WIDTH, PLATFORM_HEIGHT)); // size
+				
+				platforms.add(new Platform(world, name, (int)((col+0.5)*tileWidth), (int)((row+0.5)*tileHeight), 
+						(int)tileWidth, (int)(tileHeight/2)));
 			}
 		}
 		
 		return platforms;
 	}
 	
-	public Platform(World world, String title, int xpos, int ypos, int xwidth, int xheight) {
-		super(null, null, title);
+	public Platform(World world, String name, int xpos, int ypos, int width, int height) {
+		super(null, null, name);
 		
 		BodyDef bdef = new BodyDef();
 		bdef.position.set(xpos/PPM, ypos/PPM);
 		bdef.type = B2DVars.STATIC;
-		
-		PolygonShape shape = new PolygonShape();
-		shape.setAsBox(xwidth/2/PPM, xheight/2/PPM);
-		
+
+		ChainShape shape = new ChainShape();
+		Vector2[] v = new Vector2[2];
+		v[0] = new Vector2(-width/2/PPM, height/PPM);
+		v[1] = new Vector2(width/2/PPM, height/PPM);
+		shape.createChain(v);
+		//TODO: add base to platform. If player hits head, he can collide with a ball
 		FixtureDef fdef = new FixtureDef();
-		fdef.friction= 1f;
+		fdef.friction= 0f;
 		fdef.shape = shape;
 		
 		this.body = world.createBody(bdef);
 		this.body.setUserData(this);
 		Fixture f = this.body.createFixture(fdef);
-		f.setUserData("ground");
+		f.setUserData(name);
 		
 	}
 

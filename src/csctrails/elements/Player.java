@@ -24,13 +24,16 @@ import com.badlogic.gdx.physics.box2d.World;
 
 public class Player extends Model {
 
+	private final int DEFAULT_WIDTH = 16;
+	private final int DEFAULT_HEIGHT = 20;
+	private final float DEFAULT_SPEED = 0.007f;
+	private final float DEFAULT_JUMP_HEIGHT = 2.2f;
+	
 	private int groundContacts;
 	private int ladderContacts;
 	private boolean dirFacing;
 	private float speed;
-	private final float DEFAULT_SPEED = 0.02f;
-	private final int JUMP_HEIGHT = 150;
-	
+	private boolean isAlive;
 
 	public Player(World world, String name, String type, int xpos, int ypos) {
 		super(null, null, name);
@@ -47,11 +50,13 @@ public class Player extends Model {
 		bdef.type = B2DVars.DYNAMIC;
 		//2. Shape
 		Shape shape = new PolygonShape();
-		((PolygonShape) shape).setAsBox(textureWidth/ 2/PPM, textureHeight / 2 /PPM);
+		((PolygonShape) shape).setAsBox(DEFAULT_WIDTH/ 2/PPM, DEFAULT_HEIGHT / 2 /PPM);
 		//3. FixtureDef
 		FixtureDef fdef = new FixtureDef();
 		fdef.shape = shape;
 		fdef.friction = 1f;
+		fdef.filter.categoryBits = B2DVars.BIT_PLAYER;
+		//fdef.filter.maskBits = B2DVars.BIT_ALL & !B2DVars.BIT_UNTOUCHABLE;
 		//4. Put it all together
 		this.body = world.createBody(bdef);
 		this.body.setUserData(this);
@@ -60,13 +65,21 @@ public class Player extends Model {
 		//Create foot sensor (this is for ground detection) - gha 15.9.25
 		ChainShape cs = new ChainShape();
 		Vector2[] v = new Vector2[2];
-		v[0] = new Vector2(0/PPM, (-textureHeight/2+5)/PPM);
-		v[1] = new Vector2(0/PPM, (-textureHeight/2-5) /PPM);
+		v[0] = new Vector2(0/PPM, (-DEFAULT_HEIGHT/2+5)/PPM);
+		v[1] = new Vector2(0/PPM, (-DEFAULT_WIDTH/2-7) /PPM);
 		cs.createChain(v);
+		
+		PolygonShape polyFoot = new PolygonShape();
+		Vector2[] vp = new Vector2[4];
+		vp[0] = new Vector2(-1/PPM, (-DEFAULT_HEIGHT/2+5)/PPM);
+		vp[1] = new Vector2(-1/PPM, (-DEFAULT_WIDTH/2-7) /PPM);
+		vp[2] = new Vector2(1/PPM, (-DEFAULT_WIDTH/2-7) /PPM);
+		vp[3] = new Vector2(1/PPM, (-DEFAULT_WIDTH/2+5) /PPM);
+		polyFoot.set(vp);
+		
 		fdef = new FixtureDef();
 		fdef.isSensor = true;
-		fdef.shape = cs;
-		fdef.filter.maskBits = -1;
+		fdef.shape = polyFoot;
 		Fixture fix = this.body.createFixture(fdef);
 		fix.setUserData("player_foot");
 		
@@ -75,6 +88,7 @@ public class Player extends Model {
 		dirFacing = true;
 		speed = DEFAULT_SPEED;
 		ladderContacts = 0;
+		isAlive = true;
 	}
 	
 	public void moveLeft(){
@@ -99,7 +113,7 @@ public class Player extends Model {
 	public boolean jump(){
 		if(groundContacts > 0){
 			//body.applyForceToCenter(0, JUMP_HEIGHT, false);
-			body.applyLinearImpulse(new Vector2(0f, 2f), body.getWorldCenter(), false);
+			body.applyLinearImpulse(new Vector2(0f, DEFAULT_JUMP_HEIGHT), body.getWorldCenter(), false);
 		groundContacts = 0;
 			return true;
 		}
@@ -111,7 +125,6 @@ public class Player extends Model {
 		if(ladderContacts > 0){
 			Vector2 pos = body.getPosition();
 			body.setTransform(pos.x, pos.y+speed, 0);
-			System.out.println(ladderContacts);
 			return true;
 		}
 		else{
@@ -121,8 +134,6 @@ public class Player extends Model {
 	public boolean climbDown(){
 		if(ladderContacts > 0){
 			Vector2 pos = body.getPosition();
-			body.setTransform(pos.x, pos.y-speed, 0);
-			System.out.println(ladderContacts);
 			
 			return true;
 		}
@@ -157,4 +168,7 @@ public class Player extends Model {
 	public int getLadderContact(){
 		return ladderContacts;
 	}
+	
+	public boolean isAlive(){ return isAlive; }
+	public void setIsAlive(boolean l){ isAlive = l; }
 }

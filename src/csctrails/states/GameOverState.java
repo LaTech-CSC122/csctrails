@@ -20,6 +20,7 @@ public class GameOverState extends GameState {
 	@Override
 	public void handleInput() {
 		if(MyInput.isPressed(MyInput.BUTTON_ESC)) gsm.popState();
+		if(MyInput.isPressed(MyInput.BUTTON_ENTER)) gsm.setPlayState(GameStateManager.PLAY);
 	}
 
 	@Override
@@ -36,6 +37,7 @@ public class GameOverState extends GameState {
 		sb.begin();
 			font.draw(sb, "Game Over Screen", Game.V_WIDTH/2-70, Game.V_HEIGHT/2);
 			font.draw(sb, "Press ESC to return to main menu", 10, Game.V_HEIGHT - 10);
+			font.draw(sb, "Press ENTER to play again", 10, Game.V_HEIGHT - 25);
 		sb.end();
 
 	}

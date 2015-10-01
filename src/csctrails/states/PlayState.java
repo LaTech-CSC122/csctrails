@@ -3,6 +3,8 @@ package csctrails.states;
 
 import static csctrails.elements.B2DVars.PPM;
 
+import java.util.Random;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -18,9 +20,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.ChainShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
 
 import csctrails.elements.B2DVars;
 import csctrails.elements.Boss;
@@ -28,6 +28,8 @@ import csctrails.elements.Ladder;
 import csctrails.elements.Model;
 import csctrails.elements.Platform;
 import csctrails.elements.Player;
+import csctrails.elements.Thrower;
+import csctrails.elements.Thrown;
 import csctrails.handlers.GameStateManager;
 import csctrails.handlers.MyInput;
 import csctrails.handlers.PlayContactListener;
@@ -45,6 +47,8 @@ import csctrails.main.Paths;
  * 
  */
 public class PlayState extends GameState {
+	private static Random random = new Random();
+	
 	//Box2D Fields
 	private World world;
 	private Box2DDebugRenderer b2dDebugRenderer;
@@ -53,6 +57,7 @@ public class PlayState extends GameState {
 	
 	//Model Fields
 	Player user;
+	Thrower thrower;
 	
 	//Fonts
 	BitmapFont font;
@@ -66,7 +71,7 @@ public class PlayState extends GameState {
 		
 		//Box2D World
 		Game.logger.log("GS: Creating Box2D world and cameras for " + title);
-		world = new World(new Vector2(0f, -15f), false);
+		world = new World(new Vector2(0f, -9.8f), false);
 		cl = new PlayContactListener();
 		b2dDebugRenderer = new Box2DDebugRenderer(); // Used to render Box2D world when developing - gha 15.9.20
 		world.setContactListener(cl);
@@ -86,33 +91,52 @@ public class PlayState extends GameState {
 		v[1] = new Vector2(0, (Game.V_HEIGHT)/PPM);
 		shape.createChain(v);
 		boundFixDef.shape = shape;
-		boundries.createFixture(boundFixDef);
+		boundries.createFixture(boundFixDef).setUserData("boundary_left");
 		//Boundary right fix
 		v[0] = new Vector2(Game.V_WIDTH/PPM, 0);
 		v[1] = new Vector2(Game.V_WIDTH/PPM, (Game.V_HEIGHT)/PPM);
 		shape = new ChainShape();
 		shape.createChain(v);
 		boundFixDef.shape = shape;
-		boundries.createFixture(boundFixDef);
+		boundries.createFixture(boundFixDef).setUserData("boundary_right");
 		
 		
-		//Game State Map Layout
+		//Tiled Map Layout
 		map = new TmxMapLoader().load(Paths.TILEDMAP_PLAY_01);
 		tmr = new OrthogonalTiledMapRenderer(map);
 		tmr.setView(camera);
-		TiledMapTileLayer tmtl = (TiledMapTileLayer) map.getLayers().get("platforms");
-		models.addAll(Platform.loadPlatforms(world, tmtl));
+		//left platforms
+		TiledMapTileLayer tmtl = (TiledMapTileLayer) map.getLayers().get("platforms_left");
+		Platform.loadPlatforms(world, tmtl, "platform_left");
+		//right platforms
+		tmtl = (TiledMapTileLayer) map.getLayers().get("platforms_right");
+		Platform.loadPlatforms(world, tmtl, "platform_right");
+		//ladders
 		tmtl = (TiledMapTileLayer) map.getLayers().get("ladders");
-		models.addAll(Ladder.loadLadders(world, tmtl));
+		Ladder.loadLadders(world, tmtl, "ladder");
 		
-		//Game State Object Layout
+		//Object Layout
 		Game.logger.log("GS: Creating Models for " + title);
-		user = new Player(world, "player", Paths.SPRITE_MAN_STANDING,  16*1, 16*4);
+		user = new Player(world, "player", Paths.SPRITE_MAN_STANDING,  16*1, 16*3+5);
 		models.add(user); // Model must be added to modelList or it will not be rendered - gha 15.9.25
 		Boss B1 = new Boss (world, Game.V_WIDTH-16*7, Game.V_HEIGHT-16*5);
 		models.add(B1);
-
-
+		
+		thrower = new Thrower(world, 16, 120);
+		thrower.setProbability(0.1f);
+		thrower.setPosistion(16*19, 16*27);
+		/*thrower.throwObject(16*20, 16*7);
+		thrower.throwObject(16*10, 16*7);
+		thrower.throwObject(16*20, 16*11);
+		thrower.throwObject(16*10, 16*11);
+		thrower.throwObject(16*20, 16*15);
+		thrower.throwObject(16*10, 16*15);
+		thrower.throwObject(16*20, 16*19);
+		thrower.throwObject(16*10, 16*19);
+		thrower.throwObject(16*20, 16*23);
+		thrower.throwObject(16*10, 16*23);
+		thrower.throwObject(16*10, 16*28);
+		*/
 		//Fonts
 		font = new BitmapFont();
 		
@@ -142,8 +166,14 @@ public class PlayState extends GameState {
 	
 	public void update(float dt) {
 		//dt is the time since update was last ran - gha 15.9.25
-		world.step(dt, 6, 2);
 		handleInput();
+		world.step(dt, 6, 2);
+		Thrown.destroy();
+		thrower.throwObject();
+		if(!user.isAlive()){
+			gsm.setPlayState(GameStateManager.GAME_OVER);
+		}
+		System.out.println(user.getGroundContacts());
 	}
 	
 	public void render() {

@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import csctrails.elements.HudCounter;
 import csctrails.handlers.GameStateManager;
 import csctrails.handlers.MyInput;
 import csctrails.handlers.MyInputProcessor;
@@ -48,8 +49,10 @@ public class Game implements ApplicationListener {
 	private SpriteBatch sb;
 	private OrthographicCamera camera;
 	private GameStateManager gsm;
+	private HudCounter hud;
 	
 	public void create() {
+		//TODO: Organize Game.create() method
 		logger.log("Application: Constructing application listener...");
 		
 		logger.log("Application: Disabling GL image power of two requirement. \n" +
@@ -57,36 +60,33 @@ public class Game implements ApplicationListener {
 		Texture.setEnforcePotImages(false); // Prevents GL from forcing power of 2 images
 		Gdx.input.setInputProcessor(new MyInputProcessor()); // Set the input listener of the application - gha 15.9.21
 		sb = new SpriteBatch();
+		hud = new HudCounter(1, 60, 0);
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, V_WIDTH*SCALE, V_HEIGHT*SCALE);  // Set the view of the main camera - gha 15.9.21
 		
 		gsm = new GameStateManager(this);
 		logger.log("Hunter: I have set the first game state to MAIN_MENU in the game.java file\n" +
 				"To load the PLAY state, it must be commented out.");
-		//gsm.setPlayState(GameStateManager.MAIN_MENU);
 		gsm.setPlayState(GameStateManager.MAIN_MENU);
 	}
-	
 	public void render() {
 		// Throttles the frame rate (rendering) and step interval (Box2D) for the program  - gha 15.9.21  
 		accum = Gdx.graphics.getDeltaTime();
-		while(accum >= STEP) {
-			accum -= STEP;
-			gsm.update(STEP);
+		//if(accum>=STEP) System.out.println(accum/STEP);
+		//while(accum >= STEP) {
+			//accum -= STEP;
+			gsm.update(accum);
 			gsm.render();
 			MyInput.update();
-		}
+		//}
+		
+		
 		
 	}
-	
 	public void dispose() {
 		logger.log("Application: Terminating");
 		logger.close();
-	}
-	
-	public SpriteBatch getSpriteBatch() { return sb; }
-	public OrthographicCamera getCamera() { return camera; }
-	
+	}	
 	public void resize(int w, int h) {
 		logger.log("Application: Resized to (" + w + "," + h + ")");
 	}
@@ -97,4 +97,7 @@ public class Game implements ApplicationListener {
 		logger.log("Application: Resumed");
 	}
 	
+	public SpriteBatch getSpriteBatch() { return sb; }
+	public OrthographicCamera getCamera() { return camera; }
+	public HudCounter getHud(){ return hud; }
 }

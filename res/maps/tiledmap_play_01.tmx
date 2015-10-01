@@ -6,9 +6,14 @@
  <tileset firstgid="2" name="ladder" tilewidth="32" tileheight="32">
   <image source="ladder.png" width="32" height="32"/>
  </tileset>
- <layer name="platforms" width="14" height="16">
+ <layer name="platforms_left" width="14" height="16">
   <data encoding="base64" compression="zlib">
-   eJxjYBi8gBGKGdBoUjCldpNiD6X2kWsvufaN+o+6/iMHAwCLfABf
+   eJxjYBi8gBGKGdBoUvBQAaP+G/r+IwcDAFN4ADg=
+  </data>
+ </layer>
+ <layer name="platforms_right" width="14" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgF2AAjiZgBiR4KYNR/g8N/ADuEACg=
   </data>
  </layer>
  <layer name="platforms_ghost" width="14" height="16">

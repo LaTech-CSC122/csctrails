@@ -17,7 +17,7 @@ public class Ladder extends Model {
 	private static final int LADDER_WIDTH = 0;
 	private static final int LADDER_HEIGHT = 32;
 	
-	public static ArrayList<Ladder> loadLadders(World world, TiledMapTileLayer tmtl){
+	public static ArrayList<Ladder> loadLadders(World world, TiledMapTileLayer tmtl, String name){
 		ArrayList<Ladder> ladders = new ArrayList<Ladder>();
 		float tileWidth = tmtl.getTileWidth();
 		float tileHeight = tmtl.getTileHeight();
@@ -30,15 +30,15 @@ public class Ladder extends Model {
 				if(cell.getTile() == null) continue;
 				
 				ladders.add(new Ladder(world, (int)((col+0.5)*tileWidth), 
-						(int)((row+1)*tileHeight-LADDER_HEIGHT/2))); // size
+						(int)((row+1)*tileHeight-LADDER_HEIGHT/2), name)); // size
 			}
 		}
 		
 		return ladders;
 	}
 	
-	public Ladder (World world, int xpos, int ypos) {
-		super(null, null, "ladder");
+	public Ladder (World world, int xpos, int ypos, String name) {
+		super(null, null, name);
 		
 		BodyDef bdef = new BodyDef();
 		bdef.type = BodyType.StaticBody;
@@ -52,7 +52,7 @@ public class Ladder extends Model {
 		fdef.isSensor = true;
 		body = world.createBody(bdef);
 		body.setUserData(this);
-		body.createFixture(fdef).setUserData("ladder");
+		body.createFixture(fdef).setUserData(name);
 	}
 
 }
