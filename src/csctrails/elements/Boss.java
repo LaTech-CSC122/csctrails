@@ -23,8 +23,12 @@ import csctrails.main.Paths;
 
 public class Boss extends Model{
 	
+	private static String[] DEFAULT_TAGS = {"boss"};
+	
 	public Boss(World world, int xpos, int ypos) {
-		super(null, null, "filler");
+		super();
+		//Tags
+		addTags(DEFAULT_TAGS);
 		
 		//Sprite
 		Texture tex = new Texture(Paths.SPRITE_BOSS_1);
@@ -40,9 +44,9 @@ public class Boss extends Model{
 		Bboss.setAsBox(textureWidth/2/PPM, textureHeight/2/PPM);
 		FixtureDef FD = new FixtureDef();  //create fixture definition - mhk 15.9.29
 		FD.shape = Bboss;
-		this.body = world.createBody(BD); // create body - mhk 15.9.29
-		this.body.createFixture(FD); // create fixture - mhk 15.9.29
-		
+		body = world.createBody(BD); // create body - mhk 15.9.29
+		body.createFixture(FD); // create fixture - mhk 15.9.29
+		body.setUserData(this);
 	}
 
 }

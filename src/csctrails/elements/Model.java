@@ -29,23 +29,32 @@ public abstract class Model {
 	protected int textureWidth; // moved from subs - gha 15.9.29
 	protected Body body;
 	protected Sprite sprite;
-	protected String name;
+	protected TagList tags;
 	
-	public Model(Body body, Sprite sprite, String name){
-		this.body = body;
-		this.sprite = sprite;
-		this.name = name;
+	public Model(){
+		tags = new TagList();
+		tags.add("model");
 	}
 
-	public Body getBody(){ return body; }
-	public String getName(){ return name; }
-	
 
+	public Body getBody(){ return body; }
 	public Sprite getSprite(){ 
 		if(sprite == null) return null;
 		Vector2 pos = body.getPosition();
 		sprite.setPosition(pos.x*PPM - textureWidth/2, pos.y*PPM - textureHeight/2); // TODO: offset to align with Box2D Body - gha 15.9.20
 		sprite.setRotation((float) Math.toDegrees(body.getAngle()));
 		return sprite; 
+	}
+	
+	public void addTag(String t){ tags.add(t); }
+	public void addTags(String[] t){ tags.add(t); }
+	public boolean hasTag(String[] t){ return tags.contains(t); }
+	public boolean hasTag(String t){ return tags.contains(t); }
+	public String getId(){ return tags.getId(); }
+	
+	public boolean equals(Object obj){
+		if(!(obj instanceof Model)){ return false; }
+		Model model = (Model) obj;
+		return this.getId().equals(model.getId());
 	}
 }

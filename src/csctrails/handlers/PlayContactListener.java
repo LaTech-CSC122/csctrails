@@ -6,6 +6,7 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 
+import csctrails.elements.Model;
 import csctrails.elements.Player;
 import csctrails.elements.Thrown;
 
@@ -69,59 +70,70 @@ public class PlayContactListener implements ContactListener {
 	
 	
 	private void handleBeginContact(Fixture[] fixtures){
-		Object userData0 = fixtures[0].getUserData();
-		Object userData1 = fixtures[1].getUserData();
-		if(userData0 == null || userData1 == null){ return; }
+		if(!(fixtures[0].getBody().getUserData() instanceof Model) ||
+				!(fixtures[1].getBody().getUserData() instanceof Model)){ return; }
+		Model model0 = (Model) fixtures[0].getBody().getUserData();
+		Model model1 = (Model) fixtures[1].getBody().getUserData();
 		
-		//If the players foot collides with the ground
-		if(userData0.toString().contains("player_foot") && userData1.toString().contains("platform")){
+		if(model0.hasTag("player") && model1.hasTag("platform, ground")){
 			((Player) fixtures[0].getBody().getUserData()).addGroundContact();
 		}
-		else if(userData0.toString().contains("player_body") && userData1.toString().contains("ladder")){
+		else if(model0.hasTag("player") && model1.hasTag("ladder")){
 			((Player) fixtures[0].getBody().getUserData()).addLadderContact();
 		}
-		else if(userData0.toString().contains("thrown") && userData1.toString().contains("boundary")){
+		else if(model0.hasTag("thrown") && model1.hasTag("boundary")){
 			Thrown t = (Thrown) fixtures[0].getBody().getUserData();
 			t.flagForDelete();
 		}
-		else if(userData0.toString().contains("player") && userData1.toString().contains("thrown")){
+		else if(model0.hasTag("player") && model1.hasTag("thrown")){
 			((Player) fixtures[0].getBody().getUserData()).setIsAlive(false);
+		}
+		else if(model0.hasTag("thrown") && model1.hasTag("platform, left")){
+			Thrown t = (Thrown) fixtures[0].getBody().getUserData();
+			System.out.println("Pushing " + t.getId() + " to the left.");
+			t.addGroundContact();
+		}
+		else if(model0.hasTag("thrown") && model1.hasTag("platform, right")){
+			Thrown t = (Thrown) fixtures[0].getBody().getUserData();
+			t.addGroundContact();
 		}
 		
 	}
 
 	private void handleEndContact(Fixture[] fixtures){
-		Object userData0 = fixtures[0].getUserData();
-		Object userData1 = fixtures[1].getUserData();
-		if(userData0 == null || userData1 == null) return;
+		if(!(fixtures[0].getBody().getUserData() instanceof Model) ||
+				!(fixtures[1].getBody().getUserData() instanceof Model)){ return; }
+		Model model0 = (Model) fixtures[0].getBody().getUserData();
+		Model model1 = (Model) fixtures[1].getBody().getUserData();
 		
 		//If the players foot collides with the ground
-		if(userData0.toString().equals("player_foot") && userData1.toString().equals("ground")){
-			System.out.println("Removeing contact");
+		if(model0.hasTag("player") && model1.hasTag("platform, ground")){
 			((Player) fixtures[0].getBody().getUserData()).removeGroundContact();
 		}
-		else if(userData0.toString().equals("player_body") && userData1.toString().equals("ladder")){
+		else if(model0.hasTag("player") && model1.hasTag("ladder")){
 			((Player) fixtures[0].getBody().getUserData()).removeLadderContact();
 		}
-		else if(userData0.toString().contains("thrown") && userData1.toString().contains("platform")){
+		else if(model0.hasTag("thrown") && model1.hasTag("platform")){
+			System.out.println("aye?");
 			((Thrown) fixtures[0].getBody().getUserData()).removeGroundConact();
 		}
 	}
 
 	private void handlePostSolve(Fixture[] fixtures){
-		Object userData0 = fixtures[0].getUserData();
-		Object userData1 = fixtures[1].getUserData();
-		if(userData0 == null || userData1 == null) return;
+		if(!(fixtures[0].getBody().getUserData() instanceof Model) ||
+				!(fixtures[1].getBody().getUserData() instanceof Model)){ return; }
+		Model model0 = (Model) fixtures[0].getBody().getUserData();
+		Model model1 = (Model) fixtures[1].getBody().getUserData();
 		
-		if(userData0.toString().contains("thrown") && userData1.toString().contains("platform_left")){
+		if(model0.hasTag("thrown") && model1.hasTag("platform, left")){
 			Thrown t = (Thrown) fixtures[0].getBody().getUserData();
 			t.pushLeft();
-			t.addGroundContact();
+			//t.addGroundContact();
 		}
-		else if(userData0.toString().contains("thrown") && userData1.toString().contains("platform_right")){
+		else if(model0.hasTag("thrown") && model1.hasTag("platform, right")){
 			Thrown t = (Thrown) fixtures[0].getBody().getUserData();
 			t.pushRight();
-			t.addGroundContact();
+			//t.addGroundContact();
 		}
 	}
 }

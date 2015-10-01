@@ -7,12 +7,13 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.ChainShape;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.physics.box2d.World;
+
+import csctrails.main.Paths;
 
 /**
  * WARNING: Class is incomplete and not fully tested
@@ -23,11 +24,11 @@ import com.badlogic.gdx.physics.box2d.World;
  */
 
 public class Player extends Model {
-
+	private final String[] DEFAULT_TAGS = {"model", "player"};
 	private final int DEFAULT_WIDTH = 16;
 	private final int DEFAULT_HEIGHT = 20;
-	private final float DEFAULT_SPEED = 0.007f;
-	private final float DEFAULT_JUMP_HEIGHT = 2.2f;
+	private final float DEFAULT_SPEED = 0.01f;
+	private final float DEFAULT_JUMP_HEIGHT = 1.5f;
 	
 	private int groundContacts;
 	private int ladderContacts;
@@ -35,10 +36,14 @@ public class Player extends Model {
 	private float speed;
 	private boolean isAlive;
 
-	public Player(World world, String name, String type, int xpos, int ypos) {
-		super(null, null, name);
+	public Player(World world, int xpos, int ypos) {
+		super();
+		
+		//Add Tags
+		addTags(DEFAULT_TAGS);
+		
 		//Create Sprite
-		Texture tex = new Texture(type);
+		Texture tex = new Texture(Paths.SPRITE_MAN_STANDING);
 		this.textureHeight = tex.getHeight();
 		this.textureWidth = tex.getWidth();
 		this.sprite = new Sprite(tex);
@@ -55,19 +60,10 @@ public class Player extends Model {
 		FixtureDef fdef = new FixtureDef();
 		fdef.shape = shape;
 		fdef.friction = 1f;
-		fdef.filter.categoryBits = B2DVars.BIT_PLAYER;
-		//fdef.filter.maskBits = B2DVars.BIT_ALL & !B2DVars.BIT_UNTOUCHABLE;
 		//4. Put it all together
-		this.body = world.createBody(bdef);
-		this.body.setUserData(this);
-		this.body.createFixture(fdef).setUserData("player_body");
-		
-		//Create foot sensor (this is for ground detection) - gha 15.9.25
-		ChainShape cs = new ChainShape();
-		Vector2[] v = new Vector2[2];
-		v[0] = new Vector2(0/PPM, (-DEFAULT_HEIGHT/2+5)/PPM);
-		v[1] = new Vector2(0/PPM, (-DEFAULT_WIDTH/2-7) /PPM);
-		cs.createChain(v);
+		body = world.createBody(bdef);
+		body.setUserData(this);
+		body.createFixture(fdef);
 		
 		PolygonShape polyFoot = new PolygonShape();
 		Vector2[] vp = new Vector2[4];
@@ -112,9 +108,8 @@ public class Player extends Model {
 	}
 	public boolean jump(){
 		if(groundContacts > 0){
-			//body.applyForceToCenter(0, JUMP_HEIGHT, false);
 			body.applyLinearImpulse(new Vector2(0f, DEFAULT_JUMP_HEIGHT), body.getWorldCenter(), false);
-		groundContacts = 0;
+			groundContacts = 0;
 			return true;
 		}
 		else{
@@ -134,7 +129,7 @@ public class Player extends Model {
 	public boolean climbDown(){
 		if(ladderContacts > 0){
 			Vector2 pos = body.getPosition();
-			
+			body.setTransform(pos.x, pos.y-speed, 0);
 			return true;
 		}
 		else{

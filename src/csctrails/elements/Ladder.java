@@ -14,31 +14,35 @@ import com.badlogic.gdx.physics.box2d.World;
 
 public class Ladder extends Model {
 
+	private static final String[] DEFAULT_TAGS = {"model", "ladder"};
 	private static final int LADDER_WIDTH = 0;
 	private static final int LADDER_HEIGHT = 32;
 	
-	public static ArrayList<Ladder> loadLadders(World world, TiledMapTileLayer tmtl, String name){
+	public static ArrayList<Ladder> loadLadders(World world, TiledMapTileLayer tmtl, String[] additionalTags){
 		ArrayList<Ladder> ladders = new ArrayList<Ladder>();
 		float tileWidth = tmtl.getTileWidth();
 		float tileHeight = tmtl.getTileHeight();
 		
 		for(int row = 0; row < tmtl.getHeight(); row++){
-
 			for(int col = 0; col < tmtl.getWidth(); col++){
 				Cell cell = tmtl.getCell(col, row);
 				if(cell == null) continue;
 				if(cell.getTile() == null) continue;
-				
-				ladders.add(new Ladder(world, (int)((col+0.5)*tileWidth), 
-						(int)((row+1)*tileHeight-LADDER_HEIGHT/2), name)); // size
+				Ladder l = new Ladder(world, (int)((col+0.5)*tileWidth), 
+						(int)((row+1)*tileHeight-LADDER_HEIGHT/2)); // size
+				if(additionalTags != null){ l.addTags(additionalTags); }
+				ladders.add(l);
 			}
 		}
 		
 		return ladders;
 	}
 	
-	public Ladder (World world, int xpos, int ypos, String name) {
-		super(null, null, name);
+	public Ladder (World world, int xpos, int ypos) {
+		super();
+		
+		//Add Tags
+		addTags(DEFAULT_TAGS);
 		
 		BodyDef bdef = new BodyDef();
 		bdef.type = BodyType.StaticBody;
@@ -50,9 +54,10 @@ public class Ladder extends Model {
 		FixtureDef fdef = new FixtureDef();
 		fdef.shape = shape;
 		fdef.isSensor = true;
+		
 		body = world.createBody(bdef);
 		body.setUserData(this);
-		body.createFixture(fdef).setUserData(name);
+		body.createFixture(fdef);
 	}
 
 }

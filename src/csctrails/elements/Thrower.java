@@ -9,9 +9,6 @@ public class Thrower {
 	
 	private Random random = new Random();
 	
-	
-	private int nextId = 0;
-	
 	private int maxCount;
 	private float probability;
 	private ArrayList<Thrown> allObjects;
@@ -20,6 +17,7 @@ public class Thrower {
 	private World world;
 	private int deltaFrames;
 	private int interval;
+	private boolean active;
 	
 	
 	public Thrower(World world, int maxCount, int interval) {
@@ -31,6 +29,7 @@ public class Thrower {
 		this.world = world;
 		allObjects = new ArrayList<Thrown>();
 		deltaFrames = 0;
+		active = false;
 	}
 	
 	
@@ -48,8 +47,7 @@ public class Thrower {
 			return null;
 		}
 		else if((deltaFrames>interval && random.nextFloat()%1 <= probability) || !chance){
-			Thrown t = new Thrown(world, xpos, ypos, "thrown_" + nextId);
-			nextId++;
+			Thrown t = new Thrown(world, xpos, ypos);
 			t.getBody().setTransform((float)x/B2DVars.PPM, (float)y/B2DVars.PPM, 0);
 			t.setThrower(this);
 			allObjects.add(t);
@@ -62,10 +60,15 @@ public class Thrower {
 	}
 	
 	public Thrown throwObject(){
+		//if(!active) return null;
 		return throwObject(true, xpos, ypos);
 	}
-	public Thrown throwObject(int x, int y){
+	public Thrown throwObject(int x, int y, boolean force){
+		//if(!active || !force) return null;
 		return throwObject(false, x, y);
+	}
+	public Thrown throwObject(int x, int y){
+		return throwObject(x, y, false);
 	}
 	
 	public void removeObject(Thrown t){
@@ -77,4 +80,6 @@ public class Thrower {
 		}
 	}
 
+	public void setActive(boolean b){ active = b; }
+	public boolean getActive(){ return active; }
 }

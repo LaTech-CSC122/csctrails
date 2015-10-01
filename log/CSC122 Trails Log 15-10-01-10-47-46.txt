@@ -1,0 +1,4 @@
+10:47:46: -Main: Constructing application threads
+10:47:47: -Application: Constructing application listener...
+10:47:47: -Application: Disabling GL image power of two requirement. 
+          -This could cause problems in older systems.

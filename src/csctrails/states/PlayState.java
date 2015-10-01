@@ -71,7 +71,7 @@ public class PlayState extends GameState {
 		
 		//Box2D World
 		Game.logger.log("GS: Creating Box2D world and cameras for " + title);
-		world = new World(new Vector2(0f, -9.8f), false);
+		world = new World(new Vector2(0f, -3f), false);
 		cl = new PlayContactListener();
 		b2dDebugRenderer = new Box2DDebugRenderer(); // Used to render Box2D world when developing - gha 15.9.20
 		world.setContactListener(cl);
@@ -79,26 +79,7 @@ public class PlayState extends GameState {
 		b2dCamera.setToOrtho(false, Game.V_WIDTH*Game.SCALE/PPM, Game.V_HEIGHT*Game.SCALE/PPM);
 		
 		//Boundary Body
-		BodyDef boundaryBodyDef = new BodyDef();
-		boundaryBodyDef.type = B2DVars.STATIC;
-		boundaryBodyDef.position.set(0,0);
-		FixtureDef boundFixDef = new FixtureDef();
-		ChainShape shape = new ChainShape();
-		Body boundries = world.createBody(boundaryBodyDef);
-		//Boundary left fix 
-		Vector2[] v = new Vector2[2];
-		v[0] = new Vector2(0, 0);
-		v[1] = new Vector2(0, (Game.V_HEIGHT)/PPM);
-		shape.createChain(v);
-		boundFixDef.shape = shape;
-		boundries.createFixture(boundFixDef).setUserData("boundary_left");
-		//Boundary right fix
-		v[0] = new Vector2(Game.V_WIDTH/PPM, 0);
-		v[1] = new Vector2(Game.V_WIDTH/PPM, (Game.V_HEIGHT)/PPM);
-		shape = new ChainShape();
-		shape.createChain(v);
-		boundFixDef.shape = shape;
-		boundries.createFixture(boundFixDef).setUserData("boundary_right");
+		
 		
 		
 		//Tiled Map Layout
@@ -107,17 +88,19 @@ public class PlayState extends GameState {
 		tmr.setView(camera);
 		//left platforms
 		TiledMapTileLayer tmtl = (TiledMapTileLayer) map.getLayers().get("platforms_left");
-		Platform.loadPlatforms(world, tmtl, "platform_left");
+		String[] leftPlatformTags = {"left"};
+		Platform.loadPlatforms(world, tmtl, leftPlatformTags);
 		//right platforms
 		tmtl = (TiledMapTileLayer) map.getLayers().get("platforms_right");
-		Platform.loadPlatforms(world, tmtl, "platform_right");
+		String[] rightPlatformTags = {"right"};
+		Platform.loadPlatforms(world, tmtl, rightPlatformTags);
 		//ladders
 		tmtl = (TiledMapTileLayer) map.getLayers().get("ladders");
-		Ladder.loadLadders(world, tmtl, "ladder");
+		Ladder.loadLadders(world, tmtl, null);
 		
 		//Object Layout
 		Game.logger.log("GS: Creating Models for " + title);
-		user = new Player(world, "player", Paths.SPRITE_MAN_STANDING,  16*1, 16*3+5);
+		user = new Player(world,  16*1, 16*3+5);
 		models.add(user); // Model must be added to modelList or it will not be rendered - gha 15.9.25
 		Boss B1 = new Boss (world, Game.V_WIDTH-16*7, Game.V_HEIGHT-16*5);
 		models.add(B1);
@@ -125,7 +108,9 @@ public class PlayState extends GameState {
 		thrower = new Thrower(world, 16, 120);
 		thrower.setProbability(0.1f);
 		thrower.setPosistion(16*19, 16*27);
-		/*thrower.throwObject(16*20, 16*7);
+		thrower.setActive(true);
+		thrower.throwObject(16*20, 16*7);
+		//thrower.setActive(false);
 		thrower.throwObject(16*10, 16*7);
 		thrower.throwObject(16*20, 16*11);
 		thrower.throwObject(16*10, 16*11);
@@ -136,7 +121,8 @@ public class PlayState extends GameState {
 		thrower.throwObject(16*20, 16*23);
 		thrower.throwObject(16*10, 16*23);
 		thrower.throwObject(16*10, 16*28);
-		*/
+		thrower.setActive(true);
+		
 		//Fonts
 		font = new BitmapFont();
 		
@@ -173,7 +159,7 @@ public class PlayState extends GameState {
 		if(!user.isAlive()){
 			gsm.setPlayState(GameStateManager.GAME_OVER);
 		}
-		System.out.println(user.getGroundContacts());
+
 	}
 	
 	public void render() {
