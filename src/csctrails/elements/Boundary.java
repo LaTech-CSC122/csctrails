@@ -3,7 +3,6 @@ package csctrails.elements;
 import static csctrails.elements.B2DVars.PPM;
 
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.ChainShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
@@ -29,13 +28,13 @@ public class Boundary extends Model{
 		//Boundary left fix 
 		Vector2[] v = new Vector2[2];
 		v[0] = new Vector2(0, 0);
-		v[1] = new Vector2(0, (Game.V_HEIGHT)/PPM);
+		v[1] = new Vector2(0, (height)/PPM);
 		shape.createChain(v);
 		boundFixDef.shape = shape;
 		body.createFixture(boundFixDef);
 		//Boundary right fix
-		v[0] = new Vector2(Game.V_WIDTH/PPM, 0);
-		v[1] = new Vector2(Game.V_WIDTH/PPM, (Game.V_HEIGHT)/PPM);
+		v[0] = new Vector2(width/PPM, 0);
+		v[1] = new Vector2(width/PPM, (height)/PPM);
 		shape = new ChainShape();
 		shape.createChain(v);
 		boundFixDef.shape = shape;

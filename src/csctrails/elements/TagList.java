@@ -12,6 +12,7 @@ public class TagList {
 		tags = new HashSet<String>();
 		//set ID
 		id = "" + nextId;
+		nextId++;
 		while(id.length()<idLength){
 			id = "0" + id;
 		}

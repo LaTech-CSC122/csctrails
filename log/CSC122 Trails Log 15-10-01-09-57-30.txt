@@ -1,0 +1,41 @@
+09:57:30: -Main: Constructing application threads
+09:57:30: -Application: Constructing application listener...
+09:57:30: -Application: Disabling GL image power of two requirement. 
+          -This could cause problems in older systems.
+09:57:30: -Play: Constructing Game State
+09:57:30: -GS: Creating Box2D world and cameras for Play
+09:57:30: -GS: Creating Models for Play
+09:57:30: -GSM: Pushing "Play" on the stack
+09:57:30: -Hunter: I have set the first game state to MAIN_MENU in the game.java file
+          -To load the PLAY state, it must be commented out.
+09:57:30: -Main Menu: Constructing Game State
+09:57:30: -GSM: Pushing "Main Menu" on the stack
+09:57:30: -GSM: Popping "Play" off the stack.
+09:57:30: -Play: Disposing of game state
+09:57:30: -Application: Resized to (448,512)
+09:57:30: -Play: Constructing Game State
+09:57:30: -GS: Creating Box2D world and cameras for Play
+09:57:30: -GS: Creating Models for Play
+09:57:30: -GSM: Pushing "Play" on the stack
+09:57:39: -Game Over: Constructing Game State
+09:57:39: -GSM: Pushing "Game Over" on the stack
+09:57:39: -GSM: Popping "Play" off the stack.
+09:57:39: -Play: Disposing of game state
+09:57:41: -Play: Constructing Game State
+09:57:41: -GS: Creating Box2D world and cameras for Play
+09:57:41: -GS: Creating Models for Play
+09:57:41: -GSM: Pushing "Play" on the stack
+09:57:41: -GSM: Popping "Game Over" off the stack.
+09:57:41: -Game Over: Disposing of game state
+09:57:44: -Game Over: Constructing Game State
+09:57:44: -GSM: Pushing "Game Over" on the stack
+09:57:44: -GSM: Popping "Play" off the stack.
+09:57:44: -Play: Disposing of game state
+09:57:44: -Play: Constructing Game State
+09:57:44: -GS: Creating Box2D world and cameras for Play
+09:57:44: -GS: Creating Models for Play
+09:57:44: -GSM: Pushing "Play" on the stack
+09:57:44: -GSM: Popping "Game Over" off the stack.
+09:57:44: -Game Over: Disposing of game state
+09:57:47: -Application: Paused
+09:57:47: -Application: Terminating

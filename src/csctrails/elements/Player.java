@@ -26,9 +26,9 @@ import csctrails.main.Paths;
 public class Player extends Model {
 	private final String[] DEFAULT_TAGS = {"model", "player"};
 	private final int DEFAULT_WIDTH = 16;
-	private final int DEFAULT_HEIGHT = 20;
+	private final int DEFAULT_HEIGHT = 32;
 	private final float DEFAULT_SPEED = 0.01f;
-	private final float DEFAULT_JUMP_HEIGHT = 1.5f;
+	private final float DEFAULT_JUMP_HEIGHT = 1f;
 	
 	private int groundContacts;
 	private int ladderContacts;
@@ -109,7 +109,7 @@ public class Player extends Model {
 	public boolean jump(){
 		if(groundContacts > 0){
 			body.applyLinearImpulse(new Vector2(0f, DEFAULT_JUMP_HEIGHT), body.getWorldCenter(), false);
-			groundContacts = 0;
+			//groundContacts = 0;
 			return true;
 		}
 		else{

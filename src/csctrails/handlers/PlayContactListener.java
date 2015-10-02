@@ -83,14 +83,13 @@ public class PlayContactListener implements ContactListener {
 		}
 		else if(model0.hasTag("thrown") && model1.hasTag("boundary")){
 			Thrown t = (Thrown) fixtures[0].getBody().getUserData();
-			t.flagForDelete();
+			t.flagForDestory();
 		}
 		else if(model0.hasTag("player") && model1.hasTag("thrown")){
 			((Player) fixtures[0].getBody().getUserData()).setIsAlive(false);
 		}
 		else if(model0.hasTag("thrown") && model1.hasTag("platform, left")){
 			Thrown t = (Thrown) fixtures[0].getBody().getUserData();
-			System.out.println("Pushing " + t.getId() + " to the left.");
 			t.addGroundContact();
 		}
 		else if(model0.hasTag("thrown") && model1.hasTag("platform, right")){
@@ -114,7 +113,6 @@ public class PlayContactListener implements ContactListener {
 			((Player) fixtures[0].getBody().getUserData()).removeLadderContact();
 		}
 		else if(model0.hasTag("thrown") && model1.hasTag("platform")){
-			System.out.println("aye?");
 			((Thrown) fixtures[0].getBody().getUserData()).removeGroundConact();
 		}
 	}

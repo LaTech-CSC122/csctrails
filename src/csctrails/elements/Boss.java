@@ -23,7 +23,7 @@ import csctrails.main.Paths;
 
 public class Boss extends Model{
 	
-	private static String[] DEFAULT_TAGS = {"boss"};
+	private static String[] DEFAULT_TAGS = {"model", "boss"};
 	
 	public Boss(World world, int xpos, int ypos) {
 		super();
@@ -41,7 +41,7 @@ public class Boss extends Model{
 		BD.position.set(xpos/PPM, ypos/PPM); 
 		BD.type=B2DVars.STATIC;
 		PolygonShape Bboss = new PolygonShape();  // create shape - mhk 15.9.29
-		Bboss.setAsBox(textureWidth/2/PPM, textureHeight/2/PPM);
+		Bboss.setAsBox(15/2/PPM, textureHeight/2/PPM);
 		FixtureDef FD = new FixtureDef();  //create fixture definition - mhk 15.9.29
 		FD.shape = Bboss;
 		body = world.createBody(BD); // create body - mhk 15.9.29

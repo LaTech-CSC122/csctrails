@@ -3,7 +3,7 @@ package csctrails.states;
 
 import static csctrails.elements.B2DVars.PPM;
 
-import java.util.Random;
+import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL10;
@@ -15,15 +15,12 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
-import com.badlogic.gdx.physics.box2d.ChainShape;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 
-import csctrails.elements.B2DVars;
 import csctrails.elements.Boss;
+import csctrails.elements.Boundary;
+import csctrails.elements.Key;
 import csctrails.elements.Ladder;
 import csctrails.elements.Model;
 import csctrails.elements.Platform;
@@ -47,7 +44,7 @@ import csctrails.main.Paths;
  * 
  */
 public class PlayState extends GameState {
-	private static Random random = new Random();
+	//private static Random random = new Random(); not sure why I need this - gha
 	
 	//Box2D Fields
 	private World world;
@@ -69,6 +66,9 @@ public class PlayState extends GameState {
 	public PlayState(GameStateManager gsm) {
 		super(gsm, "Play");
 		
+		//HUD
+		hud.resetAll();
+		
 		//Box2D World
 		Game.logger.log("GS: Creating Box2D world and cameras for " + title);
 		world = new World(new Vector2(0f, -3f), false);
@@ -79,7 +79,7 @@ public class PlayState extends GameState {
 		b2dCamera.setToOrtho(false, Game.V_WIDTH*Game.SCALE/PPM, Game.V_HEIGHT*Game.SCALE/PPM);
 		
 		//Boundary Body
-		
+		new Boundary(world, Game.V_WIDTH, Game.V_HEIGHT);
 		
 		
 		//Tiled Map Layout
@@ -100,28 +100,26 @@ public class PlayState extends GameState {
 		
 		//Object Layout
 		Game.logger.log("GS: Creating Models for " + title);
-		user = new Player(world,  16*1, 16*3+5);
+		models.add(new Key(world, 16*24, 16*29));
+		user = new Player(world,  16*1, 16*3);
 		models.add(user); // Model must be added to modelList or it will not be rendered - gha 15.9.25
-		Boss B1 = new Boss (world, Game.V_WIDTH-16*7, Game.V_HEIGHT-16*5);
-		models.add(B1);
+		models.add(new Boss (world, Game.V_WIDTH-16*7, Game.V_HEIGHT-16*5));
 		
 		thrower = new Thrower(world, 16, 120);
 		thrower.setProbability(0.1f);
-		thrower.setPosistion(16*19, 16*27);
+		thrower.setPosistion(16*19, 16*32);
 		thrower.setActive(true);
-		thrower.throwObject(16*20, 16*7);
-		//thrower.setActive(false);
-		thrower.throwObject(16*10, 16*7);
-		thrower.throwObject(16*20, 16*11);
-		thrower.throwObject(16*10, 16*11);
-		thrower.throwObject(16*20, 16*15);
-		thrower.throwObject(16*10, 16*15);
-		thrower.throwObject(16*20, 16*19);
-		thrower.throwObject(16*10, 16*19);
-		thrower.throwObject(16*20, 16*23);
-		thrower.throwObject(16*10, 16*23);
-		thrower.throwObject(16*10, 16*28);
-		thrower.setActive(true);
+		models.add(thrower.throwObject(16*20, 16*7));
+		models.add(thrower.throwObject(16*10, 16*7));
+		models.add(thrower.throwObject(16*20, 16*11));
+		models.add(thrower.throwObject(16*10, 16*11));
+		models.add(thrower.throwObject(16*20, 16*15));
+		models.add(thrower.throwObject(16*10, 16*15));
+		models.add(thrower.throwObject(16*20, 16*19));
+		models.add(thrower.throwObject(16*10, 16*19));
+		models.add(thrower.throwObject(16*20, 16*23));
+		models.add(thrower.throwObject(16*10, 16*23));
+		models.add(thrower.throwObject(16*10, 16*28));
 		
 		//Fonts
 		font = new BitmapFont();
@@ -154,11 +152,24 @@ public class PlayState extends GameState {
 		//dt is the time since update was last ran - gha 15.9.25
 		handleInput();
 		world.step(dt, 6, 2);
-		Thrown.destroy();
-		thrower.throwObject();
+		
+		//Clean up inactive models
+		ArrayList<Model> modelsToDestroy = Model.getDestoryList();
+		if(modelsToDestroy.size() > 0){
+			for(Model model:modelsToDestroy){
+				if(model.destory() && models.contains(model)){ models.remove(model); }
+			}
+			Model.clearDestoryList();
+		}
+		
+		//Try to Throw Something
+		Thrown t = thrower.throwObject();
+		if(t != null){ models.add(t); }
+		//See if player has died
 		if(!user.isAlive()){
 			gsm.setPlayState(GameStateManager.GAME_OVER);
 		}
+		
 
 	}
 	
@@ -171,7 +182,7 @@ public class PlayState extends GameState {
 		//SpriteBatch to GPU
 		sb.setProjectionMatrix(camera.combined);
 		sb.begin();
-		font.draw(sb, "Press ESC to return to the main menu.", 10, Game.V_HEIGHT-10);
+		font.draw(sb, "Press ESC to return to the main menu.", 10, 15);
 		for(Model i:models){
 			Sprite sprite = i.getSprite();
 			if(sprite != null) sprite.draw(sb);
@@ -179,7 +190,7 @@ public class PlayState extends GameState {
 		sb.end();
 				
 		// Render Box2d world - development purposes only
-		b2dDebugRenderer.render(world, b2dCamera.combined);
+		//b2dDebugRenderer.render(world, b2dCamera.combined);
 	}
 	
 }

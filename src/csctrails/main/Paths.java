@@ -11,7 +11,9 @@ public abstract class Paths {
 	//Sprites
 	public static final String SPRITE_MAN_STANDING = DIR_IMAGES + "man_1.png";
 	public static final String SPRITE_PLATFORM = DIR_MAPS + "platform.png";
-	public static final String SPRITE_BOSS_1 = DIR_IMAGES + "boss_1.png"; 
+	public static final String SPRITE_BOSS_1 = DIR_IMAGES + "boss_1.png";
+	public static final String SPRITE_THROWN_1 = DIR_IMAGES + "thrown_1.png"; 
+	public static final String SPRITE_KEY_1 = DIR_IMAGES + "key_1.png";
 	
 	//Audio
 	

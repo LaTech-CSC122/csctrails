@@ -2,9 +2,13 @@ package csctrails.elements;
 
 import static csctrails.elements.B2DVars.PPM;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.Fixture;
+import com.badlogic.gdx.utils.Array;
 
 
 /**
@@ -25,6 +29,20 @@ import com.badlogic.gdx.physics.box2d.Body;
  */
 
 public abstract class Model {
+	private static final ArrayList<Model> flaggedForDestruction = new ArrayList<Model>();
+	public static ArrayList<Model> getDestoryList(){
+		ArrayList<Model> output = new ArrayList<Model>();
+		output.addAll(flaggedForDestruction);
+		return output;
+	}
+	public static void clearDestoryList(){
+		flaggedForDestruction.clear();
+	}
+	public static int destorySize(){
+		return flaggedForDestruction.size();
+	}
+	
+	
 	protected int textureHeight; // moved from subs - gha 15.9.29
 	protected int textureWidth; // moved from subs - gha 15.9.29
 	protected Body body;
@@ -51,10 +69,26 @@ public abstract class Model {
 	public boolean hasTag(String[] t){ return tags.contains(t); }
 	public boolean hasTag(String t){ return tags.contains(t); }
 	public String getId(){ return tags.getId(); }
+
 	
 	public boolean equals(Object obj){
 		if(!(obj instanceof Model)){ return false; }
 		Model model = (Model) obj;
 		return this.getId().equals(model.getId());
+	}
+	public boolean destory(){
+		//Do not run if the Box2D world is locked
+		if(body.getWorld().isLocked()){ return false; }
+		if(body != null){
+			Array<Fixture> fixtures = body.getFixtureList();
+			for(Fixture currentFixture:fixtures){
+				body.destroyFixture(currentFixture);
+			}
+			body.getWorld().destroyBody(body);
+		}
+		return true;
+	}
+	public void flagForDestory(){
+		flaggedForDestruction.add(this);
 	}
 }

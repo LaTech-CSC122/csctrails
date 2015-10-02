@@ -1,0 +1,21 @@
+03:33:32: -Main: Constructing application threads
+03:33:33: -Application: Constructing application listener...
+03:33:33: -Application: Disabling GL image power of two requirement. 
+          -This could cause problems in older systems.
+03:33:33: -Play: Constructing Game State
+03:33:33: -GS: Creating Box2D world and cameras for Play
+03:33:33: -GS: Creating Models for Play
+03:33:33: -GSM: Pushing "Play" on the stack
+03:33:33: -Hunter: I have set the first game state to MAIN_MENU in the game.java file
+          -To load the PLAY state, it must be commented out.
+03:33:33: -Main Menu: Constructing Game State
+03:33:33: -GSM: Pushing "Main Menu" on the stack
+03:33:33: -GSM: Popping "Play" off the stack.
+03:33:33: -Play: Disposing of game state
+03:33:33: -Application: Resized to (448,512)
+03:33:33: -Play: Constructing Game State
+03:33:33: -GS: Creating Box2D world and cameras for Play
+03:33:33: -GS: Creating Models for Play
+03:33:33: -GSM: Pushing "Play" on the stack
+03:33:35: -Application: Paused
+03:33:35: -Application: Terminating

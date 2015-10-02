@@ -43,7 +43,7 @@ public class Platform extends Model{
 				p.addTag("ground");
 				platforms.add(p);
 				p = new Platform(world, (int)((col+0.5)*tileWidth), (int)((row+0.5)*tileHeight), 
-						(int)tileWidth, (int)(tileHeight/2-5));
+						(int)tileWidth, (int)(tileHeight/2-1));
 				if(additionalTags != null){ p.addTags(additionalTags); }
 				p.addTag("ceiling");
 				platforms.add(p);

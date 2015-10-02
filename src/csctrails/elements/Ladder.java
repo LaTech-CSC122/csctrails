@@ -49,7 +49,7 @@ public class Ladder extends Model {
 		bdef.position.set(xpos/PPM, ypos/PPM);
 		
 		PolygonShape shape = new PolygonShape();
-		shape.setAsBox(LADDER_WIDTH/PPM, LADDER_HEIGHT/2/PPM);
+		shape.setAsBox(LADDER_WIDTH/PPM, (LADDER_HEIGHT)/2/PPM);
 		
 		FixtureDef fdef = new FixtureDef();
 		fdef.shape = shape;
