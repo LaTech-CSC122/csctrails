@@ -41,7 +41,7 @@ public class GameStateManager {
 	public GameStateManager(Game game) {
 		this.game = game;
 		gameStates = new Stack<GameState>();
-		pushState(PLAY);
+		pushState(MAIN_MENU);
 	}
 	
 	public Game getGame() { return game; }

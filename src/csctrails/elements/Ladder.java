@@ -1,25 +1,15 @@
 package csctrails.elements;
 
-import static csctrails.elements.B2DVars.PPM;
-
 import java.util.ArrayList;
 
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
-public class Ladder extends Model {
-
-	private static final String[] DEFAULT_TAGS = {"model", "ladder"};
-	private static final int LADDER_WIDTH = 0;
-	private static final int LADDER_HEIGHT = 32;
+public class Ladder{
 	
-	public static ArrayList<Ladder> loadLadders(World world, TiledMapTileLayer tmtl, String[] additionalTags){
-		ArrayList<Ladder> ladders = new ArrayList<Ladder>();
+	public static ArrayList<Model> loadLadders(World world, TiledMapTileLayer tmtl, String[] additionalTags){
+		ArrayList<Model> ladders = new ArrayList<Model>();
 		float tileWidth = tmtl.getTileWidth();
 		float tileHeight = tmtl.getTileHeight();
 		
@@ -28,8 +18,7 @@ public class Ladder extends Model {
 				Cell cell = tmtl.getCell(col, row);
 				if(cell == null) continue;
 				if(cell.getTile() == null) continue;
-				Ladder l = new Ladder(world, (int)((col+0.5)*tileWidth), 
-						(int)((row+1)*tileHeight-LADDER_HEIGHT/2)); // size
+				Model l = new Model(world, "MODEL:LADDER", (col+0.5f)*tileWidth, (row+0.5f)*tileHeight);
 				if(additionalTags != null){ l.addTags(additionalTags); }
 				ladders.add(l);
 			}
@@ -37,27 +26,4 @@ public class Ladder extends Model {
 		
 		return ladders;
 	}
-	
-	public Ladder (World world, int xpos, int ypos) {
-		super(world, "");
-		
-		//Add Tags
-		addTags(DEFAULT_TAGS);
-		
-		BodyDef bdef = new BodyDef();
-		bdef.type = BodyType.StaticBody;
-		bdef.position.set(xpos/PPM, ypos/PPM);
-		
-		PolygonShape shape = new PolygonShape();
-		shape.setAsBox(LADDER_WIDTH/PPM, (LADDER_HEIGHT)/2/PPM);
-		
-		FixtureDef fdef = new FixtureDef();
-		fdef.shape = shape;
-		fdef.isSensor = true;
-		
-		body = world.createBody(bdef);
-		body.setUserData(this);
-		body.createFixture(fdef);
-	}
-
 }

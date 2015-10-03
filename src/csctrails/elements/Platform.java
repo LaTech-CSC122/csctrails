@@ -6,27 +6,21 @@ import java.util.ArrayList;
 
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.ChainShape;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 
 
 /**
- * All platforms that exist in the game
+ * All Models that exist in the game
  * 
  * Change Log:
  * 15.09.28 gha: First Edition
  *
  */
 
-public class Platform extends Model{
+public class Platform{
 
-	public static final String[] DEFAULT_TAGS= {"modle", "platform"};
-
-	public static ArrayList<Platform> loadPlatforms(World world, TiledMapTileLayer tileLayer, String[] additionalTags){
-		ArrayList<Platform> platforms = new ArrayList<Platform>();
+	public static ArrayList<Model> loadPlatforms(World world, TiledMapTileLayer tileLayer, String[] additionalTags){
+		ArrayList<Model> Models = new ArrayList<Model>();
 		float tileHeight = tileLayer.getTileHeight();
 		float tileWidth = tileLayer.getTileWidth();
 		for(int row = 0; row < tileLayer.getHeight(); row++){
@@ -37,47 +31,20 @@ public class Platform extends Model{
 				if(cell.getTile() == null) continue;
 
 				
-				Platform p = new Platform(world, (int)((col+0.5)*tileWidth), (int)((row+0.5)*tileHeight), 
-						(int)tileWidth, (int)(tileHeight/2));
-				if(additionalTags != null){ p.addTags(additionalTags); }
-				p.addTag("ground");
-				platforms.add(p);
-				p = new Platform(world, (int)((col+0.5)*tileWidth), (int)((row+0.5)*tileHeight), 
-						(int)tileWidth, (int)(tileHeight/2-1));
-				if(additionalTags != null){ p.addTags(additionalTags); }
-				p.addTag("ceiling");
-				platforms.add(p);
+				Model g = new Model(world, "MODEL:PLATFORM_GROUND");
+				g.getBody().setTransform((col+0.5f)*tileWidth/PPM, (row+0.5f)*tileHeight/PPM, 0);
+				if(additionalTags != null){ g.addTags(additionalTags); }
+				g.addTag("ground");
+				Models.add(g);
+				
+				Model c = new Model(world, "MODEL:PLATFORM_CEILING");
+				c.getBody().setTransform((col+0.5f)*tileWidth/PPM, (row+0.5f)*tileHeight/PPM, 0);
+				if(additionalTags != null){ c.addTags(additionalTags); }
+				c.addTag("ceiling");
+				Models.add(c);
 			}
 		}
 		
-		return platforms;
+		return Models;
 	}
-	
-	public Platform(World world, int xpos, int ypos, int width, int height) {
-		super(world, "");
-		
-		//Add Tags
-		addTags(DEFAULT_TAGS);
-		
-		
-		BodyDef bdef = new BodyDef();
-		bdef.position.set(xpos/PPM, ypos/PPM);
-		bdef.type = B2DVars.STATIC;
-
-		ChainShape shape = new ChainShape();
-		Vector2[] v = new Vector2[2];
-		v[0] = new Vector2(-width/2/PPM, height/PPM);
-		v[1] = new Vector2(width/2/PPM, height/PPM);
-		shape.createChain(v);
-		//TODO: add base to platform. If player hits head, he can collide with a ball
-		FixtureDef fdef = new FixtureDef();
-		fdef.friction= 0f;
-		fdef.shape = shape;
-		
-		body = world.createBody(bdef);
-		body.setUserData(this);
-		body.createFixture(fdef);
-		
-	}
-
 }

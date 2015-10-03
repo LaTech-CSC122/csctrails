@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.ChainShape;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
@@ -97,6 +98,7 @@ public class Model {
 		int shapeWidth = 5;
 		int shapeHeight = 5;
 		int shapeRadius = 5;
+		Vector2[] points = new Vector2[0];
 		
 		//Get Shape Type
 		if(cfg.hasProperty("FIXTURE_SHAPE_TYPE" + index + "@" + cfgProfileName)){
@@ -121,6 +123,22 @@ public class Model {
 			shapeRadius = Integer.parseInt(cfg.getProperty("FIXTURE_SHAPE_RADIUS" + index + "@" + cfgProfileName));
 		}
 		
+		
+		//Get Shape Points
+		if(shapeType.contains("_POINTS") &&
+				cfg.hasProperty("FIXTURE_SHAPE_POINT_COUNT" + index + "@" + cfgProfileName)){
+			int numOfPoints = Integer.parseInt(cfg.getProperty("FIXTURE_SHAPE_POINT_COUNT" + index + "@" + cfgProfileName));
+			points = new Vector2[numOfPoints];
+			for(int i = 1; i<=numOfPoints; i++){
+				String coordinates = cfg.getProperty("FIXTURE_SHAPE_POINT" + index + "_" + i + "@" + cfgProfileName);
+				int x = Integer.parseInt(coordinates.substring(0, coordinates.indexOf(",")));
+				int y = Integer.parseInt(coordinates.substring(coordinates.indexOf(",")+1));
+				points[i-1] = new Vector2(x/PPM, y/PPM);
+			}
+		}
+		
+		
+		
 		//Create Shapes
 		Shape shape = null;
 		if(shapeType.equals("POLYGONSHAPE")){
@@ -133,6 +151,12 @@ public class Model {
 				cShape.setRadius(shapeRadius/PPM);
 				shape = cShape;
 		}
+		else if(shapeType.equals("CHAINSHAPE_POINTS")){
+			//System.out.println(shapeType);
+			ChainShape cShape = new ChainShape();
+			cShape.createChain(points);
+			shape = cShape;
+	}
 		return shape;
 
 	}
@@ -244,7 +268,7 @@ public class Model {
 		this(world, cfgProfileName, -1, -1);
 	}
 	
-	public Model(World world, String cfgProfileName, int xpos, int ypos){
+	public Model(World world, String cfgProfileName, float xpos, float ypos){
 		//Initialize all fields (that you can)
 		textureHeight = 0;
 		textureWidth = 0;
