@@ -65,9 +65,6 @@ public class Game implements ApplicationListener {
 		camera.setToOrtho(false, V_WIDTH*SCALE, V_HEIGHT*SCALE);  // Set the view of the main camera - gha 15.9.21
 		
 		gsm = new GameStateManager(this);
-		logger.log("Hunter: I have set the first game state to MAIN_MENU in the game.java file\n" +
-				"To load the PLAY state, it must be commented out.");
-		gsm.setPlayState(GameStateManager.MAIN_MENU);
 	}
 	public void render() {
 		// Throttles the frame rate (rendering) and step interval (Box2D) for the program  - gha 15.9.21  

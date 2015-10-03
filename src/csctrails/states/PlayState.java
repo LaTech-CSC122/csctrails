@@ -18,9 +18,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 
-import csctrails.elements.Boss;
 import csctrails.elements.Boundary;
-import csctrails.elements.Key;
 import csctrails.elements.Ladder;
 import csctrails.elements.Model;
 import csctrails.elements.Platform;
@@ -53,7 +51,7 @@ public class PlayState extends GameState {
 	private PlayContactListener cl;
 	
 	//Model Fields
-	Player user;
+	Player player;
 	Thrower thrower;
 	
 	//Fonts
@@ -65,6 +63,7 @@ public class PlayState extends GameState {
 
 	public PlayState(GameStateManager gsm) {
 		super(gsm, "Play");
+	
 		
 		//HUD
 		hud.resetAll();
@@ -100,15 +99,21 @@ public class PlayState extends GameState {
 		
 		//Object Layout
 		Game.logger.log("GS: Creating Models for " + title);
-		models.add(new Key(world, 16*24, 16*29));
-		user = new Player(world,  16*1, 16*3);
-		models.add(user); // Model must be added to modelList or it will not be rendered - gha 15.9.25
-		models.add(new Boss (world, Game.V_WIDTH-16*7, Game.V_HEIGHT-16*5));
+
+		Model m = new Model(world, "MODEL:KEY");
+		m.getBody().setTransform(16*24/PPM, 16*29/PPM, 0f);
+		models.add(m);
+		
+		player = new Player(world, "MODEL:PLAYER", 16*1, 16*30);
+		models.add(player); // Model must be added to modelList or it will not be rendered - gha 15.9.25
+		
+		models.add(new Model(world, "MODEL:BOSS", Game.V_WIDTH-16*7, Game.V_HEIGHT-16*5));
 		
 		thrower = new Thrower(world, 16, 120);
 		thrower.setProbability(0.1f);
 		thrower.setPosistion(16*19, 16*32);
 		thrower.setActive(true);
+
 		models.add(thrower.throwObject(16*20, 16*7));
 		models.add(thrower.throwObject(16*10, 16*7));
 		models.add(thrower.throwObject(16*20, 16*11));
@@ -120,7 +125,7 @@ public class PlayState extends GameState {
 		models.add(thrower.throwObject(16*20, 16*23));
 		models.add(thrower.throwObject(16*10, 16*23));
 		models.add(thrower.throwObject(16*10, 16*28));
-		
+
 		//Fonts
 		font = new BitmapFont();
 		
@@ -131,20 +136,20 @@ public class PlayState extends GameState {
 		if(MyInput.isPressed(MyInput.BUTTON_ESC)) gsm.popState();
 		
 		if(MyInput.isDown(MyInput.BUTTON_LEFT)){
-			user.moveLeft();
+			player.moveLeft();
 		}
 		if(MyInput.isDown(MyInput.BUTTON_RIGHT)){
-			user.moveRight();
+			player.moveRight();
 		}
 		if(MyInput.isPressed(MyInput.BUTTON_UP)){
-			if(user.climbUp());
-			else if(user.jump());
+			if(player.climbUp());
+			else if(player.jump());
 		}
 		if(MyInput.isDown(MyInput.BUTTON_UP)){
-			user.climbUp();
+			player.climbUp();
 		}
 		if(MyInput.isDown(MyInput.BUTTON_DOWN)){
-			user.climbDown();
+			player.climbDown();
 		}
 	}
 	
@@ -166,7 +171,7 @@ public class PlayState extends GameState {
 		Thrown t = thrower.throwObject();
 		if(t != null){ models.add(t); }
 		//See if player has died
-		if(!user.isAlive()){
+		if(!player.isAlive()){
 			gsm.setPlayState(GameStateManager.GAME_OVER);
 		}
 		
@@ -190,7 +195,7 @@ public class PlayState extends GameState {
 		sb.end();
 				
 		// Render Box2d world - development purposes only
-		//b2dDebugRenderer.render(world, b2dCamera.combined);
+		b2dDebugRenderer.render(world, b2dCamera.combined);
 	}
 	
 }

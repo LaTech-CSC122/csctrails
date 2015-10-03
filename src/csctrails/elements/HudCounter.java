@@ -1,10 +1,12 @@
 package csctrails.elements;
 
 public class HudCounter {
+	
 	private int defaultLives;
 	private float defaultTime;
 	private int defaultScore;
 	
+	@SuppressWarnings("unused")
 	private int lives;
 	private float time;
 	private int score;

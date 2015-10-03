@@ -8,13 +8,12 @@ import com.badlogic.gdx.physics.box2d.ChainShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 
-import csctrails.main.Game;
-
 public class Boundary extends Model{
 
 	private String[] DEFAULT_TAGS = {"model", "boundary"};
 	
 	public Boundary(World world, int width, int height) {
+		super(world, "");
 		//add Tags
 		addTags(DEFAULT_TAGS);
 		

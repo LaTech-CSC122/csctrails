@@ -21,8 +21,6 @@ public class Thrower {
 	
 	
 	public Thrower(World world, int maxCount, int interval) {
-		this.xpos = 0;
-		this.ypos = 0;
 		this.maxCount = maxCount;
 		this.probability = 1;
 		this.interval = interval;
@@ -47,7 +45,7 @@ public class Thrower {
 			return null;
 		}
 		else if((deltaFrames>interval && random.nextFloat()%1 <= probability) || !chance){
-			Thrown t = new Thrown(world, xpos, ypos);
+			Thrown t = new Thrown(world, "MODEL:THROWN");
 			t.getBody().setTransform((float)x/B2DVars.PPM, (float)y/B2DVars.PPM, 0);
 			t.setThrower(this);
 			allObjects.add(t);

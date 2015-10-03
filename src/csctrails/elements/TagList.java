@@ -20,11 +20,12 @@ public class TagList {
 	}
 
 	public void add(String newTag){
-		tags.add(newTag.toUpperCase());
+		add(newTag.split(","));
 	}
+	
 	public void add(String[] newTags){
 		for(int i=0; i<newTags.length; i++){
-			add(newTags[i].toUpperCase());
+			tags.add(newTags[i].toUpperCase().trim());
 		}
 	}
 	
@@ -34,18 +35,30 @@ public class TagList {
 		}
 	}
 	
-	public boolean contains(String tag){
-		String[] tags = tag.toUpperCase().split(",");
-		return contains(tags);
+	public boolean contains(String inputTag){
+		return contains(inputTag.split(","));
 	}
-	public boolean contains(String[] tagInput){
-		for(int i=0; i < tagInput.length; i++){
-			if(!tags.contains(tagInput[i].trim().toUpperCase())) return false;
+	public boolean contains(String[] tagList){
+		for(int i=0; i<tagList.length; i++){
+			if(!tags.contains(tagList[i].toUpperCase().trim())){ return false; }
 		}
 		return true;
 	}
 
 	public String getId(){
 		return id;
+	}
+	
+	public String toString(){
+		return id + ": " + tags.toString();
+	}
+
+	public String[] getTags() {
+		String[] output = new String[tags.size()];
+		Object[] objects = tags.toArray();
+		for(int i=0; i<output.length; i++){
+			output[i] = (String) objects[i];
+		}
+		return output;
 	}
 }

@@ -75,6 +75,7 @@ public class PlayContactListener implements ContactListener {
 		Model model0 = (Model) fixtures[0].getBody().getUserData();
 		Model model1 = (Model) fixtures[1].getBody().getUserData();
 		
+		
 		if(model0.hasTag("player") && model1.hasTag("platform, ground")){
 			((Player) fixtures[0].getBody().getUserData()).addGroundContact();
 		}
@@ -88,11 +89,11 @@ public class PlayContactListener implements ContactListener {
 		else if(model0.hasTag("player") && model1.hasTag("thrown")){
 			((Player) fixtures[0].getBody().getUserData()).setIsAlive(false);
 		}
-		else if(model0.hasTag("thrown") && model1.hasTag("platform, left")){
+		else if(model0.hasTag("thrown") && model1.hasTag("platform,left")){
 			Thrown t = (Thrown) fixtures[0].getBody().getUserData();
 			t.addGroundContact();
 		}
-		else if(model0.hasTag("thrown") && model1.hasTag("platform, right")){
+		else if(model0.hasTag("thrown") && model1.hasTag("platform,right")){
 			Thrown t = (Thrown) fixtures[0].getBody().getUserData();
 			t.addGroundContact();
 		}

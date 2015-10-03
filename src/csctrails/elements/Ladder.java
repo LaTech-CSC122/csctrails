@@ -39,7 +39,7 @@ public class Ladder extends Model {
 	}
 	
 	public Ladder (World world, int xpos, int ypos) {
-		super();
+		super(world, "");
 		
 		//Add Tags
 		addTags(DEFAULT_TAGS);

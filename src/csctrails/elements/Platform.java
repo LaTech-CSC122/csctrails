@@ -54,7 +54,7 @@ public class Platform extends Model{
 	}
 	
 	public Platform(World world, int xpos, int ypos, int width, int height) {
-		super();
+		super(world, "");
 		
 		//Add Tags
 		addTags(DEFAULT_TAGS);

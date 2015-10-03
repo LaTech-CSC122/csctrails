@@ -1,58 +1,45 @@
 package csctrails.elements;
 
-import static csctrails.elements.B2DVars.PPM;
-
-import java.util.ArrayList;
-
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.CircleShape;
-import com.badlogic.gdx.physics.box2d.Fixture;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.utils.Array;
 
-import csctrails.main.Paths;
+import csctrails.configuration.Configuration;
 
 public class Thrown extends Model {
-	private static final String[] DEFAULT_TAGS = {"model", "thrown"};
-	private static final float DEFAULT_SPEED = 0.45f; //0.45f
-	private static final int DEFAULT_RADIUS = 7;
 	
+	private static Configuration cfg;
 	
+	static{
+		cfg = new Configuration();
+		cfg.loadConfiguration("res/config/models/thrown.config");
+	}
+
+
+	private float speed;
+	private int radius;
 	private int groundContact;
 	private Thrower thrower;
 
-	public Thrown(World world, int xpos, int ypos) {
-		super();
-		//tags
-		addTags(DEFAULT_TAGS);
-		
-		//Sprites
-		Texture tex = new Texture(Paths.SPRITE_THROWN_1);
-		textureHeight = tex.getHeight();
-		textureWidth = tex.getWidth();
-		sprite = new Sprite(tex);
-		
-		//Body
-		BodyDef bdef = new BodyDef();
-		bdef.position.set(xpos/PPM, ypos/PPM);
-		bdef.type = B2DVars.DYNAMIC;
-		//Shape
-		CircleShape shape = new CircleShape();
-		shape.setRadius(DEFAULT_RADIUS/PPM);
-		//Fixture
-		FixtureDef fdef = new FixtureDef();
-		fdef.shape = shape;
-		fdef.friction = 0f;
-		//Creation
-		body = world.createBody(bdef);
-		body.setUserData(this);
-		body.createFixture(fdef);
-		
-		//Initialize Field Variables
+	public Thrown(World world, String cfgProfileName){
+		super(world, cfgProfileName, 50, 50);
 		groundContact = 0;
+		radius = 7;
+		speed = 0.5f;
+		
+		//Pull config vars
+		
+		//SPEED
+		if(cfg.hasProperty("SPEED@" + cfgProfileName)){
+			speed = Float.parseFloat(cfg.getProperty("SPEED@" + cfgProfileName));
+		}else{
+			speed = 0.5f;
+		}
+		
+		//FIXTURE_SHAPE_RADIUS
+		if(cfg.hasProperty("FIXTURE_SHAPE_RADIUS@" + cfgProfileName)){
+			radius = Integer.parseInt(cfg.getProperty("FIXTURE_SHAPE_RADIUS@" + cfgProfileName));
+		} else{
+			radius = 7;
+		}
 	}
 	
 	public void setThrower(Thrower t){
@@ -63,12 +50,12 @@ public class Thrown extends Model {
 	}
 	
 	public void pushRight(){
-		body.setLinearVelocity(DEFAULT_SPEED, body.getLinearVelocity().y);
-		body.setAngularVelocity(-DEFAULT_SPEED*314/(DEFAULT_RADIUS));
+		body.setLinearVelocity(speed, body.getLinearVelocity().y);
+		body.setAngularVelocity(-speed*314/(radius));
 	}
 	public void pushLeft(){
-		body.setLinearVelocity(-DEFAULT_SPEED, body.getLinearVelocity().y);
-		body.setAngularVelocity(DEFAULT_SPEED*314/(DEFAULT_RADIUS));
+		body.setLinearVelocity(-speed, body.getLinearVelocity().y);
+		body.setAngularVelocity(speed*314/(radius));
 	}
 	
 	public void addGroundContact(){
