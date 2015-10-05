@@ -173,6 +173,7 @@ public class PlayState extends GameState {
 		//Try to Throw Something
 		Thrown t = thrower.throwObject();
 		if(t != null){ models.add(t); }
+		
 		//See if player has died
 		if(!player.isAlive()){
 			gsm.setPlayState(GameStateManager.GAME_OVER);
@@ -198,7 +199,7 @@ public class PlayState extends GameState {
 		sb.end();
 				
 		// Render Box2d world - development purposes only
-		b2dDebugRenderer.render(world, b2dCamera.combined);
+		//b2dDebugRenderer.render(world, b2dCamera.combined);
 	}
 	
 }
