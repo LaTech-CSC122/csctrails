@@ -57,8 +57,8 @@ public class PlayState extends GameState {
 	private PlayContactListener cl;
 	
 	//Model Fields
-	Player player;
 	Thrower thrower;
+	Player player;
 	
 	//Fonts
 	BitmapFont font;
@@ -109,7 +109,7 @@ public class PlayState extends GameState {
 		//Key
 		models.add(new Model(world, "MODEL:KEY", 16*24, 16*29));
 		//Player
-		player = new Player(world, "MODEL:PLAYER", 16*1, 16*3);
+		player = new Player(world, "MODEL:PLAYER", 16*1, 16*5);
 		models.add(player);
 		//Boss
 		models.add(new Model(world, "MODEL:BOSS", Game.V_WIDTH-16*7, Game.V_HEIGHT-16*5));
@@ -161,6 +161,8 @@ public class PlayState extends GameState {
 		handleInput();
 		world.step(dt, 6, 2);
 		
+		hud.modifyTime(dt);
+		
 		//Clean up inactive models
 		ArrayList<Model> modelsToDestroy = Model.getDestoryList();
 		if(modelsToDestroy.size() > 0){
@@ -174,11 +176,21 @@ public class PlayState extends GameState {
 		Thrown t = thrower.throwObject();
 		if(t != null){ models.add(t); }
 		
-		//See if player has died
-		if(!player.isAlive()){
-			gsm.setPlayState(GameStateManager.GAME_OVER);
+		//Has Player won?
+		if(cl.getGameWon()){
+			gsm.setPlayState(GameStateManager.GAME_WON);
 		}
 		
+		//See if player has died
+		if(!player.isAlive() && hud.getLives()>0){
+			player.setIsAlive(true);
+			hud.modifyLives(-1);
+			player.getBody().setTransform(16*1/PPM, 16*3/PPM, 0);
+			player.getBody().setLinearVelocity(0, 0);
+		}
+		else if(!player.isAlive() && hud.getLives()<=0){
+			gsm.setPlayState(GameStateManager.GAME_OVER);			
+		}
 
 	}
 	
@@ -192,6 +204,8 @@ public class PlayState extends GameState {
 		sb.setProjectionMatrix(camera.combined);
 		sb.begin();
 		font.draw(sb, "Press ESC to return to the main menu.", 10, 15);
+		font.draw(sb, "Time: " + (int) hud.getTime(), 10, Game.V_HEIGHT-10);
+		font.draw(sb, "Grade: " + hud.getScore(), 180, Game.V_HEIGHT-10);
 		for(Model i:models){
 			Sprite sprite = i.getSprite();
 			if(sprite != null) sprite.draw(sb);

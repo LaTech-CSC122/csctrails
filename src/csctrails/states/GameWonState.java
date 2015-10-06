@@ -8,12 +8,12 @@ import csctrails.handlers.GameStateManager;
 import csctrails.handlers.MyInput;
 import csctrails.main.Game;
 
-public class GameOverState extends GameState {
+public class GameWonState extends GameState {
 
 	BitmapFont font;
 	
-	public GameOverState(GameStateManager gsm) {
-		super(gsm, "Game Over");
+	public GameWonState(GameStateManager gsm) {
+		super(gsm, "Game Won");
 		font = new BitmapFont();
 	}
 
@@ -36,8 +36,8 @@ public class GameOverState extends GameState {
 		sb.setProjectionMatrix(camera.combined);
 		sb.begin();
 			font.draw(sb, "Time: " + (int) hud.getTime(), Game.V_WIDTH/2-70, Game.V_HEIGHT/2-15);
-			font.draw(sb, "Score: F", Game.V_WIDTH/2-70, Game.V_HEIGHT/2-30);
-			font.draw(sb, "Game Over Screen", Game.V_WIDTH/2-70, Game.V_HEIGHT/2);
+			font.draw(sb, "Score: " + hud.getScore(), Game.V_WIDTH/2-70, Game.V_HEIGHT/2-30);
+			font.draw(sb, "Game Won Screen", Game.V_WIDTH/2-70, Game.V_HEIGHT/2);
 			font.draw(sb, "Press ESC to return to main menu", 10, Game.V_HEIGHT - 10);
 			font.draw(sb, "Press ENTER to play again", 10, Game.V_HEIGHT - 25);
 		sb.end();

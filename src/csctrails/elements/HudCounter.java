@@ -2,6 +2,9 @@ package csctrails.elements;
 
 public class HudCounter {
 	
+	private static float MAX_TIME_A = 30;
+	private static float MAX_TIME_B = 35;
+	
 	private int defaultLives;
 	private float defaultTime;
 	private int defaultScore;
@@ -9,7 +12,6 @@ public class HudCounter {
 	@SuppressWarnings("unused")
 	private int lives;
 	private float time;
-	private int score;
 	
 	public HudCounter(int defaultLives, float defaultTime, int defaultScore){
 		this.defaultLives = defaultLives;
@@ -17,7 +19,6 @@ public class HudCounter {
 		this.defaultScore = defaultScore;
 		lives = 0;
 		time = 0;
-		score = 0;
 	}
 	
 	public HudCounter() {
@@ -26,27 +27,28 @@ public class HudCounter {
 		defaultScore = 0;
 		lives = 0;
 		time = 0;
-		score = 0;
 	}
 	
 	public void resetLives(){ lives = defaultLives; }
 	public void setLives(int l){ lives = l; }
 	public void modifyLives(int delta){ lives += delta; }
-	public int getLives(int lives){ return lives; }
+	public int getLives(){ return lives; }
 	
 	public void resetTime(){ time = defaultTime; }
 	public void setTime(float t){ time = t; }
 	public void modifyTime(float delta){ time += delta; }
 	public float getTime(){ return time; }
 	
-	public void resetScore(){ score = defaultScore; }
-	public void setScore(int s){ score = s; }
-	public void modifyScore(float delta){ score += delta; }
-	public int getScore(){ return score; }
+
+	public String getScore(){ 
+		if(time < MAX_TIME_A){ return "A"; }
+		else if(time < MAX_TIME_B){ return "B"; }
+		else{ return "C"; }
+		
+	}
 
 	public void resetAll(){
 		lives = defaultLives;
 		time = defaultTime;
-		score = defaultScore;
 	}
 }

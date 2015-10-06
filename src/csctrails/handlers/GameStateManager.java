@@ -32,6 +32,7 @@ public class GameStateManager {
 	public static final int MAIN_MENU = 1;
 	public static final int PLAY = 2;
 	public static final int GAME_OVER = 3;
+	public static final int GAME_WON = 4;
 
 	private Game game;
 	private Stack<GameState> gameStates;
@@ -58,6 +59,7 @@ public class GameStateManager {
 		if(state == PLAY) return new PlayState(this);
 		if(state == MAIN_MENU) return new MainMenuState(this);
 		if(state == GAME_OVER) return new GameOverState(this);
+		if(state == GAME_WON) return new GameWonState(this);
 		return null;
 	}
 	
