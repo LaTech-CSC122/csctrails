@@ -7,16 +7,13 @@ public class HudCounter {
 	
 	private int defaultLives;
 	private float defaultTime;
-	private int defaultScore;
 	
-	@SuppressWarnings("unused")
 	private int lives;
 	private float time;
 	
 	public HudCounter(int defaultLives, float defaultTime, int defaultScore){
 		this.defaultLives = defaultLives;
 		this.defaultTime = defaultTime;
-		this.defaultScore = defaultScore;
 		lives = 0;
 		time = 0;
 	}
@@ -24,7 +21,6 @@ public class HudCounter {
 	public HudCounter() {
 		defaultLives = 0;
 		defaultTime = 0;
-		defaultScore = 0;
 		lives = 0;
 		time = 0;
 	}

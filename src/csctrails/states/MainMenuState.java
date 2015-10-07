@@ -43,7 +43,7 @@ public class MainMenuState extends GameState {
 			font.draw(sb, "Press ENTER to load play state", 10, Game.V_HEIGHT-10);
 			font.draw(sb, "Press 1 to load gameover", 10, Game.V_HEIGHT-25);
 			for(Model i:models){
-				i.getSprite().draw(sb);
+				i.draw(sb);
 			}
 		sb.end();
 		

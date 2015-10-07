@@ -111,7 +111,7 @@ public class PlayContactListener implements ContactListener {
 		else if(model0.hasTag("player") && model1.hasTag("key")){
 			gameWon = true;
 		}
-		else if(model0.hasTag("player") && model1.hasTag("boundary")){
+		else if(model0.hasTag("player") && model1.hasTag("boundary,bottom")){
 			((Player) fixtures[0].getBody().getUserData()).setIsAlive(false);
 		}
 		

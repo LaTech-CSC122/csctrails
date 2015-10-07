@@ -5,6 +5,7 @@ import static csctrails.elements.B2DVars.PPM;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Fixture;
@@ -92,12 +93,15 @@ public class Model {
 
 	//Accessors
 	public Body getBody(){ return body; }
-	public Sprite getSprite(){ 
-		if(sprite == null) return null;
+	public void draw(SpriteBatch sb){ 
+		if(sprite == null) return;
 		Vector2 pos = body.getPosition();
 		sprite.setPosition(pos.x*PPM - textureWidth/2, pos.y*PPM - textureHeight/2); // TODO: offset to align with Box2D Body - gha 15.9.20
 		sprite.setRotation((float) Math.toDegrees(body.getAngle()));
-		return sprite; 
+		sprite.draw(sb);
+	}
+	public void update(float dt){
+		return;
 	}
 	
 	

@@ -105,11 +105,12 @@ public class PlayState extends GameState {
 		tmr.setView(camera);
 		
 		//Boundaries
-		new Model(world, "MODEL:BOUNDARY");
+		new Model(world, "MODEL:BOUNDARY_SIDES");
+		new Model(world, "MODEL:BOUNDARY_BOTTOM");
 		//Key
 		models.add(new Model(world, "MODEL:KEY", 16*24, 16*29));
 		//Player
-		player = new Player(world, "MODEL:PLAYER", 16*1, 16*5);
+		player = new Player(world, "MODEL:PLAYER", 16*1, 16*3);
 		models.add(player);
 		//Boss
 		models.add(new Model(world, "MODEL:BOSS", Game.V_WIDTH-16*7, Game.V_HEIGHT-16*5));
@@ -117,7 +118,8 @@ public class PlayState extends GameState {
 		thrower = new Thrower(world, 16, 120);
 		thrower.setProbability(0.08f);
 		thrower.setPosistion(16*19, 16*32);
-		thrower.setActive(true);
+		thrower.setActive(false);
+		/*thrower.setActive(true);
 		models.add(thrower.throwObject(16*20, 16*7));
 		models.add(thrower.throwObject(16*10, 16*7));
 		models.add(thrower.throwObject(16*20, 16*11));
@@ -129,7 +131,7 @@ public class PlayState extends GameState {
 		models.add(thrower.throwObject(16*20, 16*23));
 		models.add(thrower.throwObject(16*10, 16*23));
 		models.add(thrower.throwObject(16*10, 16*28));
-
+	*/
 		//Fonts
 		font = new BitmapFont();
 	}
@@ -138,29 +140,13 @@ public class PlayState extends GameState {
 	public void handleInput() {
 		if(MyInput.isPressed(MyInput.BUTTON_ESC)) gsm.popState();
 		
-		if(MyInput.isDown(MyInput.BUTTON_LEFT)){
-			player.moveLeft();
-		}
-		if(MyInput.isDown(MyInput.BUTTON_RIGHT)){
-			player.moveRight();
-		}
-		if(MyInput.isPressed(MyInput.BUTTON_UP)){
-			if(player.climbUp());
-			else if(player.jump());
-		}
-		if(MyInput.isDown(MyInput.BUTTON_UP)){
-			player.climbUp();
-		}
-		if(MyInput.isDown(MyInput.BUTTON_DOWN)){
-			player.climbDown();
-		}
+		
 	}
 	
 	public void update(float dt) {
 		//dt is the time since update was last ran - gha 15.9.25
 		handleInput();
 		world.step(dt, 6, 2);
-		
 		hud.modifyTime(dt);
 		
 		//Clean up inactive models
@@ -170,6 +156,10 @@ public class PlayState extends GameState {
 				if(model.destory() && models.contains(model)){ models.remove(model); }
 			}
 			Model.clearDestoryList();
+		}
+		
+		for(Model m:models){
+			m.update(dt);
 		}
 		
 		//Try to Throw Something
@@ -207,8 +197,7 @@ public class PlayState extends GameState {
 		font.draw(sb, "Time: " + (int) hud.getTime(), 10, Game.V_HEIGHT-10);
 		font.draw(sb, "Grade: " + hud.getScore(), 180, Game.V_HEIGHT-10);
 		for(Model i:models){
-			Sprite sprite = i.getSprite();
-			if(sprite != null) sprite.draw(sb);
+			i.draw(sb);
 		}
 		sb.end();
 				
