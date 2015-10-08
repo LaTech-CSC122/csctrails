@@ -8,12 +8,12 @@ import csctrails.handlers.GameStateManager;
 import csctrails.handlers.MyInput;
 import csctrails.main.Game;
 
-public class GameOverState extends GameState {
+public class GameWonState extends GameState {
 
 	BitmapFont font;
 	
-	public GameOverState(GameStateManager gsm) {
-		super(gsm, "Game Over");
+	public GameWonState(GameStateManager gsm) {
+		super(gsm, "Game Won");
 		font = new BitmapFont();
 	}
 
@@ -34,11 +34,11 @@ public class GameOverState extends GameState {
 		Gdx.gl10.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		
 		sb.setProjectionMatrix(camera.combined);
-		sb.begin(); //lives lost is a placeholder in case we give a power up that gives extra lives. 
-			font.draw(sb, "Lives lost: 3", Game.V_WIDTH/2-70, Game.V_HEIGHT/2-15);
+		sb.begin();
+			font.draw(sb, "Lives left: " + hud.getLives(), Game.V_WIDTH/2-70, Game.V_HEIGHT/2-15);
 			font.draw(sb, "Time: " + (int) hud.getTime(), Game.V_WIDTH/2-70, Game.V_HEIGHT/2-30);
-			font.draw(sb, "Grade: F", Game.V_WIDTH/2-70, Game.V_HEIGHT/2-45);
-			font.draw(sb, "Game Over! Better luck next time.", Game.V_WIDTH/2-70, Game.V_HEIGHT/2);
+			font.draw(sb, "Grade: " + hud.getScore(), Game.V_WIDTH/2-70, Game.V_HEIGHT/2-45);
+			font.draw(sb, "Congratulations, you won!", Game.V_WIDTH/2-70, Game.V_HEIGHT/2);
 			font.draw(sb, "Anky:  " +(int) hud.getAnky(), Game.V_WIDTH/2-70, Game.V_HEIGHT/2-60);
 			font.draw(sb, "Class:  " +(int) hud.getClassScore(), Game.V_WIDTH/2+7, Game.V_HEIGHT/2-60);
 			font.draw(sb, hud.getLeader(), Game.V_WIDTH/2-70, Game.V_HEIGHT/2-75);

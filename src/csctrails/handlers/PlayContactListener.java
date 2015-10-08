@@ -24,6 +24,14 @@ import csctrails.elements.Thrown;
 
 public class PlayContactListener implements ContactListener {
 	
+	private boolean gameWon;
+	
+	public PlayContactListener(){
+		gameWon = false;
+	}
+	
+	public boolean getGameWon(){ return gameWon; }
+	
 	// called when two fixtures start to collide
 	public void beginContact(Contact c) {
 		Fixture[] fixtures = new Fixture[2];
@@ -81,6 +89,7 @@ public class PlayContactListener implements ContactListener {
 		}
 		else if(model0.hasTag("player") && model1.hasTag("ladder")){
 			((Player) fixtures[0].getBody().getUserData()).addLadderContact();
+			
 		}
 		else if(model0.hasTag("thrown") && model1.hasTag("boundary")){
 			Thrown t = (Thrown) fixtures[0].getBody().getUserData();
@@ -88,6 +97,8 @@ public class PlayContactListener implements ContactListener {
 		}
 		else if(model0.hasTag("player") && model1.hasTag("thrown")){
 			((Player) fixtures[0].getBody().getUserData()).setIsAlive(false);
+			Thrown t = (Thrown) fixtures[1].getBody().getUserData();
+			t.flagForDestory();
 		}
 		else if(model0.hasTag("thrown") && model1.hasTag("platform,left")){
 			Thrown t = (Thrown) fixtures[0].getBody().getUserData();
@@ -96,6 +107,12 @@ public class PlayContactListener implements ContactListener {
 		else if(model0.hasTag("thrown") && model1.hasTag("platform,right")){
 			Thrown t = (Thrown) fixtures[0].getBody().getUserData();
 			t.addGroundContact();
+		}
+		else if(model0.hasTag("player") && model1.hasTag("key")){
+			gameWon = true;
+		}
+		else if(model0.hasTag("player") && model1.hasTag("boundary,bottom")){
+			((Player) fixtures[0].getBody().getUserData()).setIsAlive(false);
 		}
 		
 	}

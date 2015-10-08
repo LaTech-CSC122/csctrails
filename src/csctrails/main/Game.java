@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import csctrails.elements.HudCounter;
+import csctrails.elements.Player;
 import csctrails.handlers.GameStateManager;
 import csctrails.handlers.MyInput;
 import csctrails.handlers.MyInputProcessor;
@@ -60,9 +61,10 @@ public class Game implements ApplicationListener {
 		Texture.setEnforcePotImages(false); // Prevents GL from forcing power of 2 images
 		Gdx.input.setInputProcessor(new MyInputProcessor()); // Set the input listener of the application - gha 15.9.21
 		sb = new SpriteBatch();
-		hud = new HudCounter(1, 60, 0);
+		hud = new HudCounter(2, 0, 0);
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, V_WIDTH*SCALE, V_HEIGHT*SCALE);  // Set the view of the main camera - gha 15.9.21
+	
 		
 		gsm = new GameStateManager(this);
 	}

@@ -57,8 +57,8 @@ public class PlayState extends GameState {
 	private PlayContactListener cl;
 	
 	//Model Fields
-	Player player;
 	Thrower thrower;
+	Player player;
 	
 	//Fonts
 	BitmapFont font;
@@ -105,7 +105,8 @@ public class PlayState extends GameState {
 		tmr.setView(camera);
 		
 		//Boundaries
-		new Model(world, "MODEL:BOUNDARY");
+		new Model(world, "MODEL:BOUNDARY_SIDES");
+		new Model(world, "MODEL:BOUNDARY_BOTTOM");
 		//Key
 		models.add(new Model(world, "MODEL:KEY", 16*24, 16*29));
 		//Player
@@ -117,7 +118,8 @@ public class PlayState extends GameState {
 		thrower = new Thrower(world, 16, 120);
 		thrower.setProbability(0.08f);
 		thrower.setPosistion(16*19, 16*32);
-		thrower.setActive(true);
+		thrower.setActive(false);
+		/*thrower.setActive(true);
 		models.add(thrower.throwObject(16*20, 16*7));
 		models.add(thrower.throwObject(16*10, 16*7));
 		models.add(thrower.throwObject(16*20, 16*11));
@@ -129,7 +131,7 @@ public class PlayState extends GameState {
 		models.add(thrower.throwObject(16*20, 16*23));
 		models.add(thrower.throwObject(16*10, 16*23));
 		models.add(thrower.throwObject(16*10, 16*28));
-
+	*/
 		//Fonts
 		font = new BitmapFont();
 	}
@@ -138,28 +140,14 @@ public class PlayState extends GameState {
 	public void handleInput() {
 		if(MyInput.isPressed(MyInput.BUTTON_ESC)) gsm.popState();
 		
-		if(MyInput.isDown(MyInput.BUTTON_LEFT)){
-			player.moveLeft();
-		}
-		if(MyInput.isDown(MyInput.BUTTON_RIGHT)){
-			player.moveRight();
-		}
-		if(MyInput.isPressed(MyInput.BUTTON_UP)){
-			if(player.climbUp());
-			else if(player.jump());
-		}
-		if(MyInput.isDown(MyInput.BUTTON_UP)){
-			player.climbUp();
-		}
-		if(MyInput.isDown(MyInput.BUTTON_DOWN)){
-			player.climbDown();
-		}
+		
 	}
 	
 	public void update(float dt) {
 		//dt is the time since update was last ran - gha 15.9.25
 		handleInput();
 		world.step(dt, 6, 2);
+		hud.modifyTime(dt);
 		
 		//Clean up inactive models
 		ArrayList<Model> modelsToDestroy = Model.getDestoryList();
@@ -170,15 +158,31 @@ public class PlayState extends GameState {
 			Model.clearDestoryList();
 		}
 		
+		for(Model m:models){
+			m.update(dt);
+		}
+		
 		//Try to Throw Something
 		Thrown t = thrower.throwObject();
 		if(t != null){ models.add(t); }
 		
-		//See if player has died
-		if(!player.isAlive()){
-			gsm.setPlayState(GameStateManager.GAME_OVER);
+		//Has Player won? if so add 1 to the classes score
+		if(cl.getGameWon()){
+			hud.modifyClassScore(+1);
+			gsm.setPlayState(GameStateManager.GAME_WON);
 		}
 		
+		//See if player has died and if so adds one to the anky score
+		if(!player.isAlive() && hud.getLives()>0){
+			player.setIsAlive(true);
+			hud.modifyLives(-1);
+			player.getBody().setTransform(16*1/PPM, 16*3/PPM, 0);
+			player.getBody().setLinearVelocity(0, 0);
+		}
+		else if(!player.isAlive() && hud.getLives()<=0){
+			hud.modifyAnky(+1);
+			gsm.setPlayState(GameStateManager.GAME_OVER);			
+		}
 
 	}
 	
@@ -192,9 +196,11 @@ public class PlayState extends GameState {
 		sb.setProjectionMatrix(camera.combined);
 		sb.begin();
 		font.draw(sb, "Press ESC to return to the main menu.", 10, 15);
+		font.draw(sb, "Time: " + (int) hud.getTime(), 10, Game.V_HEIGHT-10);
+		font.draw(sb, "Grade: " + hud.getScore(), 180, Game.V_HEIGHT-10);
+		font.draw(sb, "Lives left: " + hud.getLives(), 80, Game.V_HEIGHT-10);
 		for(Model i:models){
-			Sprite sprite = i.getSprite();
-			if(sprite != null) sprite.draw(sb);
+			i.draw(sb);
 		}
 		sb.end();
 				
