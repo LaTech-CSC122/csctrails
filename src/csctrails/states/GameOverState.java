@@ -34,6 +34,7 @@ public class GameOverState extends GameState {
 		Gdx.gl10.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		
 		sb.setProjectionMatrix(camera.combined);
+
 		sb.begin(); //lives lost is a placeholder in case we give a power up that gives extra lives. 
 			font.draw(sb, "Lives lost: 3", Game.V_WIDTH/2-70, Game.V_HEIGHT/2-15);
 			font.draw(sb, "Time: " + (int) hud.getTime(), Game.V_WIDTH/2-70, Game.V_HEIGHT/2-30);

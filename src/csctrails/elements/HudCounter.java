@@ -2,6 +2,7 @@ package csctrails.elements;
 
 public class HudCounter {
 	
+
 	private static float MAX_TIME_A = 31;
 	private static float MAX_TIME_B = 36;
 	
@@ -16,6 +17,8 @@ public class HudCounter {
 	private int anky;
 	private int classScore;
 
+
+
 	
 	public HudCounter(int defaultLives, float defaultTime, int defaultScore){
 		this.defaultLives = defaultLives;
@@ -24,6 +27,8 @@ public class HudCounter {
 		time = 0;
 		anky = 0;
 		classScore = 0;
+
+
 	}
 	
 	public HudCounter() {
@@ -36,6 +41,8 @@ public class HudCounter {
 		defaultclassScore = 0;
 		anky = 0;
 		
+
+
 	}
 	
 	public void resetLives(){ lives = defaultLives; }
@@ -78,12 +85,21 @@ public class HudCounter {
 	
 	
 
+		
+	
+
+
 	public void resetAll(){
 		lives = defaultLives;
 		time = defaultTime;
+
 	
 	} 
 	
 	
 	
-}
+
+	}
+
+
+

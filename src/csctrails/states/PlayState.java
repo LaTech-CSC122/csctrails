@@ -166,6 +166,7 @@ public class PlayState extends GameState {
 		Thrown t = thrower.throwObject();
 		if(t != null){ models.add(t); }
 		
+
 		//Has Player won? if so add 1 to the classes score
 		if(cl.getGameWon()){
 			hud.modifyClassScore(+1);

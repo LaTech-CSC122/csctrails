@@ -35,6 +35,7 @@ public class GameWonState extends GameState {
 		
 		sb.setProjectionMatrix(camera.combined);
 		sb.begin();
+
 			font.draw(sb, "Lives left: " + hud.getLives(), Game.V_WIDTH/2-70, Game.V_HEIGHT/2-15);
 			font.draw(sb, "Time: " + (int) hud.getTime(), Game.V_WIDTH/2-70, Game.V_HEIGHT/2-30);
 			font.draw(sb, "Grade: " + hud.getScore(), Game.V_WIDTH/2-70, Game.V_HEIGHT/2-45);

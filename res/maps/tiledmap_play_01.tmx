@@ -8,7 +8,7 @@
  </tileset>
  <layer name="platforms_left" width="14" height="16">
   <data encoding="base64" compression="zlib">
-   eJxjYBi8gBGKGdBoUvBQAaP+G/r+IwcDAFN4ADg=
+   eJxjYBi8gBGKGdBoUvBQAaP+G/r+I8ePAFNIADc=
   </data>
  </layer>
  <layer name="platforms_right" width="14" height="16">
