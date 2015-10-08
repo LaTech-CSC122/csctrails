@@ -36,13 +36,13 @@ public class GameWonState extends GameState {
 		sb.setProjectionMatrix(camera.combined);
 		sb.begin();
 
-			font.draw(sb, "Lives left: " + hud.getLives(), Game.V_WIDTH/2-70, Game.V_HEIGHT/2-15);
-			font.draw(sb, "Time: " + (int) hud.getTime(), Game.V_WIDTH/2-70, Game.V_HEIGHT/2-30);
-			font.draw(sb, "Grade: " + hud.getScore(), Game.V_WIDTH/2-70, Game.V_HEIGHT/2-45);
-			font.draw(sb, "Congratulations, you won!", Game.V_WIDTH/2-70, Game.V_HEIGHT/2);
-			font.draw(sb, "Anky:  " +(int) hud.getAnky(), Game.V_WIDTH/2-70, Game.V_HEIGHT/2-60);
-			font.draw(sb, "Class:  " +(int) hud.getClassScore(), Game.V_WIDTH/2+7, Game.V_HEIGHT/2-60);
-			font.draw(sb, hud.getLeader(), Game.V_WIDTH/2-70, Game.V_HEIGHT/2-75);
+			font.draw(sb, "Lives left: " + hud.getLives(), Game.V_WIDTH/2-100, Game.V_HEIGHT/2-15);
+			font.draw(sb, "Time: " + (int) hud.getTime(), Game.V_WIDTH/2-100, Game.V_HEIGHT/2-30);
+			font.draw(sb, "Grade: " + hud.getScore(), Game.V_WIDTH/2-100, Game.V_HEIGHT/2-45);
+			font.draw(sb, "Congratulations, you won!", Game.V_WIDTH/2-100, Game.V_HEIGHT/2);
+			font.draw(sb, "Anky:  " +(int) hud.getAnky(), Game.V_WIDTH/2-100, Game.V_HEIGHT/2-60);
+			font.draw(sb, "Class:  " +(int) hud.getClassScore(), Game.V_WIDTH/2-23, Game.V_HEIGHT/2-60);
+			font.draw(sb, hud.getLeader(), Game.V_WIDTH/2-100, Game.V_HEIGHT/2-75);
 			font.draw(sb, "Press ESC to return to main menu", 10, Game.V_HEIGHT - 10);
 			font.draw(sb, "Press ENTER to play again", 10, Game.V_HEIGHT - 25);
 		sb.end();

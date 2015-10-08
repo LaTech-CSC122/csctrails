@@ -98,6 +98,7 @@ public class PlayState extends GameState {
 			ModelLoader.tiledMapLoader(tmPlatformRight, world, "MODEL:PLATFORM_GROUND", "right,ground");
 			ModelLoader.tiledMapLoader(tmPlatformRight, world, "MODEL:PLATFORM_CEILING", "right,ceiling");
 			ModelLoader.tiledMapLoader(tmLadders, world, "MODEL:LADDER", "");
+	
 		} else{
 			map = new TiledMap();
 		}
@@ -108,18 +109,18 @@ public class PlayState extends GameState {
 		new Model(world, "MODEL:BOUNDARY_SIDES");
 		new Model(world, "MODEL:BOUNDARY_BOTTOM");
 		//Key
-		models.add(new Model(world, "MODEL:KEY", 16*24, 16*29));
+		models.add(new Model(world, "MODEL:KEY", 16*28, 16*33));
 		//Player
-		player = new Player(world, "MODEL:PLAYER", 16*1, 16*3);
+		player = new Player(world, "MODEL:PLAYER", 16*5, 16*7);
 		models.add(player);
 		//Boss
-		models.add(new Model(world, "MODEL:BOSS", Game.V_WIDTH-16*7, Game.V_HEIGHT-16*5));
+		models.add(new Model(world, "MODEL:BOSS", Game.V_WIDTH-16*11, Game.V_HEIGHT-16*9));
 		//Thrower
 		thrower = new Thrower(world, 16, 120);
 		thrower.setProbability(0.08f);
 		thrower.setPosistion(16*19, 16*32);
 		thrower.setActive(false);
-		/*thrower.setActive(true);
+		thrower.setActive(true);
 		models.add(thrower.throwObject(16*20, 16*7));
 		models.add(thrower.throwObject(16*10, 16*7));
 		models.add(thrower.throwObject(16*20, 16*11));
@@ -131,7 +132,6 @@ public class PlayState extends GameState {
 		models.add(thrower.throwObject(16*20, 16*23));
 		models.add(thrower.throwObject(16*10, 16*23));
 		models.add(thrower.throwObject(16*10, 16*28));
-	*/
 		//Fonts
 		font = new BitmapFont();
 	}
@@ -177,7 +177,7 @@ public class PlayState extends GameState {
 		if(!player.isAlive() && hud.getLives()>0){
 			player.setIsAlive(true);
 			hud.modifyLives(-1);
-			player.getBody().setTransform(16*1/PPM, 16*3/PPM, 0);
+			player.getBody().setTransform(16*5/PPM, 16*7/PPM, 0);
 			player.getBody().setLinearVelocity(0, 0);
 		}
 		else if(!player.isAlive() && hud.getLives()<=0){
