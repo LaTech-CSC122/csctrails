@@ -119,7 +119,7 @@ public class PlayState extends GameState {
 		thrower.setProbability(0.08f);
 		thrower.setPosistion(16*19, 16*32);
 		thrower.setActive(false);
-		/*thrower.setActive(true);
+		thrower.setActive(true);
 		models.add(thrower.throwObject(16*20, 16*7));
 		models.add(thrower.throwObject(16*10, 16*7));
 		models.add(thrower.throwObject(16*20, 16*11));
@@ -131,7 +131,7 @@ public class PlayState extends GameState {
 		models.add(thrower.throwObject(16*20, 16*23));
 		models.add(thrower.throwObject(16*10, 16*23));
 		models.add(thrower.throwObject(16*10, 16*28));
-	*/
+	
 		//Fonts
 		font = new BitmapFont();
 	}
@@ -166,7 +166,10 @@ public class PlayState extends GameState {
 		Thrown t = thrower.throwObject();
 		if(t != null){ models.add(t); }
 		
-
+	
+		
+		
+		
 		//Has Player won? if so add 1 to the classes score
 		if(cl.getGameWon()){
 			hud.modifyClassScore(+1);

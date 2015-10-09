@@ -23,7 +23,8 @@ public class MainMenuState extends GameState {
 	@Override
 	public void handleInput() {
 		if(MyInput.isPressed(MyInput.BUTTON_ENTER)){ gsm.pushState(GameStateManager.PLAY); }
-		if(MyInput.isPressed(MyInput.BUTTON_1)) { gsm.pushState(GameStateManager.GAME_OVER); }
+		//if(MyInput.isPressed(MyInput.BUTTON_1)) { gsm.pushState(GameStateManager.GAME_OVER); }
+		if(MyInput.isPressed(MyInput.BUTTON_ESC)) {System.exit(0);}
 	}
 
 	@Override
@@ -40,8 +41,9 @@ public class MainMenuState extends GameState {
 		sb.setProjectionMatrix(camera.combined);
 		sb.begin();
 			font.draw(sb, "Main Menu", Game.V_WIDTH/2-35, Game.V_HEIGHT/2);
-			font.draw(sb, "Press ENTER to load play state", 10, Game.V_HEIGHT-10);
-			font.draw(sb, "Press 1 to load gameover", 10, Game.V_HEIGHT-25);
+			font.draw(sb, "Press ENTER to continue.", 10, Game.V_HEIGHT-10);
+			//font.draw(sb, "Press 1 to load gameover", 10, Game.V_HEIGHT-25);
+			font.draw(sb, "Press ESC to quit.", 10, Game.V_HEIGHT-25);
 			for(Model i:models){
 				i.draw(sb);
 			}
