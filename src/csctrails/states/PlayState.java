@@ -115,11 +115,9 @@ public class PlayState extends GameState {
 		//Boss
 		models.add(new Model(world, "MODEL:BOSS", Game.V_WIDTH-16*11, Game.V_HEIGHT-16*9));
 		//Thrower
-		thrower = new Thrower(world, 16, 120);
+		thrower = new Thrower(world, 16, 3f, 0.5f);
 		thrower.setDeviation(30);
 		thrower.setPosistion(16*19, 16*32);
-		//thrower.setActive(false);
-		thrower.setActive(true);
 		models.add(thrower.throwObject(16*24, 16*11));
 		models.add(thrower.throwObject(16*14, 16*11));
 		models.add(thrower.throwObject(16*24, 16*15));
@@ -163,7 +161,7 @@ public class PlayState extends GameState {
 		}
 		
 		//Try to Throw Something
-		Thrown t = thrower.throwObject();
+		Thrown t = thrower.update(dt);
 		if(t != null){ models.add(t); }
 		
 	
