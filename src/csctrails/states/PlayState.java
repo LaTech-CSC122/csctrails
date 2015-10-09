@@ -18,9 +18,9 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 
 import csctrails.configuration.Configuration;
+import csctrails.elements.GlyphFont;
 import csctrails.elements.Model;
 import csctrails.elements.ModelLoader;
-
 import csctrails.elements.Player;
 import csctrails.elements.Thrower;
 import csctrails.elements.Thrown;
@@ -61,6 +61,7 @@ public class PlayState extends GameState {
 	
 	//Fonts
 	BitmapFont font;
+	GlyphFont gfont;
 	
 	//tiled
 	TiledMap map;
@@ -132,6 +133,7 @@ public class PlayState extends GameState {
 
 		//Fonts
 		font = new BitmapFont();
+		gfont = new GlyphFont("res/images/retro font.png");
 	}
 
 				
@@ -197,10 +199,12 @@ public class PlayState extends GameState {
 		//SpriteBatch to GPU
 		sb.setProjectionMatrix(camera.combined);
 		sb.begin();
-		font.draw(sb, "Press ESC to return to the main menu.", 10, 15);
-		font.draw(sb, "Time: " + (int) hud.getTime(), 10, Game.V_HEIGHT-10);
-		font.draw(sb, "Grade: " + hud.getScore(), 180, Game.V_HEIGHT-10);
-		font.draw(sb, "Lives left: " + hud.getLives(), 80, Game.V_HEIGHT-10);
+		gfont.draw(sb, "Press ESC to return to the main menu.", GlyphFont.COLOR_WHITE, 10, 15);
+		gfont.draw(sb, "Time: " + (int) hud.getTime(), GlyphFont.COLOR_WHITE, 10, Game.V_HEIGHT-10);
+		gfont.draw(sb, "Grade: " + hud.getScore(), GlyphFont.COLOR_WHITE, 200, Game.V_HEIGHT-10);
+		gfont.draw(sb, "Lives left: " + hud.getLives(), GlyphFont.COLOR_WHITE, 80, Game.V_HEIGHT-10);
+		
+		
 		for(Model i:models){
 			i.draw(sb);
 		}
