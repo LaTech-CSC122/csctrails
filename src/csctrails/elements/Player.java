@@ -168,20 +168,20 @@ public class Player extends Model {
 	//----------------------------\\
 
 	private void handleInput(){
-		if(MyInput.isDown(MyInput.BUTTON_LEFT) && !MyInput.isDown(MyInput.BUTTON_RIGHT) || (MyInput.isDown(MyInput.BUTTON_A))){
+		if(MyInput.isDown(MyInput.BUTTON_LEFT) || MyInput.isDown(MyInput.BUTTON_A)){
 			moveLeft();
 		}
-		if(MyInput.isDown(MyInput.BUTTON_RIGHT) && !MyInput.isDown(MyInput.BUTTON_LEFT) || (MyInput.isDown(MyInput.BUTTON_D))){
+		if(MyInput.isDown(MyInput.BUTTON_RIGHT) || MyInput.isDown(MyInput.BUTTON_D)){
 			moveRight();
 		}
-		if(MyInput.isPressed(MyInput.BUTTON_UP) || (MyInput.isPressed(MyInput.BUTTON_W) || (MyInput.isPressed(MyInput.BUTTON_SPACE)))){
+		if(MyInput.isPressed(MyInput.BUTTON_UP) || MyInput.isPressed(MyInput.BUTTON_W) || MyInput.isPressed(MyInput.BUTTON_SPACE)){
 			if(climbUp());
 			else if(jump());
 		}
-		if(MyInput.isDown(MyInput.BUTTON_UP) || (MyInput.isPressed(MyInput.BUTTON_W) || (MyInput.isPressed(MyInput.BUTTON_SPACE)))){
+		if(MyInput.isDown(MyInput.BUTTON_UP) || MyInput.isDown(MyInput.BUTTON_W) || MyInput.isDown(MyInput.BUTTON_SPACE)){
 			climbUp();
 		}
-		if(MyInput.isDown(MyInput.BUTTON_DOWN) || (MyInput.isDown(MyInput.BUTTON_S) || (MyInput.isPressed(MyInput.BUTTON_SPACE)))){
+		if(MyInput.isDown(MyInput.BUTTON_DOWN) || MyInput.isDown(MyInput.BUTTON_S)){
 			climbDown();
 		} 
 		

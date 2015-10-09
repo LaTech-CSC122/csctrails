@@ -72,7 +72,6 @@ public class Thrown extends Model {
 
 	public boolean destory(){
 		if(!super.destory()){ return false; }
-		
 		if(thrower != null){
 			thrower.removeObject(this);
 		}

@@ -10,7 +10,6 @@ import com.badlogic.gdx.utils.Array;
 
 import csctrails.elements.HudCounter;
 import csctrails.elements.Model;
-import csctrails.elements.Player;
 import csctrails.handlers.GameStateManager;
 import csctrails.main.Game;
 

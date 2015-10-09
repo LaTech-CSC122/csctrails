@@ -9,7 +9,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -117,21 +116,21 @@ public class PlayState extends GameState {
 		models.add(new Model(world, "MODEL:BOSS", Game.V_WIDTH-16*11, Game.V_HEIGHT-16*9));
 		//Thrower
 		thrower = new Thrower(world, 16, 120);
-		thrower.setProbability(0.08f);
+		thrower.setDeviation(30);
 		thrower.setPosistion(16*19, 16*32);
-		thrower.setActive(false);
+		//thrower.setActive(false);
 		thrower.setActive(true);
-		models.add(thrower.throwObject(16*20, 16*7));
-		models.add(thrower.throwObject(16*10, 16*7));
-		models.add(thrower.throwObject(16*20, 16*11));
-		models.add(thrower.throwObject(16*10, 16*11));
-		models.add(thrower.throwObject(16*20, 16*15));
-		models.add(thrower.throwObject(16*10, 16*15));
-		models.add(thrower.throwObject(16*20, 16*19));
-		models.add(thrower.throwObject(16*10, 16*19));
-		models.add(thrower.throwObject(16*20, 16*23));
-		models.add(thrower.throwObject(16*10, 16*23));
-		models.add(thrower.throwObject(16*10, 16*28));
+		models.add(thrower.throwObject(16*24, 16*11));
+		models.add(thrower.throwObject(16*14, 16*11));
+		models.add(thrower.throwObject(16*24, 16*15));
+		models.add(thrower.throwObject(16*14, 16*15));
+		models.add(thrower.throwObject(16*24, 16*19));
+		models.add(thrower.throwObject(16*14, 16*19));
+		models.add(thrower.throwObject(16*24, 16*23));
+		models.add(thrower.throwObject(16*14, 16*23));
+		models.add(thrower.throwObject(16*24, 16*28));
+		models.add(thrower.throwObject(16*14, 16*28));
+		models.add(thrower.throwObject(16*14, 16*32));
 
 		//Fonts
 		font = new BitmapFont();
