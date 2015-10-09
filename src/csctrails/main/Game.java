@@ -40,8 +40,8 @@ public class Game implements ApplicationListener {
 	public static final Logger logger = new Logger();
 	
 	public static final String TITLE = "CSC Trails";
-	public static final int V_WIDTH = 448;
-	public static final int V_HEIGHT = 512;
+	public static final int V_WIDTH = 576; //448
+	public static final int V_HEIGHT = 640; //512
 	public static final int SCALE = 1;
 	
 	public static final float STEP = 1 / 60f;
