@@ -8,6 +8,7 @@ import grandtheftroster.handlers.MyInputProcessor;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -37,7 +38,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Game implements ApplicationListener {
 	
-	
 	public static final String TITLE = "Grand Theft Roster";
 	public static final int V_WIDTH = 576; //448
 	public static final int V_HEIGHT = 640; //512
@@ -50,6 +50,7 @@ public class Game implements ApplicationListener {
 	private OrthographicCamera camera;
 	private GameStateManager gsm;
 	private HudCounter hud;
+	private LwjglApplication app;
 	
 	public void create() {
 		//TODO: Organize Game.create() method
@@ -63,8 +64,7 @@ public class Game implements ApplicationListener {
 	
 		
 		gsm = new GameStateManager(this);
-		
-		gsm.setPlayState(GameStateManager.GAME_WON);
+		gsm.pushState(GameStateManager.INFO);
 	}
 	public void render() {
 		accum = Gdx.graphics.getDeltaTime();
@@ -73,11 +73,17 @@ public class Game implements ApplicationListener {
 		MyInput.update();
 	}
 
-	public void dispose() {}	
+	public void dispose() {
+		gsm.destoryAll();
+	}	
 	public void resize(int w, int h) {}
 	public void pause() {}
 	public void resume() {}
+	public void shutdown(){
+		app.exit();
+	}
 	
+	public void setApplication(LwjglApplication app) { this.app = app; }
 	public SpriteBatch getSpriteBatch() { return sb; }
 	public OrthographicCamera getCamera() { return camera; }
 	public HudCounter getHud(){ return hud; }

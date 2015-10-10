@@ -24,7 +24,7 @@ public class GameOverState extends GameState {
 	@Override
 	public void handleInput() {
 		if(MyInput.isPressed(MyInput.BUTTON_ESC)) gsm.popState();
-		if(MyInput.isPressed(MyInput.BUTTON_ENTER)) gsm.setPlayState(GameStateManager.PLAY);
+		if(MyInput.isPressed(MyInput.BUTTON_ENTER)) gsm.setState(GameStateManager.PLAY);
 	}
 
 	@Override

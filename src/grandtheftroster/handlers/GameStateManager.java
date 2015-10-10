@@ -29,11 +29,21 @@ import java.util.Stack;
 
 public class GameStateManager {
 	
-	public static final int MAIN_MENU = 1;
-	public static final int PLAY = 2;
-	public static final int GAME_OVER = 3;
-	public static final int GAME_WON = 4;
-
+	private static class State{
+		private static int nextId = 0;
+		private int id;
+		public State(){
+			id = nextId;
+			nextId++;
+		}
+	}
+	
+	public static final GameStateManager.State MAIN_MENU = new State();
+	public static final GameStateManager.State PLAY = new State();
+	public static final GameStateManager.State GAME_OVER = new State();
+	public static final GameStateManager.State GAME_WON = new State();
+	public static final GameStateManager.State INFO = new State();
+	
 	private Game game;
 	private Stack<GameState> gameStates;
 	
@@ -42,7 +52,6 @@ public class GameStateManager {
 	public GameStateManager(Game game) {
 		this.game = game;
 		gameStates = new Stack<GameState>();
-		pushState(MAIN_MENU);
 	}
 	
 	public Game getGame() { return game; }
@@ -55,20 +64,21 @@ public class GameStateManager {
 		gameStates.peek().render();
 	}
 	
-	private GameState getState(int state) {
-		if(state == PLAY) return new PlayState(this);
-		if(state == MAIN_MENU) return new MainMenuState(this);
-		if(state == GAME_OVER) return new GameOverState(this);
-		if(state == GAME_WON) return new GameWonState(this);
+	private GameState getState(GameStateManager.State state) {
+		if(state.id == PLAY.id) return new PlayState(this);
+		if(state.id == MAIN_MENU.id) return new MainMenuState(this);
+		if(state.id == GAME_OVER.id) return new GameOverState(this);
+		if(state.id == GAME_WON.id) return new GameWonState(this);
+		if(state.id == INFO.id) return new InfoState(this);
 		return null;
 	}
 	
-	public void setPlayState(int state) {
+	public void setState(State state) {
 		if(pushState(state)) popState(gameStates.size()-2);
 		
 	}
 	
-	public boolean pushState(int state) {
+	public boolean pushState(State state) {
 		GameState gamestate = getState(state);
 		if(gamestate==null){
 			return false;
@@ -86,6 +96,12 @@ public class GameStateManager {
 	private void popState(int index) {
 		GameState g = gameStates.remove(index);
 		g.dispose();
+	}
+	
+	public void destoryAll(){
+		while(!gameStates.empty()){
+			gameStates.pop().dispose();
+		}
 	}
 	
 }

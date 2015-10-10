@@ -174,7 +174,7 @@ public class PlayState extends GameState {
 		//Has Player won? if so add 1 to the classes score
 		if(cl.getGameWon()){
 			hud.modifyClassScore(+1);
-			gsm.setPlayState(GameStateManager.GAME_WON);
+			gsm.setState(GameStateManager.GAME_WON);
 		}
 		
 		//See if player has died and if so adds one to the anky score
@@ -186,7 +186,7 @@ public class PlayState extends GameState {
 		}
 		else if(!player.isAlive() && hud.getLives()<=0){
 			hud.modifyAnky(+1);
-			gsm.setPlayState(GameStateManager.GAME_OVER);			
+			gsm.setState(GameStateManager.GAME_OVER);			
 		}
 
 	}
