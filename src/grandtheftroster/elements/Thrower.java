@@ -10,19 +10,19 @@ public class Thrower {
 	private Random random = new Random();
 	
 	private int maxCount;
-	private float deviation;
+	private float deviation; //random next throw time
 	private ArrayList<Thrown> allObjects;
 	private int xpos;
 	private int ypos;
 	private World world;
 	//private int deltaFrames;
-	private  float interval;
+	private  float interval; //default time it waits. is constant
 	private float currentInterval;
 	private float time;
 	
 	public Thrower(World world, int maxCount, float interval, float deviation) {
 		this.maxCount = maxCount;
-		this.deviation = 30;
+		this.deviation = 30; 
 		this.interval = interval;
 		this.currentInterval = interval;
 		this.world = world;
@@ -47,7 +47,7 @@ public class Thrower {
 			t.setThrower(this);
 			allObjects.add(t);
 			
-			//reset frame params
+			//reset frame params;
 			time = 0;
 			float timeOffset = random.nextInt()%deviation;
 			if(timeOffset<0){ timeOffset = timeOffset*-1; }

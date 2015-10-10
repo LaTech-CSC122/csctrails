@@ -1,0 +1,23 @@
+09:53:14: -Main: Constructing application threads
+09:53:15: -Application: Constructing application listener...
+09:53:15: -Application: Disabling GL image power of two requirement. 
+          -This could cause problems in older systems.
+09:53:15: -Main Menu: Constructing Game State
+09:53:15: -GSM: Pushing "Main Menu" on the stack
+09:53:15: -Application: Resized to (576,640)
+09:53:17: -Application: Paused
+09:53:25: -Application: Resumed
+09:53:25: -Play: Constructing Game State
+09:53:25: -GS: Creating Box2D world and cameras for Play
+09:53:25: -GSM: Pushing "Play" on the stack
+09:53:47: -Game Over: Constructing Game State
+09:53:47: -GSM: Pushing "Game Over" on the stack
+09:53:47: -GSM: Popping "Play" off the stack.
+09:53:47: -Play: Disposing of game state
+09:53:52: -Play: Constructing Game State
+09:53:52: -GS: Creating Box2D world and cameras for Play
+09:53:52: -GSM: Pushing "Play" on the stack
+09:53:52: -GSM: Popping "Game Over" off the stack.
+09:53:52: -Game Over: Disposing of game state
+09:54:21: -Application: Paused
+09:54:21: -Application: Terminating

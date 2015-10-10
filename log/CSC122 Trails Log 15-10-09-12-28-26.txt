@@ -1,0 +1,9 @@
+12:28:26: -Main: Constructing application threads
+12:28:27: -Application: Constructing application listener...
+12:28:27: -Application: Disabling GL image power of two requirement. 
+          -This could cause problems in older systems.
+12:28:27: -Main Menu: Constructing Game State
+12:28:27: -GSM: Pushing "Main Menu" on the stack
+12:28:27: -Application: Resized to (576,640)
+12:28:30: -Application: Paused
+12:28:30: -Application: Terminating

@@ -118,7 +118,7 @@ public class PlayState extends GameState {
 		models.add(new Model(world, "MODEL:BOSS", Game.V_WIDTH-16*11, Game.V_HEIGHT-16*9));
 		//Thrower
 		thrower = new Thrower(world, 16, 3f, 0.5f);
-		thrower.setDeviation(30);
+		thrower.setDeviation(8);//30 
 		thrower.setPosistion(16*19, 16*32);
 		models.add(thrower.throwObject(16*24, 16*11));
 		models.add(thrower.throwObject(16*14, 16*11));
@@ -201,9 +201,9 @@ public class PlayState extends GameState {
 		sb.setProjectionMatrix(camera.combined);
 		sb.begin();
 		gfont.draw("Press ESC to return to the main menu.", GlyphFont.COLOR_WHITE, 10, 15);
-		gfont.draw("Time: " + (int) hud.getTime(), GlyphFont.COLOR_WHITE, 10, Game.V_HEIGHT-10);
-		gfont.draw("Grade: " + hud.getScore(), GlyphFont.COLOR_WHITE, 200, Game.V_HEIGHT-10);
-		gfont.draw("Lives left: " + hud.getLives(), GlyphFont.COLOR_WHITE, 80, Game.V_HEIGHT-10);
+		gfont.draw("Time: " + (int) hud.getTime(), GlyphFont.COLOR_WHITE, 10, Game.V_HEIGHT-20); //-10 originally
+		gfont.draw("Grade: " + hud.getScore(), GlyphFont.COLOR_WHITE, 200, Game.V_HEIGHT-20); // -10 originally
+		gfont.draw("Lives left: " + hud.getLives(), GlyphFont.COLOR_WHITE, 80, Game.V_HEIGHT-20); // -10 originally
 		
 		
 		for(Model i:models){

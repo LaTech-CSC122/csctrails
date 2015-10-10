@@ -83,6 +83,7 @@ public class Player extends Model {
 	public boolean jump(){
 		if(groundContacts > 0){
 			body.applyLinearImpulse(new Vector2(0f, jumpHeight), body.getWorldCenter(), false);
+			//System.out.println("up"); System.out.println("");
 			return true;
 		}
 		else{
@@ -177,6 +178,7 @@ public class Player extends Model {
 		if(MyInput.isPressed(MyInput.BUTTON_UP) || MyInput.isPressed(MyInput.BUTTON_W) || MyInput.isPressed(MyInput.BUTTON_SPACE)){
 			if(climbUp());
 			else if(jump());
+			
 		}
 		if(MyInput.isDown(MyInput.BUTTON_UP) || MyInput.isDown(MyInput.BUTTON_W) || MyInput.isDown(MyInput.BUTTON_SPACE)){
 			climbUp();

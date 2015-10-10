@@ -48,8 +48,11 @@ public class GameOverState extends GameState {
 			gfont.draw("Class:  " +(int) hud.getClassScore(), GlyphFont.COLOR_WHITE, Game.V_WIDTH/2-23, Game.V_HEIGHT/2-60);
 			gfont.draw(hud.getLeader(), GlyphFont.COLOR_WHITE, Game.V_WIDTH/2-100, Game.V_HEIGHT/2-75);
 			
-			font.draw(sb, "Press ESC to return to main menu", 10, Game.V_HEIGHT - 10);
-			font.draw(sb, "Press ENTER to play again", 10, Game.V_HEIGHT - 25);
+			//Marc Changed this font stuff. Color for fun because why not and testing.
+			//font.draw(sb, "Press ESC to return to main menu", 10, Game.V_HEIGHT - 10);
+			//font.draw(sb, "Press ENTER to play again", 10, Game.V_HEIGHT - 25);
+			gfont.draw( "Press ESC to retutn to the main menu", GlyphFont.COLOR_RED, 10, Game.V_HEIGHT-20);
+			gfont.draw("Press ENTER to play again", GlyphFont.COLOR_RED, 10 , Game.V_HEIGHT-35);
 			
 			gfont.draw("Testing", GlyphFont.COLOR_WHITE, 50, 50);
 			

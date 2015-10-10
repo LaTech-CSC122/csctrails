@@ -1,0 +1,182 @@
+10:40:31: -Main: Constructing application threads
+10:40:32: -Application: Constructing application listener...
+10:40:32: -Application: Disabling GL image power of two requirement. 
+          -This could cause problems in older systems.
+10:40:32: -Main Menu: Constructing Game State
+10:40:32: -GSM: Pushing "Main Menu" on the stack
+10:40:32: -Application: Resized to (576,640)
+10:40:33: -Play: Constructing Game State
+10:40:33: -GS: Creating Box2D world and cameras for Play
+10:40:33: -GSM: Pushing "Play" on the stack
+10:41:28: -GSM: Popping "Play" off the stack.
+10:41:28: -Play: Disposing of game state
+10:41:28: -Play: Constructing Game State
+10:41:28: -GS: Creating Box2D world and cameras for Play
+10:41:28: -GSM: Pushing "Play" on the stack
+10:41:41: -GSM: Popping "Play" off the stack.
+10:41:41: -Play: Disposing of game state
+10:41:41: -Play: Constructing Game State
+10:41:41: -GS: Creating Box2D world and cameras for Play
+10:41:41: -GSM: Pushing "Play" on the stack
+10:41:43: -GSM: Popping "Play" off the stack.
+10:41:43: -Play: Disposing of game state
+10:41:44: -Play: Constructing Game State
+10:41:44: -GS: Creating Box2D world and cameras for Play
+10:41:44: -GSM: Pushing "Play" on the stack
+10:41:48: -GSM: Popping "Play" off the stack.
+10:41:48: -Play: Disposing of game state
+10:41:49: -Play: Constructing Game State
+10:41:49: -GS: Creating Box2D world and cameras for Play
+10:41:49: -GSM: Pushing "Play" on the stack
+10:42:01: -GSM: Popping "Play" off the stack.
+10:42:01: -Play: Disposing of game state
+10:42:02: -Play: Constructing Game State
+10:42:02: -GS: Creating Box2D world and cameras for Play
+10:42:02: -GSM: Pushing "Play" on the stack
+10:42:30: -GSM: Popping "Play" off the stack.
+10:42:30: -Play: Disposing of game state
+10:42:30: -Play: Constructing Game State
+10:42:30: -GS: Creating Box2D world and cameras for Play
+10:42:30: -GSM: Pushing "Play" on the stack
+10:42:34: -GSM: Popping "Play" off the stack.
+10:42:34: -Play: Disposing of game state
+10:42:35: -Play: Constructing Game State
+10:42:35: -GS: Creating Box2D world and cameras for Play
+10:42:35: -GSM: Pushing "Play" on the stack
+10:42:38: -GSM: Popping "Play" off the stack.
+10:42:38: -Play: Disposing of game state
+10:42:39: -Play: Constructing Game State
+10:42:39: -GS: Creating Box2D world and cameras for Play
+10:42:39: -GSM: Pushing "Play" on the stack
+10:43:01: -Game Over: Constructing Game State
+10:43:01: -GSM: Pushing "Game Over" on the stack
+10:43:01: -GSM: Popping "Play" off the stack.
+10:43:01: -Play: Disposing of game state
+10:43:06: -Play: Constructing Game State
+10:43:06: -GS: Creating Box2D world and cameras for Play
+10:43:06: -GSM: Pushing "Play" on the stack
+10:43:06: -GSM: Popping "Game Over" off the stack.
+10:43:06: -Game Over: Disposing of game state
+10:43:10: -GSM: Popping "Play" off the stack.
+10:43:10: -Play: Disposing of game state
+10:43:11: -Play: Constructing Game State
+10:43:11: -GS: Creating Box2D world and cameras for Play
+10:43:11: -GSM: Pushing "Play" on the stack
+10:43:14: -GSM: Popping "Play" off the stack.
+10:43:14: -Play: Disposing of game state
+10:43:15: -Play: Constructing Game State
+10:43:15: -GS: Creating Box2D world and cameras for Play
+10:43:15: -GSM: Pushing "Play" on the stack
+10:43:28: -GSM: Popping "Play" off the stack.
+10:43:28: -Play: Disposing of game state
+10:43:29: -Play: Constructing Game State
+10:43:29: -GS: Creating Box2D world and cameras for Play
+10:43:29: -GSM: Pushing "Play" on the stack
+10:43:50: -GSM: Popping "Play" off the stack.
+10:43:50: -Play: Disposing of game state
+10:43:50: -Play: Constructing Game State
+10:43:50: -GS: Creating Box2D world and cameras for Play
+10:43:50: -GSM: Pushing "Play" on the stack
+10:43:52: -GSM: Popping "Play" off the stack.
+10:43:52: -Play: Disposing of game state
+10:43:53: -Play: Constructing Game State
+10:43:53: -GS: Creating Box2D world and cameras for Play
+10:43:53: -GSM: Pushing "Play" on the stack
+10:44:00: -GSM: Popping "Play" off the stack.
+10:44:00: -Play: Disposing of game state
+10:44:00: -Play: Constructing Game State
+10:44:00: -GS: Creating Box2D world and cameras for Play
+10:44:00: -GSM: Pushing "Play" on the stack
+10:44:18: -GSM: Popping "Play" off the stack.
+10:44:18: -Play: Disposing of game state
+10:44:19: -Play: Constructing Game State
+10:44:19: -GS: Creating Box2D world and cameras for Play
+10:44:19: -GSM: Pushing "Play" on the stack
+10:44:22: -GSM: Popping "Play" off the stack.
+10:44:22: -Play: Disposing of game state
+10:44:22: -Play: Constructing Game State
+10:44:22: -GS: Creating Box2D world and cameras for Play
+10:44:22: -GSM: Pushing "Play" on the stack
+10:44:29: -GSM: Popping "Play" off the stack.
+10:44:29: -Play: Disposing of game state
+10:44:30: -Play: Constructing Game State
+10:44:30: -GS: Creating Box2D world and cameras for Play
+10:44:30: -GSM: Pushing "Play" on the stack
+10:44:41: -GSM: Popping "Play" off the stack.
+10:44:41: -Play: Disposing of game state
+10:44:41: -Play: Constructing Game State
+10:44:41: -GS: Creating Box2D world and cameras for Play
+10:44:41: -GSM: Pushing "Play" on the stack
+10:44:59: -GSM: Popping "Play" off the stack.
+10:44:59: -Play: Disposing of game state
+10:45:00: -Play: Constructing Game State
+10:45:00: -GS: Creating Box2D world and cameras for Play
+10:45:00: -GSM: Pushing "Play" on the stack
+10:45:02: -GSM: Popping "Play" off the stack.
+10:45:02: -Play: Disposing of game state
+10:45:03: -Play: Constructing Game State
+10:45:03: -GS: Creating Box2D world and cameras for Play
+10:45:04: -GSM: Pushing "Play" on the stack
+10:45:18: -GSM: Popping "Play" off the stack.
+10:45:18: -Play: Disposing of game state
+10:45:18: -Play: Constructing Game State
+10:45:18: -GS: Creating Box2D world and cameras for Play
+10:45:18: -GSM: Pushing "Play" on the stack
+10:45:30: -GSM: Popping "Play" off the stack.
+10:45:30: -Play: Disposing of game state
+10:45:30: -Play: Constructing Game State
+10:45:30: -GS: Creating Box2D world and cameras for Play
+10:45:30: -GSM: Pushing "Play" on the stack
+10:46:01: -Game Won: Constructing Game State
+10:46:01: -GSM: Pushing "Game Won" on the stack
+10:46:01: -GSM: Popping "Play" off the stack.
+10:46:01: -Play: Disposing of game state
+10:46:06: -Play: Constructing Game State
+10:46:06: -GS: Creating Box2D world and cameras for Play
+10:46:06: -GSM: Pushing "Play" on the stack
+10:46:06: -GSM: Popping "Game Won" off the stack.
+10:46:06: -Game Won: Disposing of game state
+10:46:07: -GSM: Popping "Play" off the stack.
+10:46:07: -Play: Disposing of game state
+10:46:23: -Play: Constructing Game State
+10:46:23: -GS: Creating Box2D world and cameras for Play
+10:46:23: -GSM: Pushing "Play" on the stack
+10:46:29: -Game Over: Constructing Game State
+10:46:29: -GSM: Pushing "Game Over" on the stack
+10:46:29: -GSM: Popping "Play" off the stack.
+10:46:29: -Play: Disposing of game state
+10:46:31: -Play: Constructing Game State
+10:46:31: -GS: Creating Box2D world and cameras for Play
+10:46:31: -GSM: Pushing "Play" on the stack
+10:46:31: -GSM: Popping "Game Over" off the stack.
+10:46:31: -Game Over: Disposing of game state
+10:46:56: -GSM: Popping "Play" off the stack.
+10:46:56: -Play: Disposing of game state
+10:46:57: -Play: Constructing Game State
+10:46:57: -GS: Creating Box2D world and cameras for Play
+10:46:57: -GSM: Pushing "Play" on the stack
+10:47:01: -GSM: Popping "Play" off the stack.
+10:47:01: -Play: Disposing of game state
+10:47:02: -Play: Constructing Game State
+10:47:02: -GS: Creating Box2D world and cameras for Play
+10:47:02: -GSM: Pushing "Play" on the stack
+10:47:43: -Game Won: Constructing Game State
+10:47:43: -GSM: Pushing "Game Won" on the stack
+10:47:43: -GSM: Popping "Play" off the stack.
+10:47:43: -Play: Disposing of game state
+10:47:53: -Play: Constructing Game State
+10:47:53: -GS: Creating Box2D world and cameras for Play
+10:47:53: -GSM: Pushing "Play" on the stack
+10:47:53: -GSM: Popping "Game Won" off the stack.
+10:47:53: -Game Won: Disposing of game state
+10:48:03: -Game Over: Constructing Game State
+10:48:03: -GSM: Pushing "Game Over" on the stack
+10:48:03: -GSM: Popping "Play" off the stack.
+10:48:03: -Play: Disposing of game state
+10:48:08: -Play: Constructing Game State
+10:48:08: -GS: Creating Box2D world and cameras for Play
+10:48:08: -GSM: Pushing "Play" on the stack
+10:48:08: -GSM: Popping "Game Over" off the stack.
+10:48:08: -Game Over: Disposing of game state
+10:48:10: -Application: Paused
+10:48:10: -Application: Terminating
