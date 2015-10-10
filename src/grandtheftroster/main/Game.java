@@ -63,6 +63,8 @@ public class Game implements ApplicationListener {
 	
 		
 		gsm = new GameStateManager(this);
+		
+		gsm.setPlayState(GameStateManager.GAME_WON);
 	}
 	public void render() {
 		accum = Gdx.graphics.getDeltaTime();

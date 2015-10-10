@@ -1,5 +1,6 @@
 package grandtheftroster.states;
 
+import grandtheftroster.elements.GlyphFont;
 import grandtheftroster.handlers.GameStateManager;
 import grandtheftroster.handlers.MyInput;
 import grandtheftroster.main.Game;
@@ -12,10 +13,12 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 public class GameWonState extends GameState {
 
 	BitmapFont font;
+	GlyphFont gfont;
 	
 	public GameWonState(GameStateManager gsm) {
 		super(gsm, "Game Won");
 		font = new BitmapFont();
+		gfont = new GlyphFont("res/images/retro font.png", 8);
 	}
 
 	@Override
@@ -36,15 +39,15 @@ public class GameWonState extends GameState {
 		
 		sb.setProjectionMatrix(camera.combined);
 		sb.begin();
-			font.draw(sb, "Lives left: " + hud.getLives(), Game.V_WIDTH/2-100, Game.V_HEIGHT/2-15);
-			font.draw(sb, "Time: " + (int) hud.getTime(), Game.V_WIDTH/2-100, Game.V_HEIGHT/2-30);
-			font.draw(sb, "Grade: " + hud.getScore(), Game.V_WIDTH/2-100, Game.V_HEIGHT/2-45);
-			font.draw(sb, "Congratulations, you won!", Game.V_WIDTH/2-100, Game.V_HEIGHT/2);
-			font.draw(sb, "Anky:  " +(int) hud.getAnky(), Game.V_WIDTH/2-100, Game.V_HEIGHT/2-60);
-			font.draw(sb, "Class:  " +(int) hud.getClassScore(), Game.V_WIDTH/2-23, Game.V_HEIGHT/2-60);
-			font.draw(sb, hud.getLeader(), Game.V_WIDTH/2-100, Game.V_HEIGHT/2-75);
-			font.draw(sb, "Press ESC to return to main menu", 10, Game.V_HEIGHT - 10);
-			font.draw(sb, "Press ENTER to play again", 10, Game.V_HEIGHT - 25);
+			gfont.draw(sb, "Lives left: " + hud.getLives(), GlyphFont.COLOR_WHITE, Game.V_WIDTH/2-100, Game.V_HEIGHT/2-15);
+			gfont.draw(sb, "Time: " + (int) hud.getTime(),GlyphFont.COLOR_WHITE, Game.V_WIDTH/2-100, Game.V_HEIGHT/2-30);
+			gfont.draw(sb, "Grade: " + hud.getScore(), GlyphFont.COLOR_WHITE, Game.V_WIDTH/2-100, Game.V_HEIGHT/2-45);
+			gfont.draw(sb, "Congratulations, you won!", GlyphFont.COLOR_WHITE, Game.V_WIDTH/2-100, Game.V_HEIGHT/2);
+			gfont.draw(sb, "Anky:  " +(int) hud.getAnky(), GlyphFont.COLOR_WHITE, Game.V_WIDTH/2-100, Game.V_HEIGHT/2-60);
+			gfont.draw(sb, "Class:  " +(int) hud.getClassScore(), GlyphFont.COLOR_WHITE, Game.V_WIDTH/2-23, Game.V_HEIGHT/2-60);
+			gfont.draw(sb, hud.getLeader(), GlyphFont.COLOR_WHITE, Game.V_WIDTH/2-100, Game.V_HEIGHT/2-75);
+			gfont.draw(sb, "Press ESC to return to main menu", GlyphFont.COLOR_WHITE, 10, Game.V_HEIGHT - 10);
+			gfont.draw(sb, "Press ENTER to play again", GlyphFont.COLOR_WHITE, 10, Game.V_HEIGHT - 25);
 		sb.end();
 
 	}

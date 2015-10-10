@@ -18,7 +18,7 @@ public class GameOverState extends GameState {
 	public GameOverState(GameStateManager gsm) {
 		super(gsm, "Game Over");
 		font = new BitmapFont();
-		gfont = new GlyphFont("res/images/retro font.png");
+		gfont = new GlyphFont("res/images/retro font.png", 8);
 	}
 
 	@Override

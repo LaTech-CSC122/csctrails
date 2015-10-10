@@ -134,7 +134,7 @@ public class PlayState extends GameState {
 
 		//Fonts
 		font = new BitmapFont();
-		gfont = new GlyphFont("res/images/retro font.png");
+		gfont = new GlyphFont("res/images/retro font.png", 8);
 	}
 
 				
