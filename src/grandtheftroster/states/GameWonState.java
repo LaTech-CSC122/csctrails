@@ -46,8 +46,8 @@ public class GameWonState extends GameState {
 			gfont.draw("Anky:  " +(int) hud.getAnky(), GlyphFont.COLOR_WHITE, Game.V_WIDTH/2-100, Game.V_HEIGHT/2-60);
 			gfont.draw("Class:  " +(int) hud.getClassScore(), GlyphFont.COLOR_WHITE, Game.V_WIDTH/2-23, Game.V_HEIGHT/2-60);
 			gfont.draw(hud.getLeader(), GlyphFont.COLOR_WHITE, Game.V_WIDTH/2-100, Game.V_HEIGHT/2-75);
-			gfont.draw("Press ESC to return to main menu", GlyphFont.COLOR_WHITE, 10, Game.V_HEIGHT - 10);
-			gfont.draw("Press ENTER to play again", GlyphFont.COLOR_WHITE, 10, Game.V_HEIGHT - 25);
+			gfont.draw("Press ESC to return to main menu", GlyphFont.COLOR_RED, 10, Game.V_HEIGHT - 20); //originally -10
+			gfont.draw("Press ENTER to play again", GlyphFont.COLOR_RED, 10, Game.V_HEIGHT - 35); //originally -25
 		sb.end();
 
 	}
