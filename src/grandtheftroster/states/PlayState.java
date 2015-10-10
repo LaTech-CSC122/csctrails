@@ -3,7 +3,6 @@ package grandtheftroster.states;
 
 import static grandtheftroster.elements.B2DVars.PPM;
 
-import grandtheftroster.configuration.Configuration;
 import grandtheftroster.elements.GlyphFont;
 import grandtheftroster.elements.Model;
 import grandtheftroster.elements.ModelLoader;
@@ -14,6 +13,7 @@ import grandtheftroster.handlers.GameStateManager;
 import grandtheftroster.handlers.MyInput;
 import grandtheftroster.handlers.PlayContactListener;
 import grandtheftroster.main.Game;
+import grandtheftroster.utilities.Configuration;
 
 import java.util.ArrayList;
 
@@ -134,7 +134,7 @@ public class PlayState extends GameState {
 
 		//Fonts
 		font = new BitmapFont();
-		gfont = new GlyphFont("res/images/retro font.png", 8);
+		gfont = new GlyphFont("res/images/retro font.png", 8, sb);
 	}
 
 				
@@ -200,10 +200,10 @@ public class PlayState extends GameState {
 		//SpriteBatch to GPU
 		sb.setProjectionMatrix(camera.combined);
 		sb.begin();
-		gfont.draw(sb, "Press ESC to return to the main menu.", GlyphFont.COLOR_WHITE, 10, 15);
-		gfont.draw(sb, "Time: " + (int) hud.getTime(), GlyphFont.COLOR_WHITE, 10, Game.V_HEIGHT-10);
-		gfont.draw(sb, "Grade: " + hud.getScore(), GlyphFont.COLOR_WHITE, 200, Game.V_HEIGHT-10);
-		gfont.draw(sb, "Lives left: " + hud.getLives(), GlyphFont.COLOR_WHITE, 80, Game.V_HEIGHT-10);
+		gfont.draw("Press ESC to return to the main menu.", GlyphFont.COLOR_WHITE, 10, 15);
+		gfont.draw("Time: " + (int) hud.getTime(), GlyphFont.COLOR_WHITE, 10, Game.V_HEIGHT-10);
+		gfont.draw("Grade: " + hud.getScore(), GlyphFont.COLOR_WHITE, 200, Game.V_HEIGHT-10);
+		gfont.draw("Lives left: " + hud.getLives(), GlyphFont.COLOR_WHITE, 80, Game.V_HEIGHT-10);
 		
 		
 		for(Model i:models){

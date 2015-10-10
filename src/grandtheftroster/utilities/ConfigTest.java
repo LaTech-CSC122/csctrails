@@ -1,4 +1,4 @@
-package grandtheftroster.configuration;
+package grandtheftroster.utilities;
 
 public class ConfigTest {
 	

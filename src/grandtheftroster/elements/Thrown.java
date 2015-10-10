@@ -1,6 +1,6 @@
 package grandtheftroster.elements;
 
-import grandtheftroster.configuration.Configuration;
+import grandtheftroster.utilities.Configuration;
 
 import com.badlogic.gdx.physics.box2d.World;
 

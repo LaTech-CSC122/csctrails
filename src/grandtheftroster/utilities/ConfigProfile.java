@@ -1,4 +1,4 @@
-package grandtheftroster.configuration;
+package grandtheftroster.utilities;
 
 import java.util.HashMap;
 import java.util.Set;

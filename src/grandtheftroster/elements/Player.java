@@ -2,8 +2,8 @@ package grandtheftroster.elements;
 
 
 import static grandtheftroster.elements.B2DVars.PPM;
-import grandtheftroster.configuration.Configuration;
 import grandtheftroster.handlers.MyInput;
+import grandtheftroster.utilities.Configuration;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;

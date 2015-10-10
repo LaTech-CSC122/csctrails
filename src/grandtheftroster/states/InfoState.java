@@ -12,13 +12,16 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
 public class InfoState extends GameState {
 
+	
+	
 	BitmapFont font;
 	GlyphFont gfont;
+	
 	
 	public InfoState(GameStateManager gsm) {
 		super(gsm, "Game Won");
 		font = new BitmapFont();
-		gfont = new GlyphFont("res/images/retro font.png", 8);
+		gfont = new GlyphFont("res/images/retro font 16.png", 16, sb);
 	}
 
 	@Override
@@ -38,7 +41,8 @@ public class InfoState extends GameState {
 		
 		sb.setProjectionMatrix(camera.combined);
 		sb.begin();
-			gfont.draw(sb, "Information Screen!", GlyphFont.COLOR_WHITE, Game.V_WIDTH/2-100, Game.V_HEIGHT/2);
+			gfont.draw("Information Screen!", GlyphFont.COLOR_WHITE, GlyphFont.ALIGN_CENTER, Game.V_WIDTH/2, Game.V_HEIGHT/2);
+			gfont.draw("Egh", GlyphFont.COLOR_WHITE, GlyphFont.ALIGN_CENTER, Game.V_WIDTH/2, Game.V_HEIGHT/2-20);
 		sb.end();
 
 	}
