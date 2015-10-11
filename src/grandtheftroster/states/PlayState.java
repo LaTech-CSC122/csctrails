@@ -202,8 +202,8 @@ public class PlayState extends GameState {
 		sb.begin();
 		gfont.draw("Press ESC to return to the main menu.", GlyphFont.COLOR_WHITE, 10, 15);
 		gfont.draw("Time: " + (int) hud.getTime(), GlyphFont.COLOR_WHITE, 10, Game.V_HEIGHT-20); //-10 originally
-		gfont.draw("Grade: " + hud.getScore(), GlyphFont.COLOR_WHITE, 200, Game.V_HEIGHT-20); // -10 originally
-		gfont.draw("Lives left: " + hud.getLives(), GlyphFont.COLOR_WHITE, 80, Game.V_HEIGHT-20); // -10 originally
+		gfont.draw("Grade: " + hud.getScore(), GlyphFont.COLOR_WHITE, 220, Game.V_HEIGHT-20); // -10 originally
+		gfont.draw("Lives left: " + hud.getLives(), GlyphFont.COLOR_WHITE, 90, Game.V_HEIGHT-20); // -10 originally
 		
 		
 		for(Model i:models){
