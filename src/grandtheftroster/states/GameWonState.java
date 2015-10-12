@@ -39,15 +39,20 @@ public class GameWonState extends GameState {
 		
 		sb.setProjectionMatrix(camera.combined);
 		sb.begin();
-			gfont.draw("Lives left: " + hud.getLives(), GlyphFont.COLOR_WHITE, Game.V_WIDTH/2-100, Game.V_HEIGHT/2-15);
-			gfont.draw("Time: " + (int) hud.getTime(),GlyphFont.COLOR_WHITE, Game.V_WIDTH/2-100, Game.V_HEIGHT/2-30);
-			gfont.draw("Grade: " + hud.getScore(), GlyphFont.COLOR_WHITE, Game.V_WIDTH/2-100, Game.V_HEIGHT/2-45);
-			gfont.draw("Congratulations, you won!", GlyphFont.COLOR_WHITE, Game.V_WIDTH/2-100, Game.V_HEIGHT/2);
-			gfont.draw("Anky:  " +(int) hud.getAnky(), GlyphFont.COLOR_WHITE, Game.V_WIDTH/2-100, Game.V_HEIGHT/2-60);
-			gfont.draw("Class:  " +(int) hud.getClassScore(), GlyphFont.COLOR_WHITE, Game.V_WIDTH/2-23, Game.V_HEIGHT/2-60);
-			gfont.draw(hud.getLeader(), GlyphFont.COLOR_WHITE, Game.V_WIDTH/2-100, Game.V_HEIGHT/2-75);
-			gfont.draw("Press ESC to return to main menu", GlyphFont.COLOR_RED, 10, Game.V_HEIGHT - 20); //originally -10
-			gfont.draw("Press ENTER to play again", GlyphFont.COLOR_RED, 10, Game.V_HEIGHT - 35); //originally -25
+		
+			gfont16.draw("*** Congratulations ***", GlyphFont.COLOR_WHITE, GlyphFont.ALIGN_CENTER, Game.V_WIDTH/2, Game.V_HEIGHT*3/4);
+			gfont16.draw("You stole the roster!", GlyphFont.COLOR_WHITE, GlyphFont.ALIGN_CENTER, Game.V_WIDTH/2, Game.V_HEIGHT*3/4-32);
+			
+			int middleX = Game.V_WIDTH/2+16;
+			int middleY = Game.V_HEIGHT*2/3-16*6;
+			gfont16.draw("Time", GlyphFont.COLOR_WHITE, GlyphFont.ALIGN_RIGHT, middleX, middleY);
+			gfont16.draw(" " + (int) hud.getTime(), GlyphFont.COLOR_WHITE, GlyphFont.ALIGN_LEFT, middleX, middleY);
+			gfont16.draw("Grade", GlyphFont.COLOR_WHITE, GlyphFont.ALIGN_RIGHT, middleX, middleY-32);
+			gfont16.draw(" " + hud.getScore(), GlyphFont.COLOR_WHITE, GlyphFont.ALIGN_LEFT, middleX, middleY-32);
+
+			gfont16.draw("*Press enter to play*", GlyphFont.COLOR_WHITE, GlyphFont.ALIGN_CENTER, Game.V_WIDTH/2, Game.V_HEIGHT/4);
+			
+			sb.draw(cabFrame, 0, 0);
 		sb.end();
 
 	}

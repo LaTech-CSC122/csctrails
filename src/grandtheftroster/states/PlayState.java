@@ -9,7 +9,6 @@ import grandtheftroster.elements.Player;
 import grandtheftroster.elements.Thrower;
 import grandtheftroster.elements.Thrown;
 import grandtheftroster.handlers.GameStateManager;
-import grandtheftroster.handlers.MyInput;
 import grandtheftroster.handlers.PlayContactListener;
 import grandtheftroster.main.Game;
 import grandtheftroster.utilities.Configuration;
@@ -19,7 +18,6 @@ import java.util.ArrayList;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -60,11 +58,9 @@ public class PlayState extends GameState {
 	//Model Fields
 	Thrower thrower;
 	Player player;
-	Texture frame;
 	
 	//Fonts
 	BitmapFont font;
-	GlyphFont gfont;
 	
 	//tiled
 	TiledMap map;
@@ -132,19 +128,13 @@ public class PlayState extends GameState {
 		models.add(thrower.throwObject(16*24, 16*28));
 		models.add(thrower.throwObject(16*14, 16*28));
 		models.add(thrower.throwObject(16*14, 16*32));
-		//Frame
-		frame = new Texture("res/images/cab frame.png");
 		
 		//Fonts
 		font = new BitmapFont();
-		gfont = new GlyphFont("res/images/retro font.png", 8, sb);
 	}
 
 				
-	public void handleInput() {
-		if(MyInput.isPressed(MyInput.BUTTON_ESC)) gsm.popState();
-		
-		
+	public void handleInput() {		
 	}
 	
 	public void update(float dt) {
@@ -203,17 +193,16 @@ public class PlayState extends GameState {
 		//SpriteBatch to GPU
 		sb.setProjectionMatrix(camera.combined);
 		sb.begin();
-		gfont.draw("Press ESC to return to the main menu.", GlyphFont.COLOR_WHITE, 10, 15);
-		gfont.draw("Time: " + (int) hud.getTime(), GlyphFont.COLOR_WHITE, 10, Game.V_HEIGHT-20); //-10 originally
-		gfont.draw("Grade: " + hud.getScore(), GlyphFont.COLOR_WHITE, 220, Game.V_HEIGHT-20); // -10 originally
-		gfont.draw("Lives left: " + hud.getLives(), GlyphFont.COLOR_WHITE, 90, Game.V_HEIGHT-20); // -10 originally
+		gfont16.draw("Time " + (int) hud.getTime(), GlyphFont.COLOR_WHITE, 8+64, Game.V_HEIGHT-20-64); //-10 originally
+		gfont16.draw(hud.getScore(), GlyphFont.COLOR_WHITE, 64+16*13, Game.V_HEIGHT-20-64); // -10 originally
+		gfont16.draw("Lives " + hud.getLives(), GlyphFont.COLOR_WHITE, Game.V_WIDTH-64-16*8, Game.V_HEIGHT-20-64); // -10 originally
 		
 		
 		for(Model i:models){
 			i.draw(sb);
 		}
 		
-		sb.draw(frame, 0, 0);
+		sb.draw(cabFrame, 0, 0);
 		sb.end();
 				
 		// Render Box2d world - development purposes only

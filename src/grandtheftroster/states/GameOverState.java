@@ -13,12 +13,11 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 public class GameOverState extends GameState {
 
 	BitmapFont font;
-	GlyphFont gfont;
+
 	
 	public GameOverState(GameStateManager gsm) {
 		super(gsm, "Game Over");
 		font = new BitmapFont();
-		gfont = new GlyphFont("res/images/retro font.png", 8, sb);
 	}
 
 	@Override
@@ -40,22 +39,20 @@ public class GameOverState extends GameState {
 		sb.setProjectionMatrix(camera.combined);
 
 		sb.begin(); //lives lost is a placeholder in case we give a power up that gives extra lives. 
-			gfont.draw("Game Over! Better luck next time.", GlyphFont.COLOR_WHITE, Game.V_WIDTH/2-100, Game.V_HEIGHT/2);
-			gfont.draw("Lives lost: 3", GlyphFont.COLOR_WHITE, Game.V_WIDTH/2-100, Game.V_HEIGHT/2-15);
-			gfont.draw("Time: " + (int) hud.getTime(), GlyphFont.COLOR_WHITE, Game.V_WIDTH/2-100, Game.V_HEIGHT/2-30);
-			gfont.draw("Grade: F", GlyphFont.COLOR_WHITE, Game.V_WIDTH/2-100, Game.V_HEIGHT/2-45);
-			gfont.draw("Anky:  " +(int) hud.getAnky(), GlyphFont.COLOR_WHITE, Game.V_WIDTH/2-100, Game.V_HEIGHT/2-60);
-			gfont.draw("Class:  " +(int) hud.getClassScore(), GlyphFont.COLOR_WHITE, Game.V_WIDTH/2-23, Game.V_HEIGHT/2-60);
-			gfont.draw(hud.getLeader(), GlyphFont.COLOR_WHITE, Game.V_WIDTH/2-100, Game.V_HEIGHT/2-75);
+			gfont16.draw("*** Game Over ***", GlyphFont.COLOR_WHITE, GlyphFont.ALIGN_CENTER, Game.V_WIDTH/2, Game.V_HEIGHT*3/4);
+
+			int middleX = Game.V_WIDTH/2+16;
+			int middleY = Game.V_HEIGHT*2/3-16*4;
+			gfont16.draw("Time", GlyphFont.COLOR_WHITE, GlyphFont.ALIGN_RIGHT, middleX, middleY);
+			gfont16.draw(" " + (int) hud.getTime(), GlyphFont.COLOR_WHITE, GlyphFont.ALIGN_LEFT, middleX, middleY);
+			gfont16.draw("Grade", GlyphFont.COLOR_WHITE, GlyphFont.ALIGN_RIGHT, middleX, middleY-32);
+			gfont16.draw(" F", GlyphFont.COLOR_WHITE, GlyphFont.ALIGN_LEFT, middleX, middleY-32);
 			
-			//Marc Changed this font stuff. Color for fun because why not and testing.
-			//font.draw(sb, "Press ESC to return to main menu", 10, Game.V_HEIGHT - 10);
-			//font.draw(sb, "Press ENTER to play again", 10, Game.V_HEIGHT - 25);
-			gfont.draw( "Press ESC to retutn to the main menu", GlyphFont.COLOR_RED, 10, Game.V_HEIGHT-20);
-			gfont.draw("Press ENTER to play again", GlyphFont.COLOR_RED, 10 , Game.V_HEIGHT-35);
+			gfont16.draw("Anky " +(int) hud.getAnky() + ", Class " +(int) hud.getClassScore(), GlyphFont.COLOR_WHITE, GlyphFont.ALIGN_CENTER, Game.V_WIDTH/2, middleY-64);
 			
-			gfont.draw("Testing", GlyphFont.COLOR_WHITE, 50, 50);
+			gfont16.draw("*Press enter to play*", GlyphFont.COLOR_WHITE, GlyphFont.ALIGN_CENTER, Game.V_WIDTH/2, Game.V_HEIGHT/4);
 			
+			sb.draw(cabFrame, 0, 0);
 		sb.end();
 
 	}

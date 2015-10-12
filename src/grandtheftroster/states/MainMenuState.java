@@ -53,6 +53,7 @@ public class MainMenuState extends GameState {
 			for(Model i:models){
 				i.draw(sb);
 			}
+			sb.draw(cabFrame, 0, 0);
 		sb.end();
 		
 		

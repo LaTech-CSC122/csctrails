@@ -26,7 +26,7 @@ public class InfoState extends GameState {
 
 	@Override
 	public void handleInput() {
-		if(MyInput.isPressed(MyInput.BUTTON_ENTER)) gsm.setState(GameStateManager.MAIN_MENU);
+		if(MyInput.isPressed(MyInput.BUTTON_ENTER)) gsm.setState(GameStateManager.PLAY);
 	}
 
 	@Override
@@ -43,6 +43,7 @@ public class InfoState extends GameState {
 		sb.begin();
 			gfont.draw("Information Screen!", GlyphFont.COLOR_WHITE, GlyphFont.ALIGN_CENTER, Game.V_WIDTH/2, Game.V_HEIGHT/2);
 			gfont.draw("Grand Theft Roster", GlyphFont.COLOR_WHITE, GlyphFont.ALIGN_CENTER, Game.V_WIDTH/2, Game.V_HEIGHT/2-20);
+			sb.draw(cabFrame, 0, 0);
 		sb.end();
 
 	}

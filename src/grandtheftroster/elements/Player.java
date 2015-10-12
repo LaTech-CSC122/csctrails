@@ -21,7 +21,7 @@ import com.badlogic.gdx.physics.box2d.World;
  * 15.09.29gha: Moved getSprite() and vars from sub to super
  */
 
-public class Player extends Model {
+public class Player extends Model{
 	
 	//Player States
 	private static int MOVE_LEFT = 1;
@@ -159,7 +159,10 @@ public class Player extends Model {
 	
 	//Getters and Mutators
 	public boolean isAlive(){ return isAlive; }
-	public void setIsAlive(boolean l){ isAlive = l; }
+	public void setIsAlive(boolean l){ 
+		isAlive = l;
+		state = STANDING_RIGHT;
+	}
 
 
 

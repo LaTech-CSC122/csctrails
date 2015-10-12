@@ -1,6 +1,7 @@
 package grandtheftroster.states;
 
 
+import grandtheftroster.elements.GlyphFont;
 import grandtheftroster.elements.HudCounter;
 import grandtheftroster.elements.Model;
 import grandtheftroster.handlers.GameStateManager;
@@ -9,6 +10,7 @@ import grandtheftroster.main.Game;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.utils.Array;
@@ -40,6 +42,11 @@ public abstract class GameState {
 	protected ArrayList<Model> models; // A list of all Models that exist. Missing objects will not be rendered by default. - gha 15.9.20
 	protected HudCounter hud;
 	
+	//default assets
+	protected Texture cabFrame;
+	protected GlyphFont gfont8;
+	protected GlyphFont gfont16;
+	
 	protected GameState(GameStateManager gsm, String title) {
 		//Params
 		this.gsm = gsm;
@@ -51,6 +58,9 @@ public abstract class GameState {
 		hud = game.getHud();
 		//Field initialization
 		models = new ArrayList<Model>();
+		cabFrame = new Texture("res/images/cab frame.png");
+		gfont8 = new GlyphFont("res/images/retro font.png", 8, sb);
+		gfont16 = new GlyphFont("res/images/retro font 16.png", 16, sb);
 	}
 	
 	// Basic interface between the GSM and game states. - gha 15.9.20 
