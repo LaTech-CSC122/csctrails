@@ -42,7 +42,7 @@ public class InfoState extends GameState {
 		sb.setProjectionMatrix(camera.combined);
 		sb.begin();
 			gfont.draw("Information Screen!", GlyphFont.COLOR_WHITE, GlyphFont.ALIGN_CENTER, Game.V_WIDTH/2, Game.V_HEIGHT/2);
-			gfont.draw("Egh", GlyphFont.COLOR_WHITE, GlyphFont.ALIGN_CENTER, Game.V_WIDTH/2, Game.V_HEIGHT/2-20);
+			gfont.draw("Grand Theft Roster", GlyphFont.COLOR_WHITE, GlyphFont.ALIGN_CENTER, Game.V_WIDTH/2, Game.V_HEIGHT/2-20);
 		sb.end();
 
 	}

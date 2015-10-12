@@ -2,7 +2,6 @@ package grandtheftroster.states;
 
 
 import static grandtheftroster.elements.B2DVars.PPM;
-
 import grandtheftroster.elements.GlyphFont;
 import grandtheftroster.elements.Model;
 import grandtheftroster.elements.ModelLoader;
@@ -20,6 +19,7 @@ import java.util.ArrayList;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -60,6 +60,7 @@ public class PlayState extends GameState {
 	//Model Fields
 	Thrower thrower;
 	Player player;
+	Texture frame;
 	
 	//Fonts
 	BitmapFont font;
@@ -131,7 +132,9 @@ public class PlayState extends GameState {
 		models.add(thrower.throwObject(16*24, 16*28));
 		models.add(thrower.throwObject(16*14, 16*28));
 		models.add(thrower.throwObject(16*14, 16*32));
-
+		//Frame
+		frame = new Texture("res/images/cab frame.png");
+		
 		//Fonts
 		font = new BitmapFont();
 		gfont = new GlyphFont("res/images/retro font.png", 8, sb);
@@ -209,6 +212,8 @@ public class PlayState extends GameState {
 		for(Model i:models){
 			i.draw(sb);
 		}
+		
+		sb.draw(frame, 0, 0);
 		sb.end();
 				
 		// Render Box2d world - development purposes only

@@ -16,14 +16,12 @@ public class Thrown extends Model {
 
 
 	private float speed;
-	private int radius;
 	private int groundContact;
 	private Thrower thrower;
 
 	public Thrown(World world, String cfgProfileName){
 		super(world, cfgProfileName, 50, 50);
 		groundContact = 0;
-		radius = 7;
 		speed = 0.5f;
 		
 		//Pull config vars
@@ -33,13 +31,6 @@ public class Thrown extends Model {
 			speed = Float.parseFloat(cfg.getProperty("SPEED@" + cfgProfileName));
 		}else{
 			speed = 0.5f;
-		}
-		
-		//FIXTURE_SHAPE_RADIUS
-		if(cfg.hasProperty("FIXTURE_SHAPE_RADIUS@" + cfgProfileName)){
-			radius = Integer.parseInt(cfg.getProperty("FIXTURE_SHAPE_RADIUS@" + cfgProfileName));
-		} else{
-			radius = 7;
 		}
 	}
 	
@@ -52,11 +43,11 @@ public class Thrown extends Model {
 	
 	public void pushRight(){
 		body.setLinearVelocity(speed, body.getLinearVelocity().y);
-		body.setAngularVelocity(-speed*314/(radius));
+		//body.setAngularVelocity(-speed*314/(radius)); cut off rotation for chair implementation 
 	}
 	public void pushLeft(){
 		body.setLinearVelocity(-speed, body.getLinearVelocity().y);
-		body.setAngularVelocity(speed*314/(radius));
+		//body.setAngularVelocity(speed*314/(radius)); cut off rotation for chair implementation
 	}
 	
 	public void addGroundContact(){
