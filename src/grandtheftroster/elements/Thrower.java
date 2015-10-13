@@ -22,7 +22,7 @@ public class Thrower {
 	
 	public Thrower(World world, int maxCount, float interval, float deviation) {
 		this.maxCount = maxCount;
-		this.deviation = 30; 
+		this.deviation = 30;  
 		this.interval = interval;
 		this.currentInterval = interval;
 		this.world = world;
@@ -40,7 +40,7 @@ public class Thrower {
 	public Thrown update(float dt){
 		time += dt;
 		if(allObjects.size() >= maxCount){ return null; }
-		System.out.println(this.time + " | " + currentInterval );
+		//System.out.println(this.time + " | " + currentInterval );
 		if(time>currentInterval){
 			Thrown t = new Thrown(world, "MODEL:THROWN");
 			t.getBody().setTransform((float)xpos/B2DVars.PPM, (float)ypos/B2DVars.PPM, 0);
@@ -50,7 +50,7 @@ public class Thrower {
 			//reset frame params;
 			time = 0;
 			float timeOffset = random.nextInt()%deviation;
-			if(timeOffset<0){ timeOffset = timeOffset*-1; }
+			if(timeOffset<0){ timeOffset = timeOffset*-1; } 
 			currentInterval = interval + timeOffset;
 			return t;
 		}
