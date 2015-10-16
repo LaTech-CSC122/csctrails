@@ -14,7 +14,7 @@ public class SplashScreenState extends GameState {
 	
 	private Texture markoLogo;
 	private float time;
-	private float[] stageTimes = {2f, 2f};
+	private float[] stageTimes = {2.5f, 2f};
 	private int state;
 	
 	
