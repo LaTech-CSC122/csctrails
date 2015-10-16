@@ -38,11 +38,11 @@ public class GameStateManager {
 		}
 	}
 	
-	public static final GameStateManager.State MAIN_MENU = new State();
+	public static final GameStateManager.State INFO = new State();
 	public static final GameStateManager.State PLAY = new State();
 	public static final GameStateManager.State GAME_OVER = new State();
 	public static final GameStateManager.State GAME_WON = new State();
-	public static final GameStateManager.State INFO = new State();
+	public static final GameStateManager.State SPLASH_SCREEN = new State();
 	
 	private Game game;
 	private Stack<GameState> gameStates;
@@ -66,10 +66,10 @@ public class GameStateManager {
 	
 	private GameState getState(GameStateManager.State state) {
 		if(state.id == PLAY.id) return new PlayState(this);
-		if(state.id == MAIN_MENU.id) return new MainMenuState(this);
+		if(state.id == INFO.id) return new InfoState(this);
 		if(state.id == GAME_OVER.id) return new GameOverState(this);
 		if(state.id == GAME_WON.id) return new GameWonState(this);
-		if(state.id == INFO.id) return new InfoState(this);
+		if(state.id == SPLASH_SCREEN.id) return new SplashScreenState(this);
 		return null;
 	}
 	

@@ -73,6 +73,9 @@ public class GlyphFont {
 	public int draw(String value, GlyphFont.Color color, int xpos, int ypos){
 		return draw(value, color, ALIGN_LEFT, xpos, ypos);
 	}
+	public int draw(String value, GlyphFont.Alignment align, int xpos, int ypos){
+		return draw(value, COLOR_WHITE, align, xpos, ypos);
+	}
 	public int draw(String value, int xpos, int ypos){
 		return draw(value, COLOR_WHITE, ALIGN_LEFT, xpos, ypos);
 	}
