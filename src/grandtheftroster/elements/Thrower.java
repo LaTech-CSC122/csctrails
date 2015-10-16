@@ -16,18 +16,20 @@ public class Thrower {
 	private int ypos;
 	private World world;
 	//private int deltaFrames;
+	//private boolean active;
 	private  float interval; //default time it waits. is constant
 	private float currentInterval;
 	private float time;
 	
 	public Thrower(World world, int maxCount, float interval, float deviation) {
 		this.maxCount = maxCount;
-		this.deviation = 30; 
+		this.deviation = 30;  
 		this.interval = interval;
 		this.currentInterval = interval;
 		this.world = world;
 		allObjects = new ArrayList<Thrown>();
 		time = 0;
+		//active = false;
 	}
 	
 	
@@ -40,7 +42,7 @@ public class Thrower {
 	public Thrown update(float dt){
 		time += dt;
 		if(allObjects.size() >= maxCount){ return null; }
-		System.out.println(this.time + " | " + currentInterval );
+		//System.out.println(this.time + " | " + currentInterval );
 		if(time>currentInterval){
 			Thrown t = new Thrown(world, "MODEL:THROWN");
 			t.getBody().setTransform((float)xpos/B2DVars.PPM, (float)ypos/B2DVars.PPM, 0);
@@ -50,15 +52,15 @@ public class Thrower {
 			//reset frame params;
 			time = 0;
 			float timeOffset = random.nextInt()%deviation;
-			if(timeOffset<0){ timeOffset = timeOffset*-1; }
+			if(timeOffset<0){ timeOffset = timeOffset*-1; } 
 			currentInterval = interval + timeOffset;
 			return t;
 		}
 		return null;
 		
 	}
-	
-/*	public Thrown throwObject(){
+	/*
+	public Thrown throwObject(){
 		if(!active){ return null; }
 		deltaFrames++;
 		if(allObjects.size() >= maxCount){ return null; }
@@ -78,7 +80,7 @@ public class Thrower {
 		}
 		
 		return null;
-	}*/
+	} */
 
 	public Thrown throwObject(int x, int y){
 		Thrown t = new Thrown(world, "MODEL:THROWN");
