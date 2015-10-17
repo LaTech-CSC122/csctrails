@@ -47,9 +47,9 @@ public class InfoState extends GameState {
 			//font.draw(sb, "Main Menu", Game.V_WIDTH/2-35, Game.V_HEIGHT/2);
 			//font.draw(sb, "Press ENTER to continue.", 10, Game.V_HEIGHT-10);
 			//font.draw(sb, "Press ESC to quit.", 10, Game.V_HEIGHT-25);
-			gfont.draw("Main Menu", GlyphFont.COLOR_RED, Game.V_WIDTH/2-35, Game.V_HEIGHT/2);
-			gfont.draw("Press ENTER to continue", GlyphFont.COLOR_RED, 10, Game.V_HEIGHT-20); //originally -10
-			gfont.draw("Press ESC to quit", GlyphFont.COLOR_RED, 10, Game.V_HEIGHT-35); //originally -25
+			gfont.draw("Main Menu", GlyphFont.COLOR_WHITE, Game.V_WIDTH/2-35, Game.V_HEIGHT/2);
+			gfont.draw("Press ENTER to continue", GlyphFont.COLOR_WHITE, Game.V_WIDTH/2-80, Game.V_HEIGHT/2-100); //originally -10
+			gfont.draw("Press ESC to quit", GlyphFont.COLOR_WHITE, Game.V_WIDTH/2-80, Game.V_HEIGHT/2-120); //originally -25
 			for(Model i:models){
 				i.draw(sb);
 			}
