@@ -12,10 +12,12 @@ public class HudCounter {
 	private int defaultclassScore;
 	
 	
+	
 	private int lives;
 	private float time;
 	private int anky;
 	private int classScore;
+	
 
 
 
@@ -27,6 +29,7 @@ public class HudCounter {
 		time = 0;
 		anky = 0;
 		classScore = 0;
+		
 
 
 	}
@@ -40,6 +43,7 @@ public class HudCounter {
 		anky = 0;
 		defaultclassScore = 0;
 		anky = 0;
+		
 		
 
 
@@ -64,6 +68,7 @@ public class HudCounter {
 	public void setClassScore(int a){ classScore = a; }
 	public void modifyClassScore(int delta){ classScore += delta; }
 	public int getClassScore(){ return classScore; }
+	
 	
 	public String getScore(){ 
 		if(time < MAX_TIME_A && lives == 2)      {return "A+";}
