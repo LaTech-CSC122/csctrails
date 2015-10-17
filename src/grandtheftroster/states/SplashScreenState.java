@@ -13,6 +13,7 @@ public class SplashScreenState extends GameState {
 
 	
 	private Texture markoLogo;
+	private Texture gameLogo;
 	private float time;
 	private float[] stageTimes = {2.5f, 2f};
 	private int state;
@@ -22,6 +23,7 @@ public class SplashScreenState extends GameState {
 		super(gsm, "Game Won");
 		time = 0;
 		markoLogo = new Texture("res/images/marko-marc logo.png");
+		gameLogo = new Texture("res/images/gtr_logo_ingame2x.png");
 		state = 0;
 	}
 
@@ -56,8 +58,9 @@ public class SplashScreenState extends GameState {
 			gfont16.draw("Presents", GlyphFont.COLOR_WHITE, GlyphFont.ALIGN_CENTER, Game.V_WIDTH/2, Game.V_HEIGHT/3*2-markoLogo.getHeight()/2-32-64);
 		}
 		else if(state == 1){
-			gfont16.draw("Grand Theft", GlyphFont.COLOR_WHITE, GlyphFont.ALIGN_CENTER, Game.V_WIDTH/2, Game.V_HEIGHT/8*5);
-			gfont16.draw("Roster", GlyphFont.COLOR_WHITE, GlyphFont.ALIGN_CENTER, Game.V_WIDTH/2, Game.V_HEIGHT/8*5-32);
+			//gfont16.draw("Grand Theft", GlyphFont.COLOR_WHITE, GlyphFont.ALIGN_CENTER, Game.V_WIDTH/2, Game.V_HEIGHT/8*5);
+			//gfont16.draw("Roster", GlyphFont.COLOR_WHITE, GlyphFont.ALIGN_CENTER, Game.V_WIDTH/2, Game.V_HEIGHT/8*5-32);
+			sb.draw(gameLogo, Game.V_WIDTH/2-gameLogo.getWidth()/2, Game.V_HEIGHT/3*2-gameLogo.getHeight()/2-64);
 		}
 		int startingY = 64+16*3;
 		gfont8.draw("Copyright 2015", GlyphFont.COLOR_WHITE, GlyphFont.ALIGN_CENTER, Game.V_WIDTH/2, startingY);
