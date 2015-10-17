@@ -2,40 +2,29 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="faaf3b28-bcdd-45fb-9066-9a5754e04a5f" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/.gitignore" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/grandtheftroster/animation/KeyFrame.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/grandtheftroster/animation/Movement$MovementType.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/grandtheftroster/animation/Movement.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/grandtheftroster/elements/B2DVars.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/grandtheftroster/elements/GlyphFont$Alignment.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/grandtheftroster/elements/GlyphFont$Color.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/grandtheftroster/elements/GlyphFont.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/grandtheftroster/elements/HudCounter.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/grandtheftroster/elements/Model.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/grandtheftroster/elements/ModelLoader.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/grandtheftroster/elements/Player.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/grandtheftroster/elements/TagList.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/grandtheftroster/elements/Thrower.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/grandtheftroster/elements/Thrown.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/grandtheftroster/handlers/GameStateManager$State.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/grandtheftroster/handlers/GameStateManager.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/grandtheftroster/handlers/MyInput.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/grandtheftroster/handlers/MyInputProcessor.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/grandtheftroster/handlers/PlayContactListener.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/grandtheftroster/main/CSCTrailsDesktop.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/grandtheftroster/main/Game.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/grandtheftroster/states/GameOverState.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/grandtheftroster/states/GameState.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/grandtheftroster/states/GameWonState.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/grandtheftroster/states/InfoState.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/grandtheftroster/states/PlayState.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/grandtheftroster/states/SplashScreenState.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/grandtheftroster/utilities/ConfigProfile.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/grandtheftroster/utilities/ConfigProfileParser.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/grandtheftroster/utilities/ConfigTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/grandtheftroster/utilities/Configuration.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/bin/grandtheftroster/utilities/Logger.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/grandtheftroster/states/SplashScreenState.java" afterPath="$PROJECT_DIR$/src/grandtheftroster/states/SplashScreenState.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/grandtheftroster/elements/B2DVars.class" afterPath="$PROJECT_DIR$/bin/grandtheftroster/elements/B2DVars.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/grandtheftroster/utilities/ConfigProfile.class" afterPath="$PROJECT_DIR$/bin/grandtheftroster/utilities/ConfigProfile.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/grandtheftroster/utilities/ConfigProfileParser.class" afterPath="$PROJECT_DIR$/bin/grandtheftroster/utilities/ConfigProfileParser.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/grandtheftroster/utilities/ConfigTest.class" afterPath="$PROJECT_DIR$/bin/grandtheftroster/utilities/ConfigTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/grandtheftroster/utilities/Configuration.class" afterPath="$PROJECT_DIR$/bin/grandtheftroster/utilities/Configuration.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/grandtheftroster/states/GameOverState.class" afterPath="$PROJECT_DIR$/bin/grandtheftroster/states/GameOverState.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/grandtheftroster/states/GameWonState.class" afterPath="$PROJECT_DIR$/bin/grandtheftroster/states/GameWonState.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/grandtheftroster/elements/GlyphFont$Alignment.class" afterPath="$PROJECT_DIR$/bin/grandtheftroster/elements/GlyphFont$Alignment.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/grandtheftroster/elements/GlyphFont$Color.class" afterPath="$PROJECT_DIR$/bin/grandtheftroster/elements/GlyphFont$Color.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/grandtheftroster/elements/GlyphFont.class" afterPath="$PROJECT_DIR$/bin/grandtheftroster/elements/GlyphFont.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/grandtheftroster/elements/HudCounter.class" afterPath="$PROJECT_DIR$/bin/grandtheftroster/elements/HudCounter.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/grandtheftroster/animation/KeyFrame.class" afterPath="$PROJECT_DIR$/bin/grandtheftroster/animation/KeyFrame.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/grandtheftroster/utilities/Logger.class" afterPath="$PROJECT_DIR$/bin/grandtheftroster/utilities/Logger.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/grandtheftroster/elements/Model.class" afterPath="$PROJECT_DIR$/bin/grandtheftroster/elements/Model.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/grandtheftroster/elements/ModelLoader.class" afterPath="$PROJECT_DIR$/bin/grandtheftroster/elements/ModelLoader.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/grandtheftroster/animation/Movement$MovementType.class" afterPath="$PROJECT_DIR$/bin/grandtheftroster/animation/Movement$MovementType.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/grandtheftroster/animation/Movement.class" afterPath="$PROJECT_DIR$/bin/grandtheftroster/animation/Movement.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/grandtheftroster/states/PlayState.class" afterPath="$PROJECT_DIR$/bin/grandtheftroster/states/PlayState.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/grandtheftroster/elements/Player.class" afterPath="$PROJECT_DIR$/bin/grandtheftroster/elements/Player.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/grandtheftroster/states/SplashScreenState.class" afterPath="$PROJECT_DIR$/bin/grandtheftroster/states/SplashScreenState.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/grandtheftroster/elements/TagList.class" afterPath="$PROJECT_DIR$/bin/grandtheftroster/elements/TagList.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/grandtheftroster/elements/Thrower.class" afterPath="$PROJECT_DIR$/bin/grandtheftroster/elements/Thrower.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/res/images/cab frame.png" afterPath="$PROJECT_DIR$/res/images/cab frame.png" />
     </list>
     <ignored path="CSC Trails.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -70,7 +59,7 @@
       <file leaf-file-name="PlayState.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/grandtheftroster/states/PlayState.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.3703704">
+            <state vertical-scroll-proportion="0.0">
               <caret line="12" column="28" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="28" />
               <folding />
             </state>
@@ -90,7 +79,7 @@
       <file leaf-file-name="CSCTrailsDesktop.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/grandtheftroster/main/CSCTrailsDesktop.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.04411765">
+            <state vertical-scroll-proportion="0.5606618">
               <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
               <folding />
             </state>
@@ -117,11 +106,9 @@
       <file leaf-file-name="CSCTrailsDesktop.class" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bin/grandtheftroster/main/CSCTrailsDesktop.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0">
+            <state vertical-scroll-proportion="0.0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#693#0" expanded="true" />
-              </folding>
+              <folding />
             </state>
           </provider>
         </entry>
@@ -291,9 +278,9 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -485,6 +472,9 @@
     </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="faaf3b28-bcdd-45fb-9066-9a5754e04a5f" name="Default" comment="" />
@@ -496,20 +486,21 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32942554" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32942554" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32942554" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32942554" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23888889" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -520,8 +511,15 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+  </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USER_GROUPS">
+      <collection />
+    </option>
+    <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+      <collection />
+    </option>
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -535,19 +533,63 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/grandtheftroster/states/SplashScreenState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="28" selection-start-line="15" selection-start-column="28" selection-end-line="15" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/grandtheftroster/states/PlayState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="28" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/grandtheftroster/states/InfoState.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/grandtheftroster/main/CSCTrailsDesktop.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/grandtheftroster/main/Game.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="38" column="13" selection-start-line="38" selection-start-column="13" selection-end-line="38" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/res/images/marko-marc logo.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/grandtheftroster/main/CSCTrailsDesktop.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/grandtheftroster/utilities/Configuration.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="8" column="22" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#247#248#0" expanded="false" />
-            <element signature="e#306#307#0" expanded="false" />
-            <element signature="e#1134#1135#0" expanded="false" />
-            <element signature="e#1171#1172#0" expanded="false" />
-            <element signature="e#1527#1528#0" expanded="false" />
-            <element signature="e#1563#1564#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -555,7 +597,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="11" column="24" selection-start-line="11" selection-start-column="24" selection-end-line="11" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -563,9 +604,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#693#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -573,7 +612,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -581,7 +619,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -589,7 +626,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -616,7 +652,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/grandtheftroster/states/PlayState.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.3703704">
+        <state vertical-scroll-proportion="0.0">
           <caret line="12" column="28" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="28" />
           <folding />
         </state>
@@ -632,7 +668,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/grandtheftroster/main/CSCTrailsDesktop.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.04411765">
+        <state vertical-scroll-proportion="0.5606618">
           <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
           <folding />
         </state>
