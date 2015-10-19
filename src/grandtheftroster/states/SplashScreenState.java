@@ -2,6 +2,7 @@ package grandtheftroster.states;
 
 import grandtheftroster.elements.GlyphFont;
 import grandtheftroster.handlers.GameStateManager;
+import grandtheftroster.handlers.MyInput;
 import grandtheftroster.main.Game;
 
 import com.badlogic.gdx.Gdx;
@@ -29,6 +30,10 @@ public class SplashScreenState extends GameState {
 
 	@Override
 	public void handleInput() {
+		if(MyInput.isPressed(MyInput.BUTTON_ENTER))
+        {
+            time = stageTimes[state];
+        }
 	}
 
 	@Override
