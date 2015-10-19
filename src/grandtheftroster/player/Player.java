@@ -1,7 +1,9 @@
-package grandtheftroster.elements;
+package grandtheftroster.player;
 
 
 import static grandtheftroster.elements.B2DVars.PPM;
+import grandtheftroster.elements.Model;
+import grandtheftroster.elements.SoundBox;
 import grandtheftroster.handlers.MyInput;
 import grandtheftroster.utilities.Configuration;
 
@@ -37,6 +39,7 @@ public class Player extends Model{
 		cfg = new Configuration();
 		cfg.loadConfiguration("res/config/models/player.config");
 		cfg.loadConfiguration("res/config/paths/sprite paths.config");
+		cfg.loadConfiguration("res/config/paths/audio paths.config");
 	}
 	
 	private float runSpeed;
@@ -54,7 +57,11 @@ public class Player extends Model{
 	private Animation climbingAnimation;
 	private Animation currentAnimation;
 	private TextureRegion currentFrame;
-
+	
+	private SoundBox sounds;
+	private static final String SOUND_JUMP = "jump";
+	private static final String SOUND_HIT = "hit";
+	
 	public Player(World world, String cfgProfileName, int xpos, int ypos) {
 		super(world, cfgProfileName, xpos, ypos);
 		groundContacts = 0;
@@ -62,7 +69,8 @@ public class Player extends Model{
 		isAlive = true;
 		state = 0;
 		loadConfigurationParameters(cfgProfileName);
-		loadAnimations();	
+		loadAnimations();
+		loadSounds();
 	
 	}
 	
@@ -141,12 +149,8 @@ public class Player extends Model{
 	
 	//Important
 	public void update(float dt){
-		// HANDLE INPUT
 		handleInput();
-		updateAnimation(dt);
-		
-		//UPDATE ANIMATION
-		
+		updateAnimation(dt);	
 	}
 	
 	public void draw(SpriteBatch sb){
@@ -158,11 +162,14 @@ public class Player extends Model{
 	
 	//Getters and Mutators
 	public boolean isAlive(){ return isAlive; }
-	public void setIsAlive(boolean l){ 
-		isAlive = l;
+	public void kill(){ 
+		isAlive = false;
+		sounds.play(SOUND_HIT);
+	}
+	public void revive(){
+		isAlive = true;
 		state = STANDING_RIGHT;
 	}
-
 
 
 
@@ -173,28 +180,25 @@ public class Player extends Model{
 	private void handleInput(){
 		if(MyInput.isDown(MyInput.BUTTON_LEFT))
 		{ 
-				//&& MyInput.isDown(MyInput.BUTTON_A)){
 			moveLeft();
 		}
 		if(MyInput.isDown(MyInput.BUTTON_RIGHT)){
-				//|| MyInput.isDown(MyInput.BUTTON_D)){
 			moveRight();
 		}
 		if(MyInput.isPressed(MyInput.BUTTON_UP))
 		{
-				//|| MyInput.isPressed(MyInput.BUTTON_W) || MyInput.isPressed(MyInput.BUTTON_SPACE)){
 			if(climbUp());
-			else if(jump());
+			else if(jump()){
+				sounds.play(SOUND_JUMP);
+			}
 			
 		}
 		if(MyInput.isDown(MyInput.BUTTON_UP))
 		{
-				//|| MyInput.isDown(MyInput.BUTTON_W) || MyInput.isDown(MyInput.BUTTON_SPACE)){
 			climbUp();
 		}
 		if(MyInput.isDown(MyInput.BUTTON_DOWN))
 		{
-				//|| MyInput.isDown(MyInput.BUTTON_S)){
 			climbDown();
 		} 
 		
@@ -285,7 +289,13 @@ public class Player extends Model{
 		}
 		return frameArray;
 	}
-
+	private void loadSounds(){
+		sounds = new SoundBox();
+		String path = cfg.getProperty("JUMPING@PATHS:AUDIO");
+		sounds.addSound(SOUND_JUMP, path);
+		path = cfg.getProperty("HIT@PATHS:AUDIO");
+		sounds.addSound(SOUND_HIT, path);
+	}
 }
 
 

@@ -5,17 +5,19 @@ import static grandtheftroster.elements.B2DVars.PPM;
 import grandtheftroster.elements.GlyphFont;
 import grandtheftroster.elements.Model;
 import grandtheftroster.elements.ModelLoader;
-import grandtheftroster.elements.Player;
 import grandtheftroster.elements.Thrower;
 import grandtheftroster.elements.Thrown;
 import grandtheftroster.handlers.GameStateManager;
-import grandtheftroster.handlers.PlayContactListener;
+import grandtheftroster.handlers.Lvl1ContactListener;
 import grandtheftroster.main.Game;
+import grandtheftroster.player.Player;
 import grandtheftroster.utilities.Configuration;
 
 import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -39,7 +41,7 @@ import com.badlogic.gdx.physics.box2d.World;
  * 15.9.21gha: First Edition
  * 
  */
-public class PlayState extends GameState {
+public class Lvl1State extends GameState {
 	
 	private static Configuration cfg;
 	
@@ -53,7 +55,7 @@ public class PlayState extends GameState {
 	@SuppressWarnings("unused")
 	private Box2DDebugRenderer b2dDebugRenderer;
 	private OrthographicCamera b2dCamera;
-	private PlayContactListener cl;
+	private Lvl1ContactListener cl;
 	
 	//Model Fields
 	Thrower thrower;
@@ -65,8 +67,11 @@ public class PlayState extends GameState {
 	//tiled
 	TiledMap map;
 	OrthogonalTiledMapRenderer tmr;
+	
+	//Audio
+	Music backgroundMusic;
 
-	public PlayState(GameStateManager gsm) {
+	public Lvl1State(GameStateManager gsm) {
 		super(gsm, "Play");
 	
 		
@@ -75,7 +80,7 @@ public class PlayState extends GameState {
 		
 		//Box2D World
 		world = new World(new Vector2(0f, -3f), false);
-		cl = new PlayContactListener();
+		cl = new Lvl1ContactListener();
 		b2dDebugRenderer = new Box2DDebugRenderer(); // Used to render Box2D world when developing - gha 15.9.20
 		world.setContactListener(cl);
 		b2dCamera = new OrthographicCamera();
@@ -130,6 +135,12 @@ public class PlayState extends GameState {
 		
 		//Fonts
 		font = new BitmapFont();
+		
+		//Load and begin music
+		backgroundMusic = Gdx.audio.newMusic(new FileHandle(cfg.getProperty("LVL1BKG@PATHS:AUDIO")));
+		backgroundMusic.setLooping(true);
+		backgroundMusic.setVolume(0.5f);
+		backgroundMusic.play();
 	}
 
 				
@@ -167,7 +178,7 @@ public class PlayState extends GameState {
 		
 		//See if player has died and if so adds one to the anky score
 		if(!player.isAlive() && hud.getLives()>0){
-			player.setIsAlive(true);
+			player.revive();
 			hud.modifyLives(-1);
 			player.getBody().setTransform(16*5/PPM, 16*7/PPM, 0);
 			player.getBody().setLinearVelocity(0, 0);
@@ -205,6 +216,10 @@ public class PlayState extends GameState {
 		//b2dDebugRenderer.render(world, b2dCamera.combined);
 	}
 	
+	public void dispose(){
+		backgroundMusic.stop();
+		backgroundMusic.dispose();
+	}
 }
 
 

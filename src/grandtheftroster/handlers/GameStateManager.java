@@ -39,7 +39,9 @@ public class GameStateManager {
 	}
 	
 	public static final GameStateManager.State INFO = new State();
-	public static final GameStateManager.State PLAY = new State();
+	public static final GameStateManager.State LEVEL_ONE = new State();
+	public static final GameStateManager.State LEVEL_TWO = new State();
+	public static final GameStateManager.State LEVEL_THREE = new State();
 	public static final GameStateManager.State GAME_OVER = new State();
 	public static final GameStateManager.State GAME_WON = new State();
 	public static final GameStateManager.State SPLASH_SCREEN = new State();
@@ -65,7 +67,7 @@ public class GameStateManager {
 	}
 	
 	private GameState getState(GameStateManager.State state) {
-		if(state.id == PLAY.id) return new PlayState(this);
+		if(state.id == LEVEL_ONE.id) return new Lvl1State(this);
 		if(state.id == INFO.id) return new InfoState(this);
 		if(state.id == GAME_OVER.id) return new GameOverState(this);
 		if(state.id == GAME_WON.id) return new GameWonState(this);

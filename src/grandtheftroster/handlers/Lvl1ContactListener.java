@@ -1,8 +1,8 @@
 package grandtheftroster.handlers;
 
 import grandtheftroster.elements.Model;
-import grandtheftroster.elements.Player;
 import grandtheftroster.elements.Thrown;
+import grandtheftroster.player.Player;
 
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
@@ -23,11 +23,11 @@ import com.badlogic.gdx.physics.box2d.Manifold;
  *
  */
 
-public class PlayContactListener implements ContactListener {
+public class Lvl1ContactListener implements ContactListener {
 	
 	private boolean gameWon;
 	
-	public PlayContactListener(){
+	public Lvl1ContactListener(){
 		gameWon = false;
 	}
 	
@@ -97,7 +97,7 @@ public class PlayContactListener implements ContactListener {
 			t.flagForDestory();
 		}
 		else if(model0.hasTag("player") && model1.hasTag("thrown")){
-			((Player) fixtures[0].getBody().getUserData()).setIsAlive(false);
+			((Player) fixtures[0].getBody().getUserData()).kill();
 			Thrown t = (Thrown) fixtures[1].getBody().getUserData();
 			t.flagForDestory();
 		}
@@ -113,7 +113,7 @@ public class PlayContactListener implements ContactListener {
 			gameWon = true;
 		}
 		else if(model0.hasTag("player") && model1.hasTag("boundary,bottom")){
-			((Player) fixtures[0].getBody().getUserData()).setIsAlive(false);
+			((Player) fixtures[0].getBody().getUserData()).kill();
 		}
 		
 	}

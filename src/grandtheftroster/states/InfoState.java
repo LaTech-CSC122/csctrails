@@ -25,7 +25,7 @@ public class InfoState extends GameState {
 	
 	@Override
 	public void handleInput() {
-		if(MyInput.isPressed(MyInput.BUTTON_ENTER)){ gsm.pushState(GameStateManager.PLAY); }
+		if(MyInput.isPressed(MyInput.BUTTON_ENTER)){ gsm.pushState(GameStateManager.LEVEL_ONE); }
 		if(MyInput.isPressed(MyInput.BUTTON_ESC)) {
 			game.shutdown();
 		}
