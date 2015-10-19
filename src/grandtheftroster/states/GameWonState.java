@@ -4,21 +4,31 @@ import grandtheftroster.elements.GlyphFont;
 import grandtheftroster.handlers.GameStateManager;
 import grandtheftroster.handlers.MyInput;
 import grandtheftroster.main.Game;
+import grandtheftroster.utilities.Configuration;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL10;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
 
 public class GameWonState extends GameState {
 
-	BitmapFont font;
-	GlyphFont gfont;
+	private static Configuration cfg;
+	static{
+		cfg = new Configuration();
+		cfg.loadConfiguration("res/config/paths/audio paths.config");
+	}
+	
+	private Music backgroundMusic;
 	
 	public GameWonState(GameStateManager gsm) {
 		super(gsm, "Game Won");
-		font = new BitmapFont();
-		gfont = new GlyphFont("res/images/retro font.png", 8, sb);
+		
+		backgroundMusic = Gdx.audio.newMusic(new FileHandle(cfg.getProperty("THEME@PATHS:AUDIO")));
+		backgroundMusic.setLooping(true);
+		backgroundMusic.setVolume(0.5f);
+		backgroundMusic.play();
 	}
 
 	@Override
@@ -56,6 +66,11 @@ public class GameWonState extends GameState {
 			sb.draw(cabFrame, 0, 0);
 		sb.end();
 
+	}
+	
+	public void dispose(){
+		backgroundMusic.stop();
+		backgroundMusic.dispose();
 	}
 
 }

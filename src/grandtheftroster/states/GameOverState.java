@@ -1,25 +1,39 @@
 package grandtheftroster.states;
 
-import com.badlogic.gdx.graphics.Texture;
 import grandtheftroster.elements.GlyphFont;
 import grandtheftroster.handlers.GameStateManager;
 import grandtheftroster.handlers.MyInput;
 import grandtheftroster.main.Game;
+import grandtheftroster.utilities.Configuration;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL10;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
 
 public class GameOverState extends GameState {
 
-	BitmapFont font;
+	private static Configuration cfg;
+	static{
+		cfg = new Configuration();
+		cfg.loadConfiguration("res/config/paths/audio paths.config");
+	}
+	
+	private BitmapFont font;
 	private Texture wastedGraphic;
+	private Music backgroundMusic;
 	
 	public GameOverState(GameStateManager gsm) {
 		super(gsm, "Game Over");
         wastedGraphic = new Texture("res/images/failure_wasted/failure_wasted_ingame2x.png"); //wasted logo
 		font = new BitmapFont();
+		backgroundMusic = Gdx.audio.newMusic(new FileHandle(cfg.getProperty("THEME@PATHS:AUDIO")));
+		backgroundMusic.setVolume(0.5f);
+		backgroundMusic.setLooping(true);
+		backgroundMusic.play();
 	}
 
 	@Override
@@ -61,4 +75,8 @@ public class GameOverState extends GameState {
 
 	}
 
+	public void dispose(){
+		backgroundMusic.stop();
+		backgroundMusic.dispose();
+	}
 }
