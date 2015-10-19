@@ -44,7 +44,11 @@ public class AnimationManager {
 	}
 	
 	public void draw(SpriteBatch sb, float x, float y){
-		if(currentFrame != null){ sb.draw(currentFrame, x, y); }
+		if(currentFrame != null){ 
+			float xpos = x - currentFrame.getRegionWidth()/2;
+			float ypos = y - currentFrame.getRegionHeight()/2;
+			sb.draw(currentFrame, xpos, ypos); 
+		}
 	}
 	public void update(float dt){
 		time += dt;
