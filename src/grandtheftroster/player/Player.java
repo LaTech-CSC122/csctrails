@@ -34,6 +34,7 @@ public class Player extends Model{
 	private static int CLIMBING_DOWN = 6;
 	private static int CLIMBING_STILL = 7;
 	
+	
 	private static Configuration cfg;
 	static{
 		cfg = new Configuration();
@@ -57,6 +58,8 @@ public class Player extends Model{
 	private Animation climbingAnimation;
 	private Animation currentAnimation;
 	private TextureRegion currentFrame;
+	
+	private AnimationManager am;
 	
 	private SoundBox sounds;
 	private static final String SOUND_JUMP = "jump";
@@ -157,7 +160,9 @@ public class Player extends Model{
 		Vector2 posBody = body.getPosition();
 		float xpos = posBody.x*PPM - currentFrame.getRegionWidth()/2;
 		float ypos = posBody.y*PPM - currentFrame.getRegionHeight()/2;
-		sb.draw(currentFrame, xpos, ypos);
+		//sb.draw(currentFrame, xpos, ypos);
+		am.draw(sb, xpos, ypos);
+		
 	}
 	
 	//Getters and Mutators
@@ -205,26 +210,26 @@ public class Player extends Model{
 	}
 	private void updateAnimation(float dt){
 		if(state==MOVE_LEFT){
-			stateTime += dt;
-			currentAnimation = runLeftAnimation;
 			state = STANDING_LEFT;
+			am.setState(MOVE_LEFT);
+			am.update(dt);
 		}
 		else if(state==MOVE_RIGHT){
-			stateTime += dt;
-			currentAnimation = runRightAnimation;
 			state = STANDING_RIGHT;
+			am.setState(MOVE_RIGHT);
+			am.update(dt);
 		}
 		else if(state==STANDING_RIGHT){
-			stateTime = 0;
-			currentAnimation = runRightAnimation;
+			am.setState(MOVE_RIGHT);
+			am.resetAnimation();
 		}
 		else if(state==STANDING_LEFT){
-			stateTime = 0;
-			currentAnimation = runLeftAnimation;
+			am.setState(MOVE_LEFT);
+			am.resetAnimation();
 		}
 		else if(state==CLIMBING_UP || state == CLIMBING_DOWN){
-			stateTime += dt;
-			currentAnimation = climbingAnimation;
+			am.setState(CLIMBING_UP);
+			am.update(dt);
 			state = CLIMBING_STILL;
 		}
 		else if(state == CLIMBING_STILL){
@@ -256,38 +261,17 @@ public class Player extends Model{
 		}
 	}
 	private void loadAnimations(){
-		float runningSpeed = 0.11f;
-		float climbingSpeed = 0.1f;
-		TextureRegion[] frameArray;
-		Texture runSheet;
-		//Load Running Right
-		runSheet= new Texture(cfg.getProperty("JDK_RUNNING" + "@" + "PATHS:SPRITES"));
-		frameArray = createFrameArray(runSheet, 32, 32, false, false);
-		runRightAnimation = new Animation(runningSpeed, frameArray);
-		//Load Running Left
-		frameArray = createFrameArray(runSheet, 32, 32, true, false);
-		runLeftAnimation = new Animation(runningSpeed, frameArray);
-		//Load Climbing
-		runSheet = new Texture(cfg.getProperty("JDK_CLIMBING" + "@" + "PATHS:SPRITES"));
-		frameArray = createFrameArray(runSheet, 32, 32, false, false);
-		climbingAnimation= new Animation(climbingSpeed, frameArray);
-		
-		//Set starting pointers
-		currentAnimation = runRightAnimation;
-		currentFrame = currentAnimation.getKeyFrame(0f);
-	}
-	private TextureRegion[] createFrameArray(Texture spriteSheet, int width, int height, boolean flipX, boolean flipY){
-		TextureRegion[][] frameMatrix = TextureRegion.split(spriteSheet, width, height);
-		TextureRegion[] frameArray = new TextureRegion[frameMatrix.length*frameMatrix[0].length];
-		int index = 0;
-		for(int i=0; i < frameMatrix.length; i++){
-			for(int j=0; j<frameMatrix[0].length; j++){
-				frameMatrix[i][j].flip(flipX, flipY);
-				frameArray[index] = frameMatrix[i][j];
-				index++;
-			}
-		}
-		return frameArray;
+		float runningSpeed = 0.11f;		
+
+		am = new AnimationManager();
+		am.addAnimation(AnimationManager.createAnimation(runningSpeed, 32, 32, false, false,
+				cfg.getProperty("JDK_RUNNING" + "@" + "PATHS:SPRITES")),MOVE_RIGHT);
+		am.addAnimation(AnimationManager.createAnimation(runningSpeed, 32, 32, true, false,
+				cfg.getProperty("JDK_RUNNING" + "@" + "PATHS:SPRITES")),MOVE_LEFT);
+		am.addAnimation(AnimationManager.createAnimation(runningSpeed, 32, 32, false, false,
+				cfg.getProperty("JDK_CLIMBING" + "@" + "PATHS:SPRITES")),CLIMBING_UP);
+		am.setState(MOVE_RIGHT);
+		am.resetAnimation();
 	}
 	private void loadSounds(){
 		sounds = new SoundBox();
