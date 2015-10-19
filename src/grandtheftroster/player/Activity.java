@@ -10,5 +10,5 @@ public interface Activity
 	public abstract void draw(SpriteBatch sb);
 	public abstract void update(float dt);
 	public abstract void dispose();
-	public abstract void handleinput();
+	public abstract void handleInput();
 }
