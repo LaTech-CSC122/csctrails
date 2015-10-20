@@ -17,7 +17,7 @@ public class Walking extends Activity{
 	
 	
 	private static final float RUN_SPEED = 0.01f;
-	private static final float JUMP_HEIGHT = 0.6f;
+	private static final float JUMP_HEIGHT = 1f;
 	
 	private int contacts;
 	
@@ -62,7 +62,7 @@ public class Walking extends Activity{
 		if(MyInput.isDown(MyInput.BUTTON_RIGHT)){
 			moveRight();
 		}
-		if(MyInput.isDown(MyInput.BUTTON_UP)){
+		if(MyInput.isPressed(MyInput.BUTTON_UP)){
 			jump();
 		}
 	}
