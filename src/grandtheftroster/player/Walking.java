@@ -1,65 +1,57 @@
 package grandtheftroster.player;
 
-import static grandtheftroster.elements.B2DVars.PPM;
+import grandtheftroster.elements.Model;
 import grandtheftroster.handlers.MyInput;
-import grandtheftroster.utilities.Configuration;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.Contact;
+import com.badlogic.gdx.utils.Array;
 
-public class Walking implements Activity{
-	
-	private static Configuration cfg;
-	static{
-		cfg = new Configuration();
-		cfg.loadConfiguration("res/config/models/player.config");
-		cfg.loadConfiguration("res/config/paths/sprite paths.config");
-		cfg.loadConfiguration("res/config/paths/audio paths.config");
-	}
+public class Walking extends Activity{
 	
 	private static final int WALKING_LEFT = 0;
 	private static final int WALKING_RIGHT = 1;
 	private static final int STANDING_LEFT = 2;
 	private static final int STANDING_RIGHT = 3;
 	
+	
 	private static final float RUN_SPEED = 0.01f;
+	private static final float JUMP_HEIGHT = 0.6f;
 	
-	private int state;
-	
-	AnimationManager am;
-	Body body;
-	Player player;
+	private int contacts;
 	
 	public Walking(Player player){
-		this.player = player;
-		this.body = player.getBody();
+		super(player);
 		state = STANDING_RIGHT;
 		loadAnimations();
 	}
 
 	@Override
-	public void begin() {}
+	public void begin() {
+		
+		System.out.println("Activity: Walking");
+		
+		System.out.print("{");
+		String[] tags = player.getTags();
+		for(int i=0; i<tags.length; i++){
+			System.out.print(tags[i]+ ", ");
+		}
+		System.out.println("}");
+		
+
+		
+	}
 	@Override
 	public void end() {}
 	@Override
 	public void dispose() {}
 	
 
-	@Override
-	public void draw(SpriteBatch sb) {
-		float x = body.getPosition().x*PPM;
-		float y = body.getPosition().y*PPM;
-		am.draw(sb, x, y);
-	}
-
-	@Override
 	public void update(float dt) {
 		am.setState(state);
 		handleInput();
-		handleState(dt);
-		
+		handleState(dt);	
 	}
 
 	@Override
@@ -70,9 +62,17 @@ public class Walking implements Activity{
 		if(MyInput.isDown(MyInput.BUTTON_RIGHT)){
 			moveRight();
 		}
+		if(MyInput.isDown(MyInput.BUTTON_UP)){
+			jump();
+		}
+	}
+
+	public void handleBeginContact(Model model){
+	}
+	public void handleEndContact(Model model){
 	}
 	
-	private void handleState(float dt){
+	protected void handleState(float dt){
 		if(state == WALKING_LEFT){
 			am.update(dt);
 			state = STANDING_LEFT;
@@ -99,10 +99,15 @@ public class Walking implements Activity{
 		body.setTransform(pos.x+RUN_SPEED, pos.y, 0);
 		state = WALKING_RIGHT;
 	}
+	public void jump(){
+		if(isContacting("ground")){
+			body.applyLinearImpulse(new Vector2(0f, JUMP_HEIGHT), body.getWorldCenter(), false);
+		}
+	}
+	
 	
 	private void loadAnimations(){
 		float runningSpeed = 0.11f;
-		am = new AnimationManager();
 		
 		Animation right = AnimationManager.createAnimation(runningSpeed, 32, 32, false, false, 
 				cfg.getProperty("JDK_RUNNING" + "@" + "PATHS:SPRITES"));
