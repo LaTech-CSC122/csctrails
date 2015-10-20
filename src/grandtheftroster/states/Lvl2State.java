@@ -12,6 +12,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import grandtheftroster.elements.Fan;
 import grandtheftroster.elements.Model;
 import grandtheftroster.handlers.GameStateManager;
+import grandtheftroster.handlers.Lvl2ContactListener;
 import grandtheftroster.main.Game;
 import grandtheftroster.player.Player;
 
@@ -20,9 +21,12 @@ public class Lvl2State extends GameState{
 	private Player player;
 	private Box2DDebugRenderer b2dDebugRenderer;
 	private OrthographicCamera b2dCamera;
+	private Lvl2ContactListener cl;
 	public Lvl2State(GameStateManager gsm) {
 		super(gsm, "LvL 2");
+		cl = new Lvl2ContactListener();
 		world = new World(new Vector2(0f, -3f), false);
+		world.setContactListener(cl);
 		
 		b2dDebugRenderer = new Box2DDebugRenderer();
 		b2dCamera = new OrthographicCamera();
@@ -32,7 +36,7 @@ public class Lvl2State extends GameState{
 		models.add(player);
 		new Model(world, "MODEL:BOUNDARY_SIDES");
 		new Model(world, "MODEL:BOUNDARY_BOTTOM");
-		new Fan(world, 64+16*10, 64, 100);
+		new Fan(world, 64+16*10, 64*2, 100);
 		
 		
 		

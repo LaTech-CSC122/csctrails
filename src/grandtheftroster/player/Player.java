@@ -22,6 +22,7 @@ public class Player extends Model{
 	//Player States
 	final Activity ACTIVITY_WALKING = new Walking(this);
 	final Activity ACTIVITY_CLIMBING = new Climbing(this);
+	final Activity ACTIVITY_HOVERING = new Hovering(this);
 	boolean isAlive;
 	ActivityManager actMan;
 	
@@ -47,7 +48,7 @@ public class Player extends Model{
 				i++;
 			}
 		}
-		System.out.println(i);
+		//System.out.println(i);
 	
 	}
 	
@@ -58,12 +59,18 @@ public class Player extends Model{
 		if(actMan.getActivity()==ACTIVITY_WALKING && model.hasTag("ladder")){
 			actMan.setActivity(ACTIVITY_CLIMBING);
 		}
+		if(actMan.getActivity()==ACTIVITY_WALKING && model.hasTag("fan")){
+			actMan.setActivity(ACTIVITY_HOVERING);
+			}
 		actMan.getActivity().handleBeginContact(model);
 	}
 	public void handleEndContact(Model model){
 		if(actMan.getActivity()==ACTIVITY_CLIMBING && model.hasTag("ground")){
 			//actMan.setActivity(ACTIVITY_WALKING);
 		}
+		if(actMan.getActivity()==ACTIVITY_HOVERING && model.hasTag("fan")){
+			actMan.setActivity(ACTIVITY_WALKING);
+			}
 		actMan.getActivity().handleEndContact(model);
 	}
 	
