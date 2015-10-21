@@ -56,22 +56,35 @@ public class Player extends Model{
 	public void draw(SpriteBatch sb){ actMan.getActivity().draw(sb);}
 	
 	public void handleBeginContact(Model model){
+		//Let activities know of contact
+		ACTIVITY_CLIMBING.handleBeginContact(model);
+		ACTIVITY_WALKING.handleBeginContact(model);
+		ACTIVITY_HOVERING.handleBeginContact(model);
+
+		//do any handleing needed in player
 		if(actMan.getActivity()==ACTIVITY_WALKING && model.hasTag("ladder")){
 			actMan.setActivity(ACTIVITY_CLIMBING);
 		}
 		if(actMan.getActivity()==ACTIVITY_WALKING && model.hasTag("fan")){
 			actMan.setActivity(ACTIVITY_HOVERING);
 			}
-		actMan.getActivity().handleBeginContact(model);
+		//actMan.getActivity().handleBeginContact(model);
 	}
 	public void handleEndContact(Model model){
+		//Let activities know of contact
+		ACTIVITY_CLIMBING.handleEndContact(model);
+		ACTIVITY_WALKING.handleEndContact(model);
+		ACTIVITY_HOVERING.handleEndContact(model);
+
+		//do any handleing needed in player		
 		if(actMan.getActivity()==ACTIVITY_CLIMBING && model.hasTag("ground")){
 			//actMan.setActivity(ACTIVITY_WALKING);
 		}
 		if(actMan.getActivity()==ACTIVITY_HOVERING && model.hasTag("fan")){
 			actMan.setActivity(ACTIVITY_WALKING);
-			}
-		actMan.getActivity().handleEndContact(model);
+		}
+		
+		
 	}
 	
 	//Getters and Mutators

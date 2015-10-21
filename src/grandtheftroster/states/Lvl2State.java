@@ -38,19 +38,12 @@ public class Lvl2State extends GameState{
 		new Model(world, "MODEL:BOUNDARY_BOTTOM");
 		new Fan(world, 64+16*10, 64*2, 100);
 		
-		
-		
 	}
 
-	@Override
-	public void handleInput() {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
+	public void handleInput() {}
+
 	public void update(float dt) {
-		// TODO Auto-generated method stub
 		world.step(dt, 6, 2);
 		
 		for(Model m:models){
@@ -59,9 +52,15 @@ public class Lvl2State extends GameState{
 		
 	}
 
-	@Override
 	public void render() {
 		Gdx.gl10.glClear(GL10.GL_COLOR_BUFFER_BIT);
+		
+		sb.begin();
+		for(Model m:models){
+			m.draw(sb);
+		}
+		sb.end();
+		
 		b2dDebugRenderer.render(world, b2dCamera.combined);
 		// TODO Auto-generated method stub
 		

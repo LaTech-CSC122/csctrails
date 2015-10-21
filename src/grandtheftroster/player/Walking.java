@@ -25,6 +25,7 @@ public class Walking extends Activity{
 		super(player);
 		state = STANDING_RIGHT;
 		loadAnimations();
+		contacts=0;
 	}
 
 	@Override
@@ -52,6 +53,7 @@ public class Walking extends Activity{
 		am.setState(state);
 		handleInput();
 		handleState(dt);	
+		System.out.println(contacts);
 	}
 
 	@Override
@@ -68,8 +70,10 @@ public class Walking extends Activity{
 	}
 
 	public void handleBeginContact(Model model){
+		if(model.hasTag("ground")){ contacts++; }
 	}
 	public void handleEndContact(Model model){
+		if(model.hasTag("ground")){ contacts--; }
 	}
 	
 	protected void handleState(float dt){
@@ -100,7 +104,7 @@ public class Walking extends Activity{
 		state = WALKING_RIGHT;
 	}
 	public void jump(){
-		if(isContacting("ground")){
+		if(contacts>0){
 			body.applyLinearImpulse(new Vector2(0f, JUMP_HEIGHT), body.getWorldCenter(), false);
 		}
 	}
