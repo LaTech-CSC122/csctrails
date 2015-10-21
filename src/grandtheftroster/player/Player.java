@@ -38,18 +38,6 @@ public class Player extends Model{
 	//Important
 	public void update(float dt){
 		actMan.getActivity().update(dt);
-		int i = 0;
-		Array<Contact> clist = body.getWorld().getContactList();
-		for(Contact c:clist){
-			if(((Model)c.getFixtureA().getBody().getUserData()).hasTag("player")){
-				i++;
-			}
-			else if(((Model)c.getFixtureB().getBody().getUserData()).hasTag("player")){
-				i++;
-			}
-		}
-		//System.out.println(i);
-	
 	}
 	
 	
