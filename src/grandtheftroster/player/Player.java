@@ -4,9 +4,7 @@ package grandtheftroster.player;
 import grandtheftroster.elements.Model;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.utils.Array;
 
 
 /**
@@ -23,6 +21,7 @@ public class Player extends Model{
 	final Activity ACTIVITY_WALKING = new Walking(this);
 	final Activity ACTIVITY_CLIMBING = new Climbing(this);
 	final Activity ACTIVITY_HOVERING = new Hovering(this);
+	final Activity ACTIVITY_SWINGING = new Swinging(this);
 	boolean isAlive;
 	ActivityManager actMan;
 	
@@ -48,7 +47,7 @@ public class Player extends Model{
 		ACTIVITY_CLIMBING.handleBeginContact(model);
 		ACTIVITY_WALKING.handleBeginContact(model);
 		ACTIVITY_HOVERING.handleBeginContact(model);
-
+		ACTIVITY_SWINGING.handleBeginContact(model);
 		//do any handleing needed in player
 		if(actMan.getActivity()==ACTIVITY_WALKING && model.hasTag("ladder")){
 			actMan.setActivity(ACTIVITY_CLIMBING);
@@ -63,7 +62,7 @@ public class Player extends Model{
 		ACTIVITY_CLIMBING.handleEndContact(model);
 		ACTIVITY_WALKING.handleEndContact(model);
 		ACTIVITY_HOVERING.handleEndContact(model);
-
+		ACTIVITY_SWINGING.handleEndContact(model);
 		//do any handleing needed in player		
 		if(actMan.getActivity()==ACTIVITY_CLIMBING && model.hasTag("ground")){
 			//actMan.setActivity(ACTIVITY_WALKING);

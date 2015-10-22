@@ -4,9 +4,7 @@ import grandtheftroster.elements.Model;
 import grandtheftroster.handlers.MyInput;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
 
 public class Climbing extends Activity{
 
@@ -27,6 +25,7 @@ public class Climbing extends Activity{
 
 	@Override
 	public void begin() {
+		super.begin();
 		System.out.println("Activity: Climbing");
 		body.setGravityScale(0f);
 		body.setLinearVelocity(0f, 0f);
@@ -35,6 +34,7 @@ public class Climbing extends Activity{
 
 	@Override
 	public void end() {
+		super.end();
 		body.setGravityScale(1f);
 	}
 
@@ -94,7 +94,7 @@ public class Climbing extends Activity{
 	public void handleEndContact(Model model) {
 		if(model.hasTag("ladder")){
 			contacts --;
-			if(contacts==0){ 
+			if(contacts==0 && active==true){ 
 				player.actMan.setActivity(player.ACTIVITY_WALKING);
 			}
 		}

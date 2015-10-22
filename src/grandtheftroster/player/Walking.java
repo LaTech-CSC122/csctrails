@@ -5,8 +5,6 @@ import grandtheftroster.handlers.MyInput;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Contact;
-import com.badlogic.gdx.utils.Array;
 
 public class Walking extends Activity{
 	
@@ -30,30 +28,16 @@ public class Walking extends Activity{
 
 	@Override
 	public void begin() {
-		
+		super.begin();
 		System.out.println("Activity: Walking");
-		
-		System.out.print("{");
-		String[] tags = player.getTags();
-		for(int i=0; i<tags.length; i++){
-			System.out.print(tags[i]+ ", ");
-		}
-		System.out.println("}");
-		
-
-		
 	}
-	@Override
-	public void end() {}
 	@Override
 	public void dispose() {}
 	
 
 	public void update(float dt) {
-		am.setState(state);
 		handleInput();
 		handleState(dt);	
-		System.out.println(contacts);
 	}
 
 	@Override
@@ -77,6 +61,7 @@ public class Walking extends Activity{
 	}
 	
 	protected void handleState(float dt){
+		am.setState(state);
 		if(state == WALKING_LEFT){
 			am.update(dt);
 			state = STANDING_LEFT;

@@ -8,7 +8,6 @@ import grandtheftroster.handlers.MyInput;
 
 public class Hovering extends Activity{
 	
-	//private static final int HOVER_UP = 0;
 	private static final int HOVER_LEFT = 1;
 	private static final int HOVER_RIGHT = 2;
 	
@@ -23,20 +22,15 @@ public class Hovering extends Activity{
 	}
 
 	public void begin() {
-		System.out.println("Hovering");
+		super.begin();
+		System.out.println("Activity: Hovering");
 		if(body.getLinearVelocity().y<-0.5f){
 				body.setLinearVelocity(0f, -.5f);
-		}
-		
-		if(body.getLinearVelocity().x>0){
-			am.setState(HOVER_RIGHT);
-		}
-		if(body.getLinearVelocity().x<0){
-			am.setState(HOVER_LEFT);
 		}
 	}
 
 	public void end() {
+		super.end();
 		if(body.getLinearVelocity().y>1f){
 			body.setLinearVelocity(0f, 1f);
 		}
@@ -70,30 +64,19 @@ public class Hovering extends Activity{
 	private void moveLeft(){
 		Vector2 pos = body.getPosition();
 		body.setTransform(pos.x-SPEED, pos.y, 0);
-		//state = WALKING_LEFT;
 	}
 	private void moveRight(){
 		Vector2 pos = body.getPosition();
 		body.setTransform(pos.x+SPEED, pos.y, 0);
-		//state = WALKING_RIGHT;
 	}
 	
 	
 	private void loadAnimations(){
 		float runningSpeed = 0.11f;
-		
 		Animation spin = AnimationManager.createAnimation(runningSpeed, 32, 32, false, false, 
 				cfg.getProperty("JDK_SPINNING" + "@" + "PATHS:SPRITES"));
 		am.addAnimation(spin,HOVER_RIGHT);
-		
-		//Animation left = AnimationManager.createAnimation(runningSpeed, 32, 32, true, false,
-		//		cfg.getProperty("JDK_RUNNING" + "@" + "PATHS:SPRITES"));
 		am.addAnimation(spin,HOVER_LEFT);
-		
-		//Animation climb = AnimationManager.createAnimation(runningSpeed, 32, 32, true, false,
-		//		cfg.getProperty("JDK_CLIMBING" + "@" + "PATHS:SPRITES"));
-		//am.addAnimation(climb,HOVER_UP);
-		
 		am.setState(HOVER_RIGHT);
 		am.resetAnimation();
 	}

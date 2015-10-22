@@ -21,6 +21,7 @@ public abstract class Activity
 		cfg.loadConfiguration("res/config/paths/audio paths.config");
 	}
 	
+	protected boolean active;
 	protected Player player;
 	protected Body body;
 	protected AnimationManager am;
@@ -30,11 +31,16 @@ public abstract class Activity
 		this.player = p;
 		this.body = p.getBody();
 		state = 0;
+		active = false;
 		am = new AnimationManager();
 	}
 	
-	public abstract void begin();
-	public abstract void end();
+	public void begin(){
+		active = true;
+	}
+	public void end(){
+		active = false;
+	}
 	public abstract void update(float dt);
 	public abstract void dispose();
 	protected abstract void handleInput();
