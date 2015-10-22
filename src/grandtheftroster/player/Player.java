@@ -49,12 +49,9 @@ public class Player extends Model{
 		ACTIVITY_HOVERING.handleBeginContact(model);
 		ACTIVITY_SWINGING.handleBeginContact(model);
 		//do any handleing needed in player
-		if(actMan.getActivity()==ACTIVITY_WALKING && model.hasTag("ladder")){
-			actMan.setActivity(ACTIVITY_CLIMBING);
-		}
-		if(actMan.getActivity()==ACTIVITY_WALKING && model.hasTag("fan")){
-			actMan.setActivity(ACTIVITY_HOVERING);
-			}
+		//if(actMan.getActivity()==ACTIVITY_WALKING && model.hasTag("ladder")){
+		//	actMan.setActivity(ACTIVITY_CLIMBING);
+		//}
 		//actMan.getActivity().handleBeginContact(model);
 	}
 	public void handleEndContact(Model model){
@@ -64,9 +61,7 @@ public class Player extends Model{
 		ACTIVITY_HOVERING.handleEndContact(model);
 		ACTIVITY_SWINGING.handleEndContact(model);
 		//do any handleing needed in player		
-		if(actMan.getActivity()==ACTIVITY_CLIMBING && model.hasTag("ground")){
-			//actMan.setActivity(ACTIVITY_WALKING);
-		}
+		
 		if(actMan.getActivity()==ACTIVITY_HOVERING && model.hasTag("fan")){
 			actMan.setActivity(ACTIVITY_WALKING);
 		}

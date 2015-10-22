@@ -5,6 +5,7 @@ import grandtheftroster.elements.Model;
 import grandtheftroster.elements.Rope;
 import grandtheftroster.handlers.MyInput;
 
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
@@ -46,7 +47,6 @@ public class Swinging extends Activity{
 
 	public void end() {
 		super.end();
-		System.out.println("Hey now!");
 		rope.getBody().setTransform(por, 0);
 	}
 
@@ -59,10 +59,14 @@ public class Swinging extends Activity{
 	public void dispose() {}
 
 	protected void handleInput() {
-		if(MyInput.isDown(MyInput.BUTTON_UP)) jump();
+		if(MyInput.isPressed(MyInput.BUTTON_UP)) jump();
 	}
 
-	protected void handleState(float dt) {}
+	protected void handleState(float dt) {
+		am.setState(state);
+		am.resetAnimation();
+		//am.update(1.5f);
+	}
 
 	public void handleBeginContact(Model model) {
 		if(model.hasTag("rope") && active==false){
@@ -75,8 +79,7 @@ public class Swinging extends Activity{
 	}
 
 	public void handleEndContact(Model model) {}
-	
-	
+		
 	private void jump(){
 		body.setLinearVelocity(-dr*radius*(float)Math.sin(angularPos)*2f, dr*radius*(float)Math.cos(angularPos)*2f);
 		player.actMan.setActivity(player.ACTIVITY_WALKING);
@@ -101,7 +104,6 @@ public class Swinging extends Activity{
 		//Normalize to account for errors over time
 		if(angularPos>SWING_MAX) angularPos=SWING_MAX;
 		else if(angularPos<SWING_MIN) angularPos=SWING_MIN;
-		//angularPos=+dr;
 		
 		//Position player
 		float xPlayer = por.x+radius*(float)Math.cos(angularPos);
@@ -109,12 +111,6 @@ public class Swinging extends Activity{
 		body.setTransform(xPlayer, yPlayer, 0);
 		
 		//position rope
-		//1. Get Length of C
-		float theta = angularPos - PI*3/2;
-		//float c = Math.abs(radius*theta);
-		
-		System.out.println("Oops");
-		
 		float xRope = rope.getBody().getPosition().x;
 		float yRope = rope.getBody().getPosition().y;
 		rope.getBody().setTransform(xRope, yRope, angularPos+PI/2);
@@ -122,13 +118,16 @@ public class Swinging extends Activity{
 	
 	private void loadAnimations(){
 		
-		//Animation climb = AnimationManager.createAnimation(runningSpeed, 32, 32, true, false,
-		//		cfg.getProperty("JDK_CLIMBING" + "@" + "PATHS:SPRITES"));
-		//am.addAnimation(climb,HOVER_UP);
+		Animation left = AnimationManager.createAnimation(1f, 32, 32, true, false,
+				cfg.getProperty("JDK_RUNNING" + "@" + "PATHS:SPRITES"));
+		am.addAnimation(left,SWING_CW);
 		
-		//am.setState(HOVER_RIGHT);
-		//am.resetAnimation();
+		Animation right = AnimationManager.createAnimation(1f, 32, 32, false, false,
+				cfg.getProperty("JDK_RUNNING" + "@" + "PATHS:SPRITES"));
+		am.addAnimation(right, SWING_CCW);
+		
+		am.setState(SWING_CCW);
+		am.resetAnimation();
 	}
 	
-	public void draw(SpriteBatch sb){}
 }

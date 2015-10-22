@@ -37,7 +37,7 @@ public class Lvl2State extends GameState{
 		models.add(player);
 		new Model(world, "MODEL:BOUNDARY_SIDES");
 		new Model(world, "MODEL:BOUNDARY_BOTTOM");
-		//new Fan(world, 64+16*10, 32, 100);
+		new Fan(world, 64+16*20, 32, 100);
 		new Rope(world, 64+16*10, 64+16*3, 16*4);
 		
 	}
