@@ -80,17 +80,23 @@ public class Lvl2State extends GameState{
 		models.add(player);
 		//Fans
 		models.add(new Fan(world, 64+16*26, 64+16*2, 32*6));
-		models.add(new Fan(world, 64+16*2, 64+16*10, 16*9));
+		models.add(new Fan(world, 64+16*1, 64+16*10, 16*9));
 		models.add(new Fan(world, 64+16*27, 64+16*24, 16*3));
 		//Springs
 		models.add(new Spring(world, 64+16*13, 64+16*6+2));
 		models.add(new Spring(world, 64+16*5, 64+16*2+2));
 		//Rope
 		models.add(new Rope(world, 64+16*20, 64+16*20-3, 2*29)); //18
-		//models.add(new Rope(world, 64+16*12, 64+16*20-3, 16*4));
+		//models.add(new Rope(world, 64+16*8, 64+16*20-3, 16*4));
 		models.add(new Rope(world, 64+16*20, 64+16*34, 16*4));
+		Switch keySwitch= new Switch(world, 64+16*13, 64+16*1+20);
+		keySwitch.addTag("key");
+		models.add(keySwitch);
+		Switch chestKeySwitch= new Switch(world, 64+16*7, 64+16*24+4);
+		chestKeySwitch.addTag("chestKey");
+		models.add(chestKeySwitch);
 		
-	}
+		}
 
 
 	public void handleInput() {}

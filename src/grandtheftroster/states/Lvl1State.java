@@ -112,7 +112,7 @@ public class Lvl1State extends GameState {
 		new Model(world, "MODEL:BOUNDARY_SIDES");
 		new Model(world, "MODEL:BOUNDARY_BOTTOM");
 		//Key
-		models.add(new Model(world, "MODEL:KEY", 16*28, 16*33));
+		models.add(new Model(world, "MODEL:ROSTER", 16*28, 16*33));
 		//Player
 		player = new Player(world, "MODEL:PLAYER", 16*5, 16*37);
 		models.add(player);

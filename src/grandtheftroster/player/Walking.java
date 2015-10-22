@@ -1,6 +1,7 @@
 package grandtheftroster.player;
 
 import grandtheftroster.elements.Model;
+import grandtheftroster.elements.Switch;
 import grandtheftroster.handlers.MyInput;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -58,6 +59,16 @@ public class Walking extends Activity{
 		if(active && model.hasTag("spring")){body.setLinearVelocity(0, 2);;}
 		if(active && model.hasTag("ladder")){ player.actMan.setActivity(player.ACTIVITY_CLIMBING); }
 		if(active && model.hasTag("fan")){ player.actMan.setActivity(player.ACTIVITY_HOVERING); }
+		if(active && model.hasTag("switch,key")){
+			
+			if(!((Switch)model).isOn()){
+				((Switch)model).setState(true);}
+		}
+		if(active && model.hasTag("switch,chestKey")){
+			
+			if(!((Switch)model).isOn()){
+				((Switch)model).setState(true);}
+		}
 	}
 	public void handleEndContact(Model model){
 		if(model.hasTag("ground")){ contacts--; }
