@@ -6,14 +6,23 @@
  <tileset firstgid="2" name="ladder" tilewidth="32" tileheight="32">
   <image source="ladder.png" width="32" height="32"/>
  </tileset>
+ <tileset firstgid="3" name="truss" tilewidth="32" tileheight="32">
+  <image source="truss.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="4" name="spikes" tilewidth="32" tileheight="32">
+  <image source="spikes.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="5" name="truss_fan 2" tilewidth="32" tileheight="32">
+  <image source="truss_fan 2.png" width="64" height="32"/>
+ </tileset>
  <layer name="platforms" width="18" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYKAfYETDQwmguxuf++npP3S78PGHUphTy63UNgeXefSK88GehwbabbjsZ0STR1c/WAEAb9QAJw==
+   eJxjYKAfYEbDQwmguxuf++npP3S78PHZ6OQmagBqhR+1zcFlHr3inJUBEo+DNQ8NdP7GZT8zmjwMgMKSlQ7uIhcAAFwjAIA=
   </data>
  </layer>
  <layer name="deathbed" width="18" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo4C6gJEEPJIBchiMhscowAYAMXgAEA==
+   eJxjYBgFo4C6gIUEPJIBchiMhscowAYAtQAAPQ==
   </data>
  </layer>
  <layer name="ladders" width="18" height="20">
