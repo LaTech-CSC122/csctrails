@@ -35,7 +35,7 @@ public class Lvl2ContactListener implements ContactListener {
 	
 	// called when two fixtures start to collide
 	public void beginContact(Contact c) {
-		Fixture[] fixtures = new Fixture[2];
+		Fixture[] fixtures = new Fixture[2]; 
 		
 		fixtures[0] = c.getFixtureA();
 		fixtures[1] = c.getFixtureB();
