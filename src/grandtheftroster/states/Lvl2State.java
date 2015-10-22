@@ -11,6 +11,7 @@ import com.badlogic.gdx.physics.box2d.World;
 
 import grandtheftroster.elements.Fan;
 import grandtheftroster.elements.Model;
+import grandtheftroster.elements.Rope;
 import grandtheftroster.handlers.GameStateManager;
 import grandtheftroster.handlers.Lvl2ContactListener;
 import grandtheftroster.main.Game;
@@ -37,6 +38,7 @@ public class Lvl2State extends GameState{
 		new Model(world, "MODEL:BOUNDARY_SIDES");
 		new Model(world, "MODEL:BOUNDARY_BOTTOM");
 		new Fan(world, 64+16*10, 32, 100);
+		new Rope(world, 64+16*20, 40, 110);
 		
 	}
 
