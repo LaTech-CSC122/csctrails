@@ -103,7 +103,10 @@ public class Model {
 	public void update(float dt){
 		return;
 	}
-	
+	public void setPosition(float x, float y, float angle)
+	{
+		body.setTransform(x/PPM, y/PPM, angle);
+	}
 	
 	//TagList methods
 	public void addTag(String t){ tags.add(t); }
