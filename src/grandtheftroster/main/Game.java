@@ -64,7 +64,7 @@ public class Game implements ApplicationListener {
 	
 		
 		gsm = new GameStateManager(this);
-		gsm.pushState(GameStateManager.SPLASH_SCREEN); 
+		gsm.pushState(GameStateManager.LEVEL_TWO); 
 	}
 	public void render() {
 		accum = Gdx.graphics.getDeltaTime();

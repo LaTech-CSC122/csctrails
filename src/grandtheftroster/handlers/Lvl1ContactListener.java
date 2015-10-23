@@ -86,10 +86,10 @@ public class Lvl1ContactListener implements ContactListener {
 		
 		
 		if(model0.hasTag("player") && model1.hasTag("platform, ground")){
-			((Player) fixtures[0].getBody().getUserData()).addGroundContact();
+			((Player)model0).handleBeginContact(model1);
 		}
 		else if(model0.hasTag("player") && model1.hasTag("ladder")){
-			((Player) fixtures[0].getBody().getUserData()).addLadderContact();
+			((Player)model0).handleBeginContact(model1);
 			
 		}
 		else if(model0.hasTag("thrown") && model1.hasTag("boundary")){
@@ -126,10 +126,10 @@ public class Lvl1ContactListener implements ContactListener {
 		
 		//If the players foot collides with the ground
 		if(model0.hasTag("player") && model1.hasTag("platform, ground")){
-			((Player) fixtures[0].getBody().getUserData()).removeGroundContact();
+			((Player)model0).handleEndContact(model1);
 		}
 		else if(model0.hasTag("player") && model1.hasTag("ladder")){
-			((Player) fixtures[0].getBody().getUserData()).removeLadderContact();
+			((Player)model0).handleEndContact(model1);
 		}
 		else if(model0.hasTag("thrown") && model1.hasTag("platform")){
 			((Thrown) fixtures[0].getBody().getUserData()).removeGroundConact();
