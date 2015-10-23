@@ -72,6 +72,11 @@ public class AnimationManager {
 		if(assets.containsKey(id+"")){ throw new IllegalArgumentException("Id has alredy been assigned:" + id); }
 		assets.put(id+"", animation);
 	}
+	
+	public void setPlayMode(int id, int playMode){
+		if(assets.get(id+"")==null){ throw new IllegalArgumentException("Animation id not found: " + id); }
+		assets.get(id+"").setPlayMode(playMode);
+	}
 
 
 }

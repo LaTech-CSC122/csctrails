@@ -6,7 +6,6 @@ import grandtheftroster.elements.Rope;
 import grandtheftroster.handlers.MyInput;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
 public class Swinging extends Activity{
@@ -70,7 +69,7 @@ public class Swinging extends Activity{
 
 	public void handleBeginContact(Model model) {
 		if(model.hasTag("rope") && active==false){
-			player.actMan.setActivity(player.ACTIVITY_SWINGING);
+			player.setActivity(player.ACTIVITY_SWINGING);
 			Rope rope = (Rope) model;
 			radius = rope.getLength();
 			this.rope = rope;
@@ -82,7 +81,7 @@ public class Swinging extends Activity{
 		
 	private void jump(){
 		body.setLinearVelocity(-dr*radius*(float)Math.sin(angularPos)*2f, dr*radius*(float)Math.cos(angularPos)*2f);
-		player.actMan.setActivity(player.ACTIVITY_WALKING);
+		player.setActivity(player.ACTIVITY_WALKING);
 	}
 	
 	private void stepSwing(float dt){

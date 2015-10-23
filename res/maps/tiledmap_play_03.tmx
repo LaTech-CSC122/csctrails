@@ -1,19 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="144" height="20" tilewidth="32" tileheight="32">
  <tileset firstgid="1" name="spikes" tilewidth="32" tileheight="32">
-  <image source="spikes.png" width="32" height="32"/>
+  <image source="table_spikes.png" width="32" height="32"/>
  </tileset>
  <tileset firstgid="2" name="brick block" tilewidth="32" tileheight="32">
-  <image source="brick block.png" width="32" height="32"/>
+  <image source="brick_block.png" width="32" height="32"/>
  </tileset>
- <layer name="blocks" width="144" height="20">
+ <tileset firstgid="3" name="truss_platform" tilewidth="32" tileheight="32">
+  <image source="truss_platform.png" width="32" height="32"/>
+ </tileset>
+ <layer name="lethal blocks" width="144" height="20">
   <data encoding="base64" compression="zlib">
-   eJzt0kEKwCAUA1Hp/Q/dGwyp34UlM+DqoQvJWmZm/+jxeNZ+dF+73xKn3E+3JU65n25LnHI/3ZY45X66LXHK/XRb4tR0P7tva3dY4pT76bbEKffTbYlT0/3c9Bfad0uccj/dljjlfrotccr9dFvilPvptsQp99NtiVPT/ZiZneoFN78FMQ==
+   eJztlsEOgzAMQ9n+/6O5MAlNU+jidXXCe1JOxklJLcS2AQAA1OVJUV9UlsiP5q+N6BGd8hPBOXMzryA/dc6Z9ZGfMS3izj71jrNzVX+V70h2XtbntBeVVb073EvW56SpzOw9Y67T7jtk+ay/1+hzbvlxylaVeYpPvf9Z/z9Zn9t+M75K7+eany77/advxT4r5mdGzzvPU/5DyI+fFuF0lpdXgfz01q6omJ/HUb/sifaZaNdnr1IAAKvZAbdwBE0=
   </data>
  </layer>
  <layer name="spikes" width="144" height="20">
   <data encoding="base64" compression="zlib">
-   eJztw7ENAAAIA6D6/9P+0MVBSEgAAAAAAAAAAAD4bLQIcGUBStEAjw==
+   eJzt0DEKADAIBDD9/6e7dpIKLtIEnDxvMAIAAAAAAAAAAIDf5cNU2U7PRKdd/9f3LcBmB0qSAF8=
+  </data>
+ </layer>
+ <layer name="platforms" width="144" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzt1jEKACAMA8BC//9nd6Fihy56B/lBIIkAAAAAAACAN+UWAJhwuzM2iZOqGzpDh/8LwC8WcLoANA==
+  </data>
+ </layer>
+ <layer name="other blocks" width="144" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzt0jEKgEAMAMHj/v9osVcQtxDJDKRLEciuBQAw0/76AH5NPxT6odAPhX4o9EOhHwr9zLIv5snOXSf6meXtv/XDST8U+qHQD4V+AJjsAPcEAEc=
   </data>
  </layer>
 </map>

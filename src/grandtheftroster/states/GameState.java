@@ -55,6 +55,8 @@ public abstract class GameState {
 		game = gsm.getGame();
 		sb = game.getSpriteBatch();
 		camera = game.getCamera();
+		camera.position.set(Game.V_WIDTH/2, Game.V_HEIGHT/2, 0);
+		camera.update();
 		hud = game.getHud();
 		//Field initialization
 		models = new ArrayList<Model>();

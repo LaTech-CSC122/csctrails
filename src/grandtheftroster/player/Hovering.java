@@ -60,11 +60,11 @@ public class Hovering extends Activity{
 
 	public void handleEndContact(Model model) {
 		if(active && model.hasTag("fan")){
-			player.actMan.setActivity(player.ACTIVITY_WALKING);
+			player.setActivity(player.ACTIVITY_WALKING);
 		}
 		if(active && model.hasTag("ladder"))
 		{
-			player.actMan.setActivity(player.ACTIVITY_WALKING);
+			player.setActivity(player.ACTIVITY_WALKING);
 		}
 	}
 	

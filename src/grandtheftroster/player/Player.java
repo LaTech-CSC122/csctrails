@@ -18,12 +18,13 @@ import com.badlogic.gdx.physics.box2d.World;
 public class Player extends Model{
 	
 	//Player States
-	final Activity ACTIVITY_WALKING = new Walking(this);
-	final Activity ACTIVITY_CLIMBING = new Climbing(this);
-	final Activity ACTIVITY_HOVERING = new Hovering(this);
-	final Activity ACTIVITY_SWINGING = new Swinging(this);
-	boolean isAlive;
-	ActivityManager actMan;
+	public final Activity ACTIVITY_WALKING = new Walking(this);
+	public final Activity ACTIVITY_CLIMBING = new Climbing(this);
+	public final Activity ACTIVITY_HOVERING = new Hovering(this);
+	public final Activity ACTIVITY_SWINGING = new Swinging(this);
+	public final Activity ACTIVITY_FLYING = new Flying(this);
+	private boolean isAlive;
+	private ActivityManager actMan;
 	
 	public Player(World world, String cfgProfileName, int xpos, int ypos) {
 		super(world, cfgProfileName, xpos, ypos);
@@ -32,7 +33,9 @@ public class Player extends Model{
 		actMan.setActivity(ACTIVITY_WALKING);
 	}
 	
-
+	public void setActivity(Activity a){
+		actMan.setActivity(a);
+	}
 
 	//Important
 	public void update(float dt){
@@ -48,17 +51,21 @@ public class Player extends Model{
 		ACTIVITY_WALKING.handleBeginContact(model);
 		ACTIVITY_HOVERING.handleBeginContact(model);
 		ACTIVITY_SWINGING.handleBeginContact(model);
+		ACTIVITY_FLYING.handleBeginContact(model);
 		//do any handleing needed in player
-		//if(actMan.getActivity()==ACTIVITY_WALKING && model.hasTag("ladder")){
-		//	actMan.setActivity(ACTIVITY_CLIMBING);
-		//}
-		//actMan.getActivity().handleBeginContact(model);
+		if(model.hasTag("fatal")){
+			kill();
+		}
+		else if(model.hasTag("redbull")){
+			actMan.setActivity(ACTIVITY_FLYING);
+		}
 	}
 	public void handleEndContact(Model model){
 		//Let activities know of contact
 		ACTIVITY_CLIMBING.handleEndContact(model);
 		ACTIVITY_WALKING.handleEndContact(model);
 		ACTIVITY_HOVERING.handleEndContact(model);
+		ACTIVITY_SWINGING.handleEndContact(model);
 		ACTIVITY_SWINGING.handleEndContact(model);
 		//do any handleing needed in player		
 		
@@ -73,11 +80,18 @@ public class Player extends Model{
 	public boolean isAlive(){ return isAlive; }
 	public void kill(){ 
 		isAlive = false;
+		body.setLinearVelocity(0, 0);
+		setActivity(ACTIVITY_WALKING);
 	}
 	public void revive(){
 		isAlive = true;
+		body.setLinearVelocity(0, 0);
+		setActivity(ACTIVITY_WALKING);
 	}
 
+	public boolean isFlying(){
+		return actMan.activity.equals(ACTIVITY_FLYING);
+	}
 
 	
 	public class ActivityManager{

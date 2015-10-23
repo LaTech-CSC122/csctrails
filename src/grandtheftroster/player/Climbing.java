@@ -97,7 +97,7 @@ public class Climbing extends Activity{
 	@Override
 	public void handleBeginContact(Model model) {
 		if(model.hasTag("ladder")) contacts++;
-		if(model.hasTag("fan")) player.actMan.setActivity(player.ACTIVITY_HOVERING);
+		if(model.hasTag("fan")) player.setActivity(player.ACTIVITY_HOVERING);
 	}
 
 
@@ -106,7 +106,7 @@ public class Climbing extends Activity{
 		if(model.hasTag("ladder")){
 			contacts --;
 			if(contacts==0 && active==true){ 
-				player.actMan.setActivity(player.ACTIVITY_WALKING);
+				player.setActivity(player.ACTIVITY_WALKING);
 			}
 		}
 		

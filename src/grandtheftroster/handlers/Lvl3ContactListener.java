@@ -22,11 +22,11 @@ import com.badlogic.gdx.physics.box2d.Manifold;
  *
  */
 
-public class Lvl2ContactListener implements ContactListener {
+public class Lvl3ContactListener implements ContactListener {
 	
 	private boolean gameWon;
 	
-	public Lvl2ContactListener(){
+	public Lvl3ContactListener(){
 		gameWon = false;
 	}
 	
