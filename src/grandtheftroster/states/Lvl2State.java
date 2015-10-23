@@ -80,7 +80,7 @@ public class Lvl2State extends GameState{
 		models.add(player);
 		//Fans
 		models.add(new Fan(world, 64+16*26, 64+16*2, 32*6));
-		models.add(new Fan(world, 64+16*1, 64+16*10, 16*8));
+		models.add(new Fan(world, 64+16*1, 64+16*10, 16*9));
 		models.add(new Fan(world, 64+16*27, 64+16*24, 16*3));
 		//Springs
 		models.add(new Spring(world, 64+16*13, 64+16*6+2));

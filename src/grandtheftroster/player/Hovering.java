@@ -62,6 +62,10 @@ public class Hovering extends Activity{
 		if(active && model.hasTag("fan")){
 			player.actMan.setActivity(player.ACTIVITY_WALKING);
 		}
+		if(active && model.hasTag("ladder"))
+		{
+			player.actMan.setActivity(player.ACTIVITY_WALKING);
+		}
 	}
 	
 	
