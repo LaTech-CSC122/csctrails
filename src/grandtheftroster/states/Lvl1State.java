@@ -119,8 +119,8 @@ public class Lvl1State extends GameState {
 		//Boss
 		models.add(new Model(world, "MODEL:BOSS", Game.V_WIDTH-16*11, Game.V_HEIGHT-16*9));
 		//Thrower
-		thrower = new Thrower(new World(new Vector2(), true), 16, 2.5f);
-		/*thrower.setPosistion(20*19, 16*30);
+		thrower = new Thrower(world, 16, 2.5f);
+		thrower.setPosistion(20*19, 16*30);
 		models.add(thrower.throwObject(16*24, 16*11));
 		models.add(thrower.throwObject(16*14, 16*11));
 		models.add(thrower.throwObject(16*24, 16*15));
@@ -131,7 +131,7 @@ public class Lvl1State extends GameState {
 		models.add(thrower.throwObject(16*14, 16*23));
 		models.add(thrower.throwObject(16*24, 16*28));
 		models.add(thrower.throwObject(16*14, 16*28));
-		models.add(thrower.throwObject(16*14, 16*32)); */
+		models.add(thrower.throwObject(16*14, 16*32));
 		
 		//Fonts
 		font = new BitmapFont();
