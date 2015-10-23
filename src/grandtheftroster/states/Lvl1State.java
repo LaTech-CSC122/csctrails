@@ -173,7 +173,8 @@ public class Lvl1State extends GameState {
 		//Has Player won? if so add 1 to the classes score
 		if(cl.getGameWon()){
 			hud.modifyClassScore(+1);
-			gsm.setState(GameStateManager.GAME_WON);
+			//gsm.setState(GameStateManager.GAME_WON); 
+			gsm.setState(GameStateManager.LEVEL_TWO);
 		}
 		
 		//See if player has died and if so adds one to the anky score

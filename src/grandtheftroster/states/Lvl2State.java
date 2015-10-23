@@ -72,23 +72,29 @@ public class Lvl2State extends GameState{
 		tmr.setView(camera);
 		
 		
-		//Place Models
+		//---Boundaries
 		new Model(world, "MODEL:BOUNDARY_SIDES");
 		new Model(world, "MODEL:BOUNDARY_BOTTOM");
+		//---Player
 		player = new Player(world, "MODEL:PLAYER", 64+16*1, 64+16*4);
 		//player = new Player(world, "MODEL:PLAYER", 64+16*27, 64+16*24);
 		models.add(player);
-		//Fans
+		
+		//---Fans
 		models.add(new Fan(world, 64+16*26, 64+16*2, 32*6));
 		models.add(new Fan(world, 64+16*1, 64+16*10, 16*9));
 		models.add(new Fan(world, 64+16*27, 64+16*24, 16*3));
-		//Springs
+		
+		//---Springs
 		models.add(new Spring(world, 64+16*13, 64+16*6+2));
 		models.add(new Spring(world, 64+16*5, 64+16*2+2));
-		//Rope
+		
+		//---Rope
 		models.add(new Rope(world, 64+16*20, 64+16*20-3, 2*29)); //18
 		//models.add(new Rope(world, 64+16*8, 64+16*20-3, 16*4));
 		models.add(new Rope(world, 64+16*20, 64+16*34, 16*4));
+		
+		//---Keys
 		Switch keySwitch= new Switch(world, 64+16*13, 64+16*1+20);
 		keySwitch.addTag("key");
 		models.add(keySwitch);
@@ -96,7 +102,9 @@ public class Lvl2State extends GameState{
 		chestKeySwitch.addTag("chestKey");
 		models.add(chestKeySwitch);
 		
-		}
+		//---Roster
+		models.add(new Model(world, "MODEL:ROSTER", 16*6, 16*33));
+	}
 
 
 	public void handleInput() {}
@@ -106,6 +114,11 @@ public class Lvl2State extends GameState{
 		
 		for(Model m:models){
 			m.update(dt);
+		}
+		
+		//Check for if the game has won
+		if(cl.getGameWon()){
+			gsm.setState(GameStateManager.LEVEL_THREE);
 		}
 		
 	}

@@ -109,7 +109,7 @@ public class Lvl1ContactListener implements ContactListener {
 			Thrown t = (Thrown) fixtures[0].getBody().getUserData();
 			t.addGroundContact();
 		}
-		else if(model0.hasTag("player") && model1.hasTag("key")){
+		else if(model0.hasTag("player") && model1.hasTag("roster")){
 			gameWon = true;
 		}
 		else if(model0.hasTag("player") && model1.hasTag("boundary,bottom")){
