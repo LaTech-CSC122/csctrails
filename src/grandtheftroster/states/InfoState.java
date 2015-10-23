@@ -42,7 +42,7 @@ public class InfoState extends GameState {
 		Gdx.gl10.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		
 		//SpriteBatch to GPU
-		sb.setProjectionMatrix(camera.combined);
+		sb.setProjectionMatrix(hudCam.combined);
 		sb.begin();
 			//font.draw(sb, "Main Menu", Game.V_WIDTH/2-35, Game.V_HEIGHT/2);
 			//font.draw(sb, "Press ENTER to continue.", 10, Game.V_HEIGHT-10);

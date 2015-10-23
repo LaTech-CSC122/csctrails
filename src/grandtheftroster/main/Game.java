@@ -48,6 +48,7 @@ public class Game implements ApplicationListener {
 	
 	private SpriteBatch sb;
 	private OrthographicCamera camera;
+	private OrthographicCamera hudCamera;
 	private GameStateManager gsm;
 	private HudCounter hud;
 	private LwjglApplication app;
@@ -61,10 +62,11 @@ public class Game implements ApplicationListener {
 		hud = new HudCounter(2, 0, 0);
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, V_WIDTH*SCALE, V_HEIGHT*SCALE);  // Set the view of the main camera - gha 15.9.21
-	
+		hudCamera = new OrthographicCamera();
+		hudCamera.setToOrtho(false, V_WIDTH*SCALE, V_HEIGHT*SCALE);
 		
 		gsm = new GameStateManager(this);
-		gsm.pushState(GameStateManager.LEVEL_THREE); 
+		gsm.pushState(GameStateManager.LEVEL_TWO); 
 	}
 	public void render() {
 		accum = Gdx.graphics.getDeltaTime();
@@ -86,5 +88,6 @@ public class Game implements ApplicationListener {
 	public void setApplication(LwjglApplication app) { this.app = app; }
 	public SpriteBatch getSpriteBatch() { return sb; }
 	public OrthographicCamera getCamera() { return camera; }
+	public OrthographicCamera getHudCamera(){ return hudCamera; }
 	public HudCounter getHud(){ return hud; }
 }

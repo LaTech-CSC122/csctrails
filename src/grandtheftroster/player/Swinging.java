@@ -14,10 +14,10 @@ public class Swinging extends Activity{
 	private static final int SWING_CW = 1;
 	
 	private static final float PI = (float)Math.PI;
-	private static final float SWING_ANGLE = PI*7/8; // 5/8
+	private static final float SWING_ANGLE = PI*5/8; // 5/8
 	private static final float SWING_MIN = PI*3/2-SWING_ANGLE/2;
 	private static final float SWING_MAX = PI*3/2+SWING_ANGLE/2;
-	private static final float SWING_OMEGA = SWING_ANGLE/1f; // Radians/Second x/9
+	private static final float SWING_OMEGA = SWING_ANGLE/1/5*7; // Radians/Second x/9
 	
 	private Vector2 por;
 	private float radius;

@@ -47,7 +47,7 @@ public class GameWonState extends GameState {
 	public void render() {
 		Gdx.gl10.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		
-		sb.setProjectionMatrix(camera.combined);
+		sb.setProjectionMatrix(hudCam.combined);
 		sb.begin();
 		
 			gfont16.draw("*** Congratulations ***", GlyphFont.COLOR_WHITE, GlyphFont.ALIGN_CENTER, Game.V_WIDTH/2, Game.V_HEIGHT*3/4);

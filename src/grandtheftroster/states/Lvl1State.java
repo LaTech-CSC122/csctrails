@@ -197,19 +197,20 @@ public class Lvl1State extends GameState {
 
 		tmr.render();
 		
-		//SpriteBatch to GPU
+		//SpriteBatch to camera
 		sb.setProjectionMatrix(camera.combined);
-		sb.begin();
-
-		gfont16.draw("Time " + (int) hud.getTime(), GlyphFont.COLOR_WHITE, 8+64, Game.V_HEIGHT-20-64); //-10 originally
-		gfont16.draw(hud.getScore(), GlyphFont.COLOR_WHITE, 64+16*13, Game.V_HEIGHT-20-64); // -10 originally
-		gfont16.draw("Lives " + hud.getLives(), GlyphFont.COLOR_WHITE, Game.V_WIDTH-64-16*8, Game.V_HEIGHT-20-64); // -10 originally
-		
-		
+		sb.begin();		
 		for(Model i:models){
 			i.draw(sb);
 		}
+		sb.end();
 		
+		//SpriteBatch to hudCam
+		sb.setProjectionMatrix(hudCam.combined);
+		sb.begin();
+		gfont16.draw("Time " + (int) hud.getTime(), GlyphFont.COLOR_WHITE, 8+64, Game.V_HEIGHT-20-64); //-10 originally
+		gfont16.draw(hud.getScore(), GlyphFont.COLOR_WHITE, 64+16*13, Game.V_HEIGHT-20-64); // -10 originally
+		gfont16.draw("Lives " + hud.getLives(), GlyphFont.COLOR_WHITE, Game.V_WIDTH-64-16*8, Game.V_HEIGHT-20-64); // -10 originally
 		sb.draw(cabFrame, 0, 0);
 		sb.end();
 				

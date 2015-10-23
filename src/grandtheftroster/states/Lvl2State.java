@@ -90,9 +90,9 @@ public class Lvl2State extends GameState{
 		models.add(new Spring(world, 64+16*5, 64+16*2+2));
 		
 		//---Rope
-		models.add(new Rope(world, 64+16*20, 64+16*20-3, 2*29)); //18
+		models.add(new Rope(world, 64+16*18-5, 64+16*19, 16*5)); //18
 		//models.add(new Rope(world, 64+16*8, 64+16*20-3, 16*4));
-		models.add(new Rope(world, 64+16*20, 64+16*34, 16*4));
+		models.add(new Rope(world, 64+16*18, 64+16*32, 16*3));
 		
 		//---Keys
 		Switch keySwitch= new Switch(world, 64+16*13, 64+16*1+20);
@@ -116,6 +116,12 @@ public class Lvl2State extends GameState{
 			m.update(dt);
 		}
 		
+		//Check to see if player died
+		if(!player.isAlive()){
+			player.revive();
+			player.setPosition(64+16*1, 64+16*4, 0);
+		}
+		
 		//Check for if the game has won
 		if(cl.getGameWon()){
 			gsm.setState(GameStateManager.LEVEL_THREE);
@@ -128,13 +134,22 @@ public class Lvl2State extends GameState{
 		
 		tmr.render();
 		
+		//SpriteBatch to camera
+		sb.setProjectionMatrix(camera.combined);
 		sb.begin();
 		for(Model m:models){
 			m.draw(sb);
 		}
 		sb.end();
 		
-		b2dDebugRenderer.render(world, b2dCamera.combined);
+		//SpriteBatcht to hudCam
+		sb.setProjectionMatrix(hudCam.combined);
+		sb.begin();
+		sb.draw(cabFrame, 0, 0);
+		sb.end();
+		
+		
+		//b2dDebugRenderer.render(world, b2dCamera.combined);
 		// TODO Auto-generated method stub
 		
 	}

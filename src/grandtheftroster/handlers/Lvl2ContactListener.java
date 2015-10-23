@@ -83,6 +83,11 @@ public class Lvl2ContactListener implements ContactListener {
 		Model model0 = (Model) fixtures[0].getBody().getUserData();
 		Model model1 = (Model) fixtures[1].getBody().getUserData();
 		if(model0.hasTag("player")){
+			String[] tags = model1.getTags();
+			for(int i=0; i<tags.length; i++){
+				System.out.print(tags[i] + " | ");
+			}
+			System.out.println();
 			((Player) model0).handleBeginContact(model1);
 		}
 		else if(model0.hasTag("roster")){

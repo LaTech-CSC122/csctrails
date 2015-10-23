@@ -52,8 +52,7 @@ public class GameOverState extends GameState {
 	public void render() {
 		Gdx.gl10.glClear(GL10.GL_COLOR_BUFFER_BIT);
 		
-		sb.setProjectionMatrix(camera.combined);
-
+		sb.setProjectionMatrix(hudCam.combined);
 		sb.begin(); //lives lost is a placeholder in case we give a power up that gives extra lives.
             sb.draw(wastedGraphic, Game.V_WIDTH/2-wastedGraphic.getWidth()/2, Game.V_HEIGHT/3*2-wastedGraphic.getHeight()/2); //"wasted" graphic
             //gfont16.draw("*** Game Over ***", GlyphFont.COLOR_WHITE, GlyphFont.ALIGN_CENTER, Game.V_WIDTH/2, Game.V_HEIGHT*3/4); text-based "game over"

@@ -39,6 +39,7 @@ public abstract class GameState {
 	
 	protected SpriteBatch sb;
 	protected OrthographicCamera camera;
+	protected OrthographicCamera hudCam;
 	protected ArrayList<Model> models; // A list of all Models that exist. Missing objects will not be rendered by default. - gha 15.9.20
 	protected HudCounter hud;
 	
@@ -58,6 +59,7 @@ public abstract class GameState {
 		camera.position.set(Game.V_WIDTH/2, Game.V_HEIGHT/2, 0);
 		camera.update();
 		hud = game.getHud();
+		hudCam = game.getHudCamera();
 		//Field initialization
 		models = new ArrayList<Model>();
 		cabFrame = new Texture("res/images/cab frame.png");

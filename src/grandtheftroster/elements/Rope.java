@@ -2,6 +2,7 @@ package grandtheftroster.elements;
 
 import static grandtheftroster.elements.B2DVars.PPM;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.ChainShape;
@@ -14,7 +15,7 @@ public class Rope extends Model {
 	
 	public Rope(World world, int xpos, int ypos, int length)
 	{
-		super(world, "");
+		super(world, "MODEL:ROPE");
 		this.length = length/PPM;
 		createBody(world, xpos, ypos, length);
 		tags.add("MODEL,ROPE");
@@ -47,7 +48,5 @@ public class Rope extends Model {
 	public float getLength(){
 		return length;
 	}
-
-
 	
 }
