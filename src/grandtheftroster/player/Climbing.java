@@ -97,7 +97,7 @@ public class Climbing extends Activity{
 	@Override
 	public void handleBeginContact(Model model) {
 		if(model.hasTag("ladder")) contacts++;
-		
+		if(model.hasTag("fan")) player.actMan.setActivity(player.ACTIVITY_HOVERING);
 	}
 
 
