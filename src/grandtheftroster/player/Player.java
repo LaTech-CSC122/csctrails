@@ -1,9 +1,17 @@
 package grandtheftroster.player;
 
 
+import static grandtheftroster.elements.B2DVars.PPM;
 import grandtheftroster.elements.Model;
+import grandtheftroster.elements.SoundBox;
+import grandtheftroster.handlers.MyInput;
+import grandtheftroster.utilities.Configuration;
 
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 
 
@@ -18,79 +26,276 @@ import com.badlogic.gdx.physics.box2d.World;
 public class Player extends Model{
 	
 	//Player States
-	final Activity ACTIVITY_WALKING = new Walking(this);
-	final Activity ACTIVITY_CLIMBING = new Climbing(this);
-	final Activity ACTIVITY_HOVERING = new Hovering(this);
-	final Activity ACTIVITY_SWINGING = new Swinging(this);
-	boolean isAlive;
-	ActivityManager actMan;
+	private static int MOVE_LEFT = 1;
+	private static int MOVE_RIGHT = 2;
+	private static int STANDING_LEFT = 3;
+	private static int STANDING_RIGHT = 4;
+	private static int CLIMBING_UP = 5;
+	private static int CLIMBING_DOWN = 6;
+	private static int CLIMBING_STILL = 7;
+	
+	private static Configuration cfg;
+	static{
+		cfg = new Configuration();
+		cfg.loadConfiguration("res/config/models/player.config");
+		cfg.loadConfiguration("res/config/paths/sprite paths.config");
+		cfg.loadConfiguration("res/config/paths/audio paths.config");
+	}
+	
+	private float runSpeed;
+	private float climbSpeed;
+	private float jumpHeight;
+	private int groundContacts;
+	private int ladderContacts;
+	private boolean isAlive;
+
+	
+	private int state;
+	private float stateTime;
+	private Animation runRightAnimation;
+	private Animation runLeftAnimation;
+	private Animation climbingAnimation;
+	private Animation currentAnimation;
+	private TextureRegion currentFrame;
+	
+	private SoundBox sounds;
+	private static final String SOUND_JUMP = "jump";
+	private static final String SOUND_HIT = "hit";
 	
 	public Player(World world, String cfgProfileName, int xpos, int ypos) {
 		super(world, cfgProfileName, xpos, ypos);
+		groundContacts = 0;
+		ladderContacts = 0;
 		isAlive = true;
-		actMan = new ActivityManager();
-		actMan.setActivity(ACTIVITY_WALKING);
+		state = 0;
+		loadConfigurationParameters(cfgProfileName);
+		loadAnimations();
+		loadSounds();
+	
 	}
 	
-
-
+	
+	//Motion Methods
+	public void moveLeft(){
+		body.setAwake(true);
+		Vector2 pos = body.getPosition();
+		body.setTransform(pos.x-runSpeed, pos.y, 0);
+		state = MOVE_LEFT;
+	}	
+	public void moveRight(){
+		body.setAwake(true);
+		Vector2 pos = body.getPosition();
+		body.setTransform(pos.x+runSpeed, pos.y, 0);
+		state = MOVE_RIGHT;
+	}
+	public boolean jump(){
+		if(groundContacts > 0){
+			body.applyLinearImpulse(new Vector2(0f, jumpHeight), body.getWorldCenter(), false);
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	public boolean climbUp(){
+		if(ladderContacts > 0){
+			Vector2 pos = body.getPosition();
+			body.setTransform(pos.x, pos.y+climbSpeed, 0);
+			state = CLIMBING_UP;
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	public boolean climbDown(){
+		if(ladderContacts > 0){
+			Vector2 pos = body.getPosition();
+			body.setTransform(pos.x, pos.y-climbSpeed, 0);
+			state = CLIMBING_DOWN;
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+	
+	//Contacts
+	public void addGroundContact(){
+		groundContacts ++;
+	}
+	public void removeGroundContact(){
+		groundContacts --;
+		if(groundContacts<0){ groundContacts = 0; }
+	}
+	public int getGroundContacts(){
+		return groundContacts;
+	}
+	public void addLadderContact(){
+		body.setLinearVelocity(0f, 0f);
+		ladderContacts ++;
+		body.setGravityScale(0f);
+	}
+	public void removeLadderContact(){
+		ladderContacts--;
+		if(ladderContacts <= 0){
+			ladderContacts = 0;
+			body.setGravityScale(1f);
+		}
+	}
+	public int getLadderContact(){
+		return ladderContacts;
+	}
+	
 	//Important
 	public void update(float dt){
-		actMan.getActivity().update(dt);
+		handleInput();
+		updateAnimation(dt);	
 	}
 	
-	
-	public void draw(SpriteBatch sb){ actMan.getActivity().draw(sb);}
-	
-	public void handleBeginContact(Model model){
-		//Let activities know of contact
-		ACTIVITY_CLIMBING.handleBeginContact(model);
-		ACTIVITY_WALKING.handleBeginContact(model);
-		ACTIVITY_HOVERING.handleBeginContact(model);
-		ACTIVITY_SWINGING.handleBeginContact(model);
-		//do any handleing needed in player
-		//if(actMan.getActivity()==ACTIVITY_WALKING && model.hasTag("ladder")){
-		//	actMan.setActivity(ACTIVITY_CLIMBING);
-		//}
-		//actMan.getActivity().handleBeginContact(model);
-	}
-	public void handleEndContact(Model model){
-		//Let activities know of contact
-		ACTIVITY_CLIMBING.handleEndContact(model);
-		ACTIVITY_WALKING.handleEndContact(model);
-		ACTIVITY_HOVERING.handleEndContact(model);
-		ACTIVITY_SWINGING.handleEndContact(model);
-		//do any handleing needed in player		
-		
-		if(actMan.getActivity()==ACTIVITY_HOVERING && model.hasTag("fan")){
-			actMan.setActivity(ACTIVITY_WALKING);
-		}
-		
-		
+	public void draw(SpriteBatch sb){
+		Vector2 posBody = body.getPosition();
+		float xpos = posBody.x*PPM - currentFrame.getRegionWidth()/2;
+		float ypos = posBody.y*PPM - currentFrame.getRegionHeight()/2;
+		sb.draw(currentFrame, xpos, ypos);
 	}
 	
 	//Getters and Mutators
 	public boolean isAlive(){ return isAlive; }
 	public void kill(){ 
 		isAlive = false;
+		sounds.play(SOUND_HIT);
 	}
 	public void revive(){
 		isAlive = true;
+		state = STANDING_RIGHT;
 	}
 
 
-	
-	public class ActivityManager{
-		private Activity activity;
-		public void setActivity(Activity a){
-			if(activity!=null){activity.end(); }
-			activity = a;
-			activity.begin();
+
+	  //------------------------\\
+	 //PRIVATE METHODS STATR HERE\\
+	//----------------------------\\
+
+	private void handleInput(){
+		if(MyInput.isDown(MyInput.BUTTON_LEFT))
+		{ 
+			moveLeft();
 		}
-		public Activity getActivity(){ return activity; }
+		if(MyInput.isDown(MyInput.BUTTON_RIGHT)){
+			moveRight();
+		}
+		if(MyInput.isPressed(MyInput.BUTTON_UP))
+		{
+			if(climbUp());
+			else if(jump()){
+				sounds.play(SOUND_JUMP);
+			}
+			
+		}
+		if(MyInput.isDown(MyInput.BUTTON_UP))
+		{
+			climbUp();
+		}
+		if(MyInput.isDown(MyInput.BUTTON_DOWN))
+		{
+			climbDown();
+		} 
 		
 	}
+	private void updateAnimation(float dt){
+		if(state==MOVE_LEFT){
+			stateTime += dt;
+			currentAnimation = runLeftAnimation;
+			state = STANDING_LEFT;
+		}
+		else if(state==MOVE_RIGHT){
+			stateTime += dt;
+			currentAnimation = runRightAnimation;
+			state = STANDING_RIGHT;
+		}
+		else if(state==STANDING_RIGHT){
+			stateTime = 0;
+			currentAnimation = runRightAnimation;
+		}
+		else if(state==STANDING_LEFT){
+			stateTime = 0;
+			currentAnimation = runLeftAnimation;
+		}
+		else if(state==CLIMBING_UP || state == CLIMBING_DOWN){
+			stateTime += dt;
+			currentAnimation = climbingAnimation;
+			state = CLIMBING_STILL;
+		}
+		else if(state == CLIMBING_STILL){
+			currentAnimation = climbingAnimation;
+		}
+		currentFrame = currentAnimation.getKeyFrame(stateTime, true);
+	}
 	
+	private void loadConfigurationParameters(String cfgProfileName){
+		//RUN_SPEED
+		if(cfg.hasProperty("RUN_SPEED" + "@" + cfgProfileName)){
+			runSpeed = Float.parseFloat(cfg.getProperty("RUN_SPEED" + "@" + cfgProfileName));
+		}else{			
+			runSpeed = 0.01f;
+		}
+		
+		//CLIMB_SPEED
+		if(cfg.hasProperty("CLIMB_SPEED" + "@" + cfgProfileName)){
+			climbSpeed = Float.parseFloat(cfg.getProperty("CLIMB_SPEED" + "@" + cfgProfileName));
+		}else{
+			climbSpeed = 0.01f;
+		}
+		
+		//JUMP_HEIGHT
+		if(cfg.hasProperty("JUMP_HEIGHT" + "@" + cfgProfileName)){
+			jumpHeight = Float.parseFloat(cfg.getProperty("JUMP_HEIGHT" + "@" + cfgProfileName));
+		} else{
+			jumpHeight = 1f;
+		}
+	}
+	private void loadAnimations(){
+		float runningSpeed = 0.11f;
+		float climbingSpeed = 0.1f;
+		TextureRegion[] frameArray;
+		Texture runSheet;
+		//Load Running Right
+		runSheet= new Texture(cfg.getProperty("JDK_RUNNING" + "@" + "PATHS:SPRITES"));
+		frameArray = createFrameArray(runSheet, 32, 32, false, false);
+		runRightAnimation = new Animation(runningSpeed, frameArray);
+		//Load Running Left
+		frameArray = createFrameArray(runSheet, 32, 32, true, false);
+		runLeftAnimation = new Animation(runningSpeed, frameArray);
+		//Load Climbing
+		runSheet = new Texture(cfg.getProperty("JDK_CLIMBING" + "@" + "PATHS:SPRITES"));
+		frameArray = createFrameArray(runSheet, 32, 32, false, false);
+		climbingAnimation= new Animation(climbingSpeed, frameArray);
+		
+		//Set starting pointers
+		currentAnimation = runRightAnimation;
+		currentFrame = currentAnimation.getKeyFrame(0f);
+	}
+	private TextureRegion[] createFrameArray(Texture spriteSheet, int width, int height, boolean flipX, boolean flipY){
+		TextureRegion[][] frameMatrix = TextureRegion.split(spriteSheet, width, height);
+		TextureRegion[] frameArray = new TextureRegion[frameMatrix.length*frameMatrix[0].length];
+		int index = 0;
+		for(int i=0; i < frameMatrix.length; i++){
+			for(int j=0; j<frameMatrix[0].length; j++){
+				frameMatrix[i][j].flip(flipX, flipY);
+				frameArray[index] = frameMatrix[i][j];
+				index++;
+			}
+		}
+		return frameArray;
+	}
+	private void loadSounds(){
+		sounds = new SoundBox();
+		String path = cfg.getProperty("JUMPING@PATHS:AUDIO");
+		sounds.addSound(SOUND_JUMP, path);
+		path = cfg.getProperty("HIT@PATHS:AUDIO");
+		sounds.addSound(SOUND_HIT, path);
+	}
 }
 
 

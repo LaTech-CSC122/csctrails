@@ -68,7 +68,7 @@ public class Model {
 		
 		//Stop here if use passed a null profile name
 		if(cfgProfileName.equals(null)){ return; }
-		else if(cfgProfileName.trim().equals("")){ return;}
+		
 		//load sprite
 		sprite = ModelLoader.createSprite(cfgProfileName);
 		if(sprite != null){
@@ -103,10 +103,7 @@ public class Model {
 	public void update(float dt){
 		return;
 	}
-	public void setPosition(float x, float y, float angle)
-	{
-		body.setTransform(x/PPM, y/PPM, angle);
-	}
+	
 	
 	//TagList methods
 	public void addTag(String t){ tags.add(t); }
