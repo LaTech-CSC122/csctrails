@@ -112,15 +112,15 @@ public class Lvl1State extends GameState {
 		new Model(world, "MODEL:BOUNDARY_SIDES");
 		new Model(world, "MODEL:BOUNDARY_BOTTOM");
 		//Key
-		models.add(new Model(world, "MODEL:ROSTER", 16*28, 16*33));
+		models.add(new Model(world, "MODEL:KEY", 16*28, 16*33));
 		//Player
-		player = new Player(world, "MODEL:PLAYER", 16*5, 16*37);
+		player = new Player(world, "MODEL:PLAYER", 16*5, 16*7);
 		models.add(player);
 		//Boss
 		models.add(new Model(world, "MODEL:BOSS", Game.V_WIDTH-16*11, Game.V_HEIGHT-16*9));
 		//Thrower
-		thrower = new Thrower(new World(new Vector2(), true), 16, 2.5f);
-		/*thrower.setPosistion(20*19, 16*30);
+		thrower = new Thrower(world, 16, 2.5f);
+		thrower.setPosistion(20*19, 16*30);
 		models.add(thrower.throwObject(16*24, 16*11));
 		models.add(thrower.throwObject(16*14, 16*11));
 		models.add(thrower.throwObject(16*24, 16*15));
@@ -131,7 +131,7 @@ public class Lvl1State extends GameState {
 		models.add(thrower.throwObject(16*14, 16*23));
 		models.add(thrower.throwObject(16*24, 16*28));
 		models.add(thrower.throwObject(16*14, 16*28));
-		models.add(thrower.throwObject(16*14, 16*32)); */
+		models.add(thrower.throwObject(16*14, 16*32));
 		
 		//Fonts
 		font = new BitmapFont();
@@ -213,7 +213,7 @@ public class Lvl1State extends GameState {
 		sb.end();
 				
 		// Render Box2d world - development purposes only
-		b2dDebugRenderer.render(world, b2dCamera.combined);
+		//b2dDebugRenderer.render(world, b2dCamera.combined);
 	}
 	
 	public void dispose(){

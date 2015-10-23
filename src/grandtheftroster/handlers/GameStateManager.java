@@ -68,8 +68,6 @@ public class GameStateManager {
 	
 	private GameState getState(GameStateManager.State state) {
 		if(state.id == LEVEL_ONE.id) return new Lvl1State(this);
-		if(state.id == LEVEL_TWO.id) return new Lvl2State(this);
-		if(state.id == LEVEL_THREE.id) return new Lvl3State(this);
 		if(state.id == INFO.id) return new InfoState(this);
 		if(state.id == GAME_OVER.id) return new GameOverState(this);
 		if(state.id == GAME_WON.id) return new GameWonState(this);
