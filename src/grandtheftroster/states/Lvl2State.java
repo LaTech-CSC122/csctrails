@@ -102,6 +102,9 @@ public class Lvl2State extends GameState{
 		chestKeySwitch.addTag("chestKey");
 		models.add(chestKeySwitch);
 		
+		//moving platforms
+		models.add(new MovingPlatform(world, 32, 32, (2*3.412f)/1, 64+16*13, 64+16*6+2) );
+		
 		//---Roster
 		models.add(new Model(world, "MODEL:ROSTER", 16*6, 16*33));
 	}
@@ -149,7 +152,7 @@ public class Lvl2State extends GameState{
 		sb.end();
 		
 		
-		//b2dDebugRenderer.render(world, b2dCamera.combined);
+		b2dDebugRenderer.render(world, b2dCamera.combined);
 		// TODO Auto-generated method stub
 		
 	}
