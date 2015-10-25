@@ -120,16 +120,21 @@ public class Lvl2State extends GameState{
 		}
 		
 		//Check to see if player died
-		if(!player.isAlive()){
+		if(!player.isAlive()&& hud.getLives()> 0){
 			player.revive();
 			player.setPosition(64+16*1, 64+16*4, 0);
+			hud.modifyLives(-1);
+			
 		}
-		
+		else if(!player.isAlive() && hud.getLives()<= 0){
+			hud.modifyAnky(+1);
+			gsm.setState(GameStateManager.GAME_OVER);
+		}
 		//Check for if the game has won
 		if(cl.getGameWon()){
 			gsm.setState(GameStateManager.LEVEL_THREE);
 		}
-		
+		hud.modifyTime(dt);
 	}
 
 	public void render() {
@@ -145,9 +150,12 @@ public class Lvl2State extends GameState{
 		}
 		sb.end();
 		
-		//SpriteBatcht to hudCam
+		//SpriteBatch to hudCam
 		sb.setProjectionMatrix(hudCam.combined);
 		sb.begin();
+		gfont16.draw("Time " + (int) hud.getTime(), GlyphFont.COLOR_WHITE, 8+64, Game.V_HEIGHT-20-64); //-10 originally
+		gfont16.draw(hud.getScore(), GlyphFont.COLOR_WHITE, 64+16*13, Game.V_HEIGHT-20-64); // -10 originally
+		gfont16.draw("Lives " + hud.getLives(), GlyphFont.COLOR_WHITE, Game.V_WIDTH-64-16*8, Game.V_HEIGHT-20-64); // -10 originally
 		sb.draw(cabFrame, 0, 0);
 		sb.end();
 		

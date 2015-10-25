@@ -71,15 +71,45 @@ public class HudCounter {
 	
 	
 	public String getScore(){ 
-		if(time < MAX_TIME_A && lives == 2)      {return "A+";}
-		else if(time < MAX_TIME_A && lives == 1) {return "A";}
-		else if(time < MAX_TIME_A && lives == 0) {return "A-";}
-		else if(time < MAX_TIME_B && lives == 2) {return "B+";}
-		else if(time < MAX_TIME_B && lives == 1) {return "B";}
-		else if(time < MAX_TIME_B && lives == 0) {return "B-";}
-		else if(time > MAX_TIME_B && lives == 2) {return "C+";}
-		else if(time > MAX_TIME_B && lives == 1) {return "C";}
-		else{ return "C-"; }
+		int score = (int)time - lives * 15;
+		System.out.println(score);
+		if(score <= 100)
+		{
+			return ("A+");
+		}
+		if( score > 100 && score <= 110)
+		{
+			return ("A");
+		}
+		if( score > 110 && score <= 120)
+		{
+			return ("A-");
+		}
+		if( score > 120 && score <= 130)
+		{
+			return ("B+");
+		}
+		if( score > 130 && score <= 140)
+		{
+			return ("B");
+		}
+		if( score > 140 && score <= 150)
+		{
+			return ("B-");
+		}
+		if( score > 150 && score <= 160)
+		{
+			return ("C+");
+		}
+		if( score > 160 && score <= 170)
+		{
+			return ("C");
+		}
+		if( score > 170)
+		{
+			return ("C-");
+		}
+		return ("N/A");
 		
 	}
 	public String getLeader(){
