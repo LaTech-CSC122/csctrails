@@ -1,8 +1,11 @@
 package grandtheftroster.player;
 
 import grandtheftroster.elements.Model;
+import grandtheftroster.elements.MovingElement;
 import grandtheftroster.elements.Switch;
 import grandtheftroster.handlers.MyInput;
+
+import java.util.ArrayList;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.math.Vector2;
@@ -17,6 +20,7 @@ public class Walking extends Activity{
 	
 	private static final float RUN_SPEED = 0.01f;
 	private static final float JUMP_HEIGHT = 1f;
+	private ArrayList<MovingElement> movingElements;
 	
 	private int contacts;
 	
@@ -25,6 +29,7 @@ public class Walking extends Activity{
 		state = STANDING_RIGHT;
 		loadAnimations();
 		contacts=0;
+		movingElements = new ArrayList<MovingElement>();
 	}
 
 	@Override
@@ -38,7 +43,15 @@ public class Walking extends Activity{
 
 	public void update(float dt) {
 		handleInput();
-		handleState(dt);	
+		handleState(dt);
+		float xoffset = 0;
+		float yoffset = 0;
+		for(MovingElement m: movingElements)
+		{
+			xoffset+= m.getChangeX(dt);
+			yoffset+=m.getChangeY(dt);
+		}
+		body.setTransform(body.getPosition().x+xoffset, body.getPosition().y+yoffset, 0);
 	}
 
 	@Override
@@ -69,9 +82,17 @@ public class Walking extends Activity{
 			if(!((Switch)model).isOn()){
 				((Switch)model).setState(true);}
 		}
+		if(model instanceof MovingElement)
+		{
+			movingElements.add((MovingElement)model);
+		}
 	}
 	public void handleEndContact(Model model){
 		if(model.hasTag("ground")){ contacts--; }
+		if(model instanceof MovingElement)
+		{
+			movingElements.remove((MovingElement)model);
+		}
 	}
 	
 	protected void handleState(float dt){

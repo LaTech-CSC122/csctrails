@@ -103,8 +103,11 @@ public class Lvl2State extends GameState{
 		models.add(chestKeySwitch);
 		
 		//moving platforms
-		models.add(new MovingPlatform(world, 32, 32, (2*3.412f)/1, 64+16*13, 64+16*6+2) );
-		
+		models.add(new MovingPlatform(world, 32, 16*5, (2*3.412f)/2, 64+16*15, 64+8*4-6) );
+		models.add(new MovingPlatform(world, 64, 16*4, (2*3.412f)/2, 64+16*14, 64+16*24-6) );
+		models.add(new MovingPlatform(world, 64, -16*6, (2*3.412f)/2, 64+16*24, 64+16*24-6) );
+		models.add(new MovingPlatform(world, 32, 16*7, (2*3.142f)/1.3f, 64+16*14, 64+16*28-6) );
+		// last one 2 is good but i like 1.3f better
 		//---Roster
 		models.add(new Model(world, "MODEL:ROSTER", 16*6, 16*33));
 	}

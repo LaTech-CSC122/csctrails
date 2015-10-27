@@ -7,17 +7,19 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
-public class MovingPlatform extends Model {
+public class MovingPlatform extends Model implements MovingElement {
 	private float time;
 	private float speed;
 	private int range;
+	private int center;
 	public MovingPlatform(World world, int width, int range, float speed, int xpos, int ypos) {
 		super(world, "");
 		this.speed = speed;
-		this.time = time;
+		this.center = xpos-Math.abs(range/2);
 		this.range = range;
 		
 		createBody(world,width, xpos, ypos);
+		addTag("MODEL,MOVING_PLATFORM,GROUND");
 		setPosition(xpos,ypos,0);
 	}
 		private void createBody(World world, int width, int xpos, int ypos){
@@ -32,15 +34,16 @@ public class MovingPlatform extends Model {
 			
 			FixtureDef fdef = new FixtureDef();
 			fdef.shape = shape;
-			fdef.isSensor = true;
+			//fdef.isSensor = true;
 			
 			body = world.createBody(bdef);
 			body.createFixture(fdef);
 			body.setUserData(this);
+		
 		}
 	public void setLocation()
 	{ 
-		float xpos = (float) ((range/2/PPM)*Math.sin(time*speed))+body.getPosition().x;
+		float xpos = (float) ((range/2/PPM)*Math.cos(time*speed))+center/PPM;
 		float ypos = body.getPosition().y; 
 		body.setTransform(xpos, ypos,0);
 	}
@@ -49,6 +52,17 @@ public class MovingPlatform extends Model {
 	{
 		time+=dt;
 		setLocation();
+	}
+	@Override
+	public float getChangeX(float dt) {
+		
+		float velocity = (float) -((range/2/PPM)*Math.sin(time*speed))*speed;
+		return velocity*dt;
+	}
+	@Override
+	public float getChangeY(float dt) {
+		
+		return 0;
 	}
 
 }
