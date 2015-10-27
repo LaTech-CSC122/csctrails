@@ -39,6 +39,7 @@ public class MovingPlatform extends Model implements MovingElement {
 			body = world.createBody(bdef);
 			body.createFixture(fdef);
 			body.setUserData(this);
+			
 		
 		}
 	public void setLocation()

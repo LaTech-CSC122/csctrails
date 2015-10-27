@@ -72,7 +72,7 @@ public class HudCounter {
 	
 	public String getScore(){ 
 		int score = (int)time - lives * 15;
-		System.out.println(score);
+		//System.out.println(score);
 		if(score <= 100)
 		{
 			return ("A+");

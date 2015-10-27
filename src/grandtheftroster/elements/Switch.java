@@ -26,6 +26,7 @@ public class Switch extends Model implements MovingElement {
 		body.setTransform(xpos/PPM, ypos/PPM, 0);
 		isOn = false;
 		setPosition(xpos,ypos,0);
+		
 	}
 	
 	
