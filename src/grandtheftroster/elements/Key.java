@@ -69,6 +69,7 @@ public class Key extends Model implements MovingElement {
 		
 		return 0;
 	}
+	//responsible for keys on
 	public void istouched()
 	{
 		
@@ -83,7 +84,7 @@ public class Key extends Model implements MovingElement {
 		}
 	}
 
-
+	//grabs variable from lvl2contactlist
 	public static void touch(boolean isTouched) {
 		// TODO Auto-generated method stub
 		F = true;

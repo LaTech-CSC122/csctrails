@@ -94,11 +94,11 @@ public class Lvl2ContactListener implements ContactListener {
 			System.out.println();
 			((Player) model0).handleBeginContact(model1);
 		}
-		else if(model0.hasTag("roster, chestKey")){
+		else if(model0.hasTag("roster")){
 			
 			gameWon = true;
 		}
-		
+		//responsible for key switches and platforms appearing
 		if(model1.hasTag("Key"))
 		{
 			Key.touch(true);
