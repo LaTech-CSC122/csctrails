@@ -95,12 +95,14 @@ public class Lvl2State extends GameState{
 		models.add(new Rope(world, 64+16*18, 64+16*32, 16*3));
 		
 		//---Keys
-		Switch keySwitch = new Switch (world, 32, 16*5, (2*3.412f)/2, 64+16*15, 64+8*6-9);
-		keySwitch.addTag("key");
-		models.add(keySwitch);
-		Key chestKey= new Key(world, 64+16*7, 64+16*24+4);
+		Key chestKey = new Key (world, 32, 16*5, (2*3.412f)/2, 64+16*15, 64+8*6-9);
 		chestKey.addTag("chestKey");
 		models.add(chestKey);
+		Switch keySwitch = new Switch(world, 64+16*7, 64+16*24+4);
+		keySwitch.addTag("Key");
+		models.add(keySwitch);
+	
+		
 		
 		//old code incase we come back delete if want!
 		/*Switch keySwitch= new Switch(world, 64+16*13, 64+16*1+20);

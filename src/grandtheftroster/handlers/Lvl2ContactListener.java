@@ -1,8 +1,12 @@
 package grandtheftroster.handlers;
 
+import grandtheftroster.elements.Key;
 import grandtheftroster.elements.Model;
+import grandtheftroster.elements.MovingPlatform;
+import grandtheftroster.elements.Switch;
 import grandtheftroster.player.Player;
 
+import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
@@ -90,13 +94,27 @@ public class Lvl2ContactListener implements ContactListener {
 			System.out.println();
 			((Player) model0).handleBeginContact(model1);
 		}
-		else if(model0.hasTag("roster")){
+		else if(model0.hasTag("roster, chestKey")){
+			
 			gameWon = true;
 		}
 		
+		if(model1.hasTag("Key"))
+		{
+			Key.touch(true);
+			
+			
+		}
 		
+		if(model1.hasTag("Key"))
+		{
+			MovingPlatform.iTouch(true);
+			
+			
+			
+		}
 		
-		
+	
 	}
 
 	private void handleEndContact(Fixture[] fixtures){

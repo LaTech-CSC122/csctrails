@@ -91,7 +91,6 @@ public class Lvl3ContactListener implements ContactListener {
 		
 		
 		
-		
 	}
 
 	private void handleEndContact(Fixture[] fixtures){

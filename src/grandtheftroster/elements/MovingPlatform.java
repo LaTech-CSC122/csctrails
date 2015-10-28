@@ -12,6 +12,7 @@ public class MovingPlatform extends Model implements MovingElement {
 	private float speed;
 	private int range;
 	private int center;
+	private static boolean G = false;
 	public MovingPlatform(World world, int width, int range, float speed, int xpos, int ypos) {
 		super(world, "");
 		this.speed = speed;
@@ -39,7 +40,6 @@ public class MovingPlatform extends Model implements MovingElement {
 			body = world.createBody(bdef);
 			body.createFixture(fdef);
 			body.setUserData(this);
-			
 		
 		}
 	public void setLocation()
@@ -53,6 +53,7 @@ public class MovingPlatform extends Model implements MovingElement {
 	{
 		time+=dt;
 		setLocation();
+		pTouched();
 	}
 	@Override
 	public float getChangeX(float dt) {
@@ -64,6 +65,29 @@ public class MovingPlatform extends Model implements MovingElement {
 	public float getChangeY(float dt) {
 		
 		return 0;
+	}
+	
+	public void pTouched()
+	{
+		
+		if(G == true){
+			body.setActive(true);
+			
+			
+		}
+		else
+		{
+			body.setActive(false);
+			
+		}
+	}
+
+
+	public static void iTouch(boolean isTouched) {
+		// TODO Auto-generated method stub
+		G = true;
+		
+		
 	}
 
 }
