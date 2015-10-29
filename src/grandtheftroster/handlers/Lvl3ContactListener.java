@@ -109,8 +109,8 @@ public class Lvl3ContactListener implements ContactListener {
 	private void handlePostSolve(Fixture[] fixtures){
 		if(!(fixtures[0].getBody().getUserData() instanceof Model) ||
 				!(fixtures[1].getBody().getUserData() instanceof Model)){ return; }
-		Model model0 = (Model) fixtures[0].getBody().getUserData();
-		Model model1 = (Model) fixtures[1].getBody().getUserData();
+		//Model model0 = (Model) fixtures[0].getBody().getUserData();
+		//Model model1 = (Model) fixtures[1].getBody().getUserData();
 		
 	}
 }

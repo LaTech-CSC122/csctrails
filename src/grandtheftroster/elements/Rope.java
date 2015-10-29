@@ -49,4 +49,20 @@ public class Rope extends Model {
 		return length;
 	}
 	
+	public void draw(SpriteBatch sb){ 
+		if(sprite == null) return;
+		float angle =  body.getAngle();
+		//Original Position
+		Vector2 pos = new Vector2(body.getPosition().x*PPM, body.getPosition().y*PPM);
+		//Texture Offset
+		pos.sub(textureWidth/2, textureHeight);
+		//Rotational Offset to reset origin
+		//pos.add(length*PPM/2*(float)Math.sin(angle), length*PPM/2*(1-(float)Math.cos(angle)));
+		pos.add(textureHeight/2*(float)Math.sin(angle), textureHeight/2*(1-(float)Math.cos(angle)));
+		
+		sprite.setPosition(pos.x, pos.y); // TODO: offset to align with Box2D Body - gha 15.9.20
+		sprite.setRotation((float) Math.toDegrees(body.getAngle()));
+		sprite.draw(sb);
+	}
+	
 }

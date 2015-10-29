@@ -117,7 +117,7 @@ public class Lvl1State extends GameState {
 		player = new Player(world, "MODEL:PLAYER", 16*5, 16*37);
 		models.add(player);
 		//Boss
-		models.add(new Model(world, "MODEL:BOSS", Game.V_WIDTH-16*11, Game.V_HEIGHT-16*9));
+		models.add(new Model(world, "MODEL:BOSS", Game.V_WIDTH-16*11, Game.V_HEIGHT-16*7-24));
 		//Thrower
 		thrower = new Thrower(world, 16, 2.5f);
 		thrower.setPosistion(20*19, 16*30);

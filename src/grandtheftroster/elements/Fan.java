@@ -23,7 +23,7 @@ public class Fan extends Model {
 		bdef.type = B2DVars.STATIC;
 		
 		PolygonShape shape = new PolygonShape();
-		shape.setAsBox(0, height/2/PPM);
+		shape.setAsBox(4/PPM, height/2/PPM);
 		
 		FixtureDef fdef = new FixtureDef();
 		fdef.shape = shape;
