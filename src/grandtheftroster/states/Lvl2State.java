@@ -3,6 +3,8 @@ package grandtheftroster.states;
 import static grandtheftroster.elements.B2DVars.PPM;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -38,7 +40,10 @@ public class Lvl2State extends GameState{
 	//tiled
 	private TiledMap map;
 	private OrthogonalTiledMapRenderer tmr;
-
+	
+	//Audio
+	Music backgroundMusic;
+		
 	public Lvl2State(GameStateManager gsm) {
 		super(gsm, "LvL 2");
 		cl = new Lvl2ContactListener();
@@ -120,6 +125,14 @@ public class Lvl2State extends GameState{
 		// last one 2 is good but i like 1.3f better
 		//---Roster
 		models.add(new Model(world, "MODEL:ROSTER", 16*6, 16*33));
+		
+		//Load and begin music
+		backgroundMusic = Gdx.audio.newMusic(new FileHandle(cfg.getProperty("LVL2BKG@PATHS:AUDIO")));
+		backgroundMusic.setLooping(true);
+		backgroundMusic.setVolume(0.5f);
+		backgroundMusic.play();
+		
+		
 	}
 
 
@@ -137,6 +150,8 @@ public class Lvl2State extends GameState{
 			player.revive();
 			player.setPosition(64+16*1, 64+16*4, 0);
 			hud.modifyLives(-1);
+			
+			
 			
 		}
 		else if(!player.isAlive() && hud.getLives()<= 0){
@@ -177,5 +192,10 @@ public class Lvl2State extends GameState{
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	public void dispose(){
+		backgroundMusic.stop();
+		backgroundMusic.dispose();
+	}
+	
 }

@@ -99,13 +99,15 @@ public class Lvl2ContactListener implements ContactListener {
 			gameWon = true;
 		}
 		//responsible for key switches and platforms appearing
-		if(model1.hasTag("Key"))
+		if(model1 instanceof Key)
 		{
-			Key.touch(true);
-			
-			
+			((Key)model1).touch(true);
 		}
-		
+		/*
+		 if(model1.hasTag("Key"))
+		 {key.touch(true);}
+		 
+		 */
 		if(model1.hasTag("Key"))
 		{
 			MovingPlatform.iTouch(true);
@@ -126,7 +128,7 @@ public class Lvl2ContactListener implements ContactListener {
 			((Player) model0).handleEndContact(model1);
 		}
 		
-		//If the players foot collides with the ground
+		
 		
 	}
 
@@ -135,6 +137,8 @@ public class Lvl2ContactListener implements ContactListener {
 				!(fixtures[1].getBody().getUserData() instanceof Model)){ return; }
 		Model model0 = (Model) fixtures[0].getBody().getUserData();
 		Model model1 = (Model) fixtures[1].getBody().getUserData();
+		
+		
 		
 	}
 }

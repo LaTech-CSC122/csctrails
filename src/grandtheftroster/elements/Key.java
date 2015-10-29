@@ -29,6 +29,7 @@ public class Key extends Model implements MovingElement {
 		body.setTransform(xpos/PPM, ypos/PPM, 0);
 		isOn = false;
 		setPosition(xpos,ypos,0);
+		body.setActive(false);
 		
 		
 		
@@ -74,20 +75,28 @@ public class Key extends Model implements MovingElement {
 	{
 		
 		if(F == true){
-			body.setActive(true);
+		//	body.setActive(true);
 			
 		}
 		else
 		{
-			body.setActive(false);
+		//	body.setActive(false);
 			
 		}
 	}
 
-	//grabs variable from lvl2contactlist
-	public static void touch(boolean isTouched) {
+	/* old stuff keep until fully working
+	 public static void touch(boolean isTouched) {
+	public void touch(boolean isTouched) {
 		// TODO Auto-generated method stub
 		F = true;
+
+	 */
+	//grabs variable from lvl2contactlist
+	public void touch(boolean isTouched) {
+		// TODO Auto-generated method stub
+		F = true;
+		body.setActive(true);
 		
 		
 		

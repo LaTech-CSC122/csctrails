@@ -12,6 +12,8 @@ import grandtheftroster.player.Player;
 import grandtheftroster.utilities.Configuration;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -41,6 +43,9 @@ public class Lvl3State extends GameState{
 	//tiled
 	private TiledMap map;
 	private OrthogonalTiledMapRenderer tmr;
+	
+	//Audio
+	Music backgroundMusic;
 
 	public Lvl3State(GameStateManager gsm) {
 		super(gsm, "LvL 3");
@@ -83,6 +88,12 @@ public class Lvl3State extends GameState{
 		models.add(new Model(world,"MODEL:REDBULL", 64+16*9, 64+16*12+8));
 		models.add(new Model(world,"MODEL:ROSTER", 64+16*274, 64+16*9));
 		
+		//Load and begin music
+		backgroundMusic = Gdx.audio.newMusic(new FileHandle(cfg.getProperty("LVL3BKG@PATHS:AUDIO")));
+		backgroundMusic.setLooping(true);
+		backgroundMusic.setVolume(0.5f);
+		backgroundMusic.play();
+				
 		}
 
 
@@ -142,4 +153,8 @@ public class Lvl3State extends GameState{
 		// TODO Auto-generated method stub		
 	}
 
+	public void dispose(){
+		backgroundMusic.stop();
+		backgroundMusic.dispose();
+	}
 }
