@@ -135,7 +135,7 @@ public class Lvl2State extends GameState{
 		//Load and begin music
 		backgroundMusic = Gdx.audio.newMusic(new FileHandle(cfg.getProperty("LVL2BKG@PATHS:AUDIO")));
 		backgroundMusic.setLooping(true);
-		backgroundMusic.setVolume(0.5f);
+		backgroundMusic.setVolume(0.04f); //originally 0.5f
 		backgroundMusic.play();
 		
 		
