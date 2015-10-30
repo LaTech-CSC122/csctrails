@@ -178,13 +178,13 @@ public class Lvl1State extends GameState {
 		}
 		
 		//See if player has died and if so adds one to the anky score
-		if(!player.isAlive() && hud.getLives()>0){
+		if(!player.isAlive() && hud.getLives()>1){
 			player.revive();
 			hud.modifyLives(-1);
 			player.getBody().setTransform(16*5/PPM, 16*7/PPM, 0);
 			player.getBody().setLinearVelocity(0, 0);
 		}
-		else if(!player.isAlive() && hud.getLives()<=0){
+		else if(!player.isAlive() && hud.getLives()<=1){
 			hud.modifyAnky(+1);
 			gsm.setState(GameStateManager.GAME_OVER);			
 		}

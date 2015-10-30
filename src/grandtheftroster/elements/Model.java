@@ -95,7 +95,8 @@ public class Model implements Switchable{
 
 	//Accessors
 	public Body getBody(){ return body; }
-	public void draw(SpriteBatch sb){ 
+	public void draw(SpriteBatch sb){
+		if(!visible){ return; }
 		if(sprite == null) return;
 		Vector2 pos = body.getPosition();
 		sprite.setPosition(pos.x*PPM - textureWidth/2, pos.y*PPM - textureHeight/2); // TODO: offset to align with Box2D Body - gha 15.9.20

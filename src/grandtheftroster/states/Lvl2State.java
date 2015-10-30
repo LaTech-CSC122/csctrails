@@ -70,7 +70,7 @@ public class Lvl2State extends GameState{
 			//Load Models
 			ModelLoader.tiledMapLoader(tmPlatform, world, "MODEL:PLATFORM_GROUND", "ground");
 			ModelLoader.tiledMapLoader(tmPlatform, world, "MODEL:PLATFORM_CEILING", "ceiling");
-			//ModelLoader.tiledMapLoader(tmDeathbed, world, "MODEL:PLATFORM_GROUND", "fatal");
+			ModelLoader.tiledMapLoader(tmDeathbed, world, "MODEL:PLATFORM_GROUND", "fatal");
 			ModelLoader.tiledMapLoader(tmDeathbed, world, "MODEL:PLATFORM_CEILING", "ceiling");
 			ModelLoader.tiledMapLoader(tmLadder, world, "MODEL:LADDER", "");
 	
@@ -86,7 +86,6 @@ public class Lvl2State extends GameState{
 		new Model(world, "MODEL:BOUNDARY_BOTTOM");
 		//---Player
 		player = new Player(world, "MODEL:PLAYER", 64+16*1, 64+16*4);
-		//player = new Player(world, "MODEL:PLAYER", 64+16*27, 64+16*24);
 		models.add(player);
 		
 		//---Fans
@@ -100,20 +99,9 @@ public class Lvl2State extends GameState{
 		
 		//---Rope
 		models.add(new Rope(world, 64+16*18-5, 64+16*19, 16*5)); //18
-		//models.add(new Rope(world, 64+16*8, 64+16*20-3, 16*4));
 		models.add(new Rope(world, 64+16*18, 64+16*32, 16*3));
 		
-		
 	
-		
-		
-		//old code incase we come back delete if want!
-		/*Switch keySwitch= new Switch(world, 64+16*13, 64+16*1+20);
-		keySwitch.addTag("key");
-		models.add(keySwitch);
-		Switch chestKeySwitch= new Switch(world, 64+16*7, 64+16*24+4);
-		chestKeySwitch.addTag("chestKey");
-		models.add(chestKeySwitch);*/
 		
 		//moving platforms
 		ArrayList<Switchable> platformSwitchables = new ArrayList<Switchable>();
@@ -122,9 +110,10 @@ public class Lvl2State extends GameState{
 		platformSwitchables.add(new MovingPlatform(world, 64, -16*6, (2*3.412f)/2, 64+16*24, 64+16*24-6) );
 		platformSwitchables.add(new MovingPlatform(world, 32, 16*7, (2*3.142f)/1.3f, 64+16*14, 64+16*28-6) );
 		models.addAll((Collection<? extends Model>) platformSwitchables);
-		// last one 2 is good but i like 1.3f better
+		
 		//---Roster
 		Model roster = new Model(world, "MODEL:ROSTER",16*6, 16*33);
+		roster.setVisible(false);
 		models.add(roster);
 		
 		//---Keys
@@ -163,22 +152,21 @@ public class Lvl2State extends GameState{
 		}
 		
 		//Check to see if player died
-		if(!player.isAlive()&& hud.getLives()> 0){
+		if(!player.isAlive()&& hud.getLives()> 1){
 			player.revive();
 			player.setPosition(64+16*1, 64+16*4, 0);
 			hud.modifyLives(-1);
-			
-			
-			
 		}
-		else if(!player.isAlive() && hud.getLives()<= 0){
+		else if(!player.isAlive() && hud.getLives()<= 1){
 			hud.modifyAnky(+1);
 			gsm.setState(GameStateManager.GAME_OVER);
 		}
-		//Check for if the game has won
+		
+		//Check for if the game has been won
 		if(cl.getGameWon()){
 			gsm.setState(GameStateManager.LEVEL_THREE);
 		}
+		
 		hud.modifyTime(dt);
 	}
 
@@ -204,9 +192,8 @@ public class Lvl2State extends GameState{
 		sb.draw(cabFrame, 0, 0);
 		sb.end();
 		
-		
+		//Show Physics Engine
 		b2dDebugRenderer.render(world, b2dCamera.combined);
-		// TODO Auto-generated method stub
 		
 	}
 	

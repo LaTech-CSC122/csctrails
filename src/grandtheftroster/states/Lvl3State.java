@@ -145,7 +145,7 @@ public class Lvl3State extends GameState{
 		sb.begin();
 		gfont16.draw("Time " + (int) hud.getTime(), GlyphFont.COLOR_WHITE, 8+64, Game.V_HEIGHT-20-64); //-10 originally
 		gfont16.draw(hud.getScore(), GlyphFont.COLOR_WHITE, 64+16*13, Game.V_HEIGHT-20-64); // -10 originally
-		gfont16.draw("Lives " + hud.getLives(), GlyphFont.COLOR_WHITE, Game.V_WIDTH-64-16*8, Game.V_HEIGHT-20-64); // -10 originally
+		gfont16.draw("Lives INF", GlyphFont.COLOR_WHITE, Game.V_WIDTH-64-16*9-8, Game.V_HEIGHT-20-64); // -10 originally
 		sb.draw(cabFrame, 0, 0);
 		sb.end();
 		
