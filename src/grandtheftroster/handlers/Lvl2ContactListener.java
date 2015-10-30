@@ -3,10 +3,8 @@ package grandtheftroster.handlers;
 import grandtheftroster.elements.Switch;
 import grandtheftroster.elements.Model;
 import grandtheftroster.elements.MovingPlatform;
-import grandtheftroster.elements.Switch;
 import grandtheftroster.player.Player;
 
-import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
@@ -125,8 +123,8 @@ public class Lvl2ContactListener implements ContactListener {
 	private void handlePostSolve(Fixture[] fixtures){
 		if(!(fixtures[0].getBody().getUserData() instanceof Model) ||
 				!(fixtures[1].getBody().getUserData() instanceof Model)){ return; }
-		Model model0 = (Model) fixtures[0].getBody().getUserData();
-		Model model1 = (Model) fixtures[1].getBody().getUserData();
+		//Model model0 = (Model) fixtures[0].getBody().getUserData();
+		//Model model1 = (Model) fixtures[1].getBody().getUserData();
 		
 		
 		

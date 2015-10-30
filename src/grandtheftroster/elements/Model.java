@@ -71,20 +71,25 @@ public class Model implements Switchable{
 		//Stop here if use passed a null profile name
 		if(cfgProfileName.equals(null)){ return; }
 		else if(cfgProfileName.trim().equals("")){ return;}
+		
 		//load sprite
 		sprite = ModelLoader.createSprite(cfgProfileName);
 		if(sprite != null){
 			textureHeight = sprite.getTexture().getHeight();
 			textureWidth =  sprite.getTexture().getWidth();
+			if(cfgProfileName.contains("BOSS")){ System.out.println(textureHeight + " | " + textureWidth); }
 		}
+		
 		//create body
 		body = ModelLoader.createBody(cfgProfileName, world);
 		body.setUserData(this);
 		ModelLoader.createFixtures(cfgProfileName, body);
+		
 		//move the body if x,y != -1
 		if(xpos >= 0 && ypos >= 0){
 			body.setTransform(xpos/PPM, ypos/PPM, 0);
 		}
+		
 		//Import tags from profile
 		String cfgTags = ModelLoader.getProperty("TAGS@" + cfgProfileName);
 		if(cfgTags != null){
