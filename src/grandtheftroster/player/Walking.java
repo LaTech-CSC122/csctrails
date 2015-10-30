@@ -74,12 +74,12 @@ public class Walking extends Activity{
 		if(active && model.hasTag("fan")){ player.setActivity(player.ACTIVITY_HOVERING); }
 		if(active && model.hasTag("switch,key")){
 			
-			if(!((Switch)model).isOn()){
+			if(!((Switch)model).getState()){
 				((Switch)model).setState(true);}
 		}
 		if(active && model.hasTag("switch,chestKey")){
 			
-			if(!((Switch)model).isOn()){
+			if(!((Switch)model).getState()){
 				((Switch)model).setState(true);}
 		}
 		if(model instanceof MovingElement)

@@ -2,6 +2,9 @@ package grandtheftroster.states;
 
 import static grandtheftroster.elements.B2DVars.PPM;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.files.FileHandle;
@@ -44,6 +47,7 @@ public class Lvl2State extends GameState{
 	//Audio
 	Music backgroundMusic;
 		
+	@SuppressWarnings("unchecked")
 	public Lvl2State(GameStateManager gsm) {
 		super(gsm, "LvL 2");
 		cl = new Lvl2ContactListener();
@@ -66,7 +70,7 @@ public class Lvl2State extends GameState{
 			//Load Models
 			ModelLoader.tiledMapLoader(tmPlatform, world, "MODEL:PLATFORM_GROUND", "ground");
 			ModelLoader.tiledMapLoader(tmPlatform, world, "MODEL:PLATFORM_CEILING", "ceiling");
-			ModelLoader.tiledMapLoader(tmDeathbed, world, "MODEL:PLATFORM_GROUND", "fatal");
+			//ModelLoader.tiledMapLoader(tmDeathbed, world, "MODEL:PLATFORM_GROUND", "fatal");
 			ModelLoader.tiledMapLoader(tmDeathbed, world, "MODEL:PLATFORM_CEILING", "ceiling");
 			ModelLoader.tiledMapLoader(tmLadder, world, "MODEL:LADDER", "");
 	
@@ -99,13 +103,7 @@ public class Lvl2State extends GameState{
 		//models.add(new Rope(world, 64+16*8, 64+16*20-3, 16*4));
 		models.add(new Rope(world, 64+16*18, 64+16*32, 16*3));
 		
-		//---Keys
-		Key chestKey = new Key (world, 32, 16*5, (2*3.412f)/2, 64+16*15, 64+8*6-9);
-		chestKey.addTag("chestKey");
-		models.add(chestKey);
-		Switch keySwitch = new Switch(world, 64+16*7, 64+16*24+4);
-		keySwitch.addTag("Key");
-		models.add(keySwitch);
+		
 	
 		
 		
@@ -118,13 +116,32 @@ public class Lvl2State extends GameState{
 		models.add(chestKeySwitch);*/
 		
 		//moving platforms
-		models.add(new MovingPlatform(world, 32, 16*5, (2*3.412f)/2, 64+16*15, 64+8*4-6) );
-		models.add(new MovingPlatform(world, 64, 16*4, (2*3.412f)/2, 64+16*14, 64+16*24-6) );
-		models.add(new MovingPlatform(world, 64, -16*6, (2*3.412f)/2, 64+16*24, 64+16*24-6) );
-		models.add(new MovingPlatform(world, 32, 16*7, (2*3.142f)/1.3f, 64+16*14, 64+16*28-6) );
+		ArrayList<Switchable> platformSwitchables = new ArrayList<Switchable>();
+		platformSwitchables.add(new MovingPlatform(world, 32, 16*5, (2*3.412f)/2, 64+16*15, 64+8*4-6) );
+		platformSwitchables.add(new MovingPlatform(world, 64, 16*4, (2*3.412f)/2, 64+16*14, 64+16*24-6) );
+		platformSwitchables.add(new MovingPlatform(world, 64, -16*6, (2*3.412f)/2, 64+16*24, 64+16*24-6) );
+		platformSwitchables.add(new MovingPlatform(world, 32, 16*7, (2*3.142f)/1.3f, 64+16*14, 64+16*28-6) );
+		models.addAll((Collection<? extends Model>) platformSwitchables);
 		// last one 2 is good but i like 1.3f better
 		//---Roster
-		models.add(new Model(world, "MODEL:ROSTER", 16*6, 16*33));
+		Model roster = new Model(world, "MODEL:ROSTER",16*6, 16*33);
+		models.add(roster);
+		
+		//---Keys
+		Switch chestKey = new Switch (world, 32, 16*5, (2*3.412f)/2, 64+16*15, 64+8*6-9);
+		chestKey.addTag("chestKey");
+		ArrayList<Switchable> chestKeySwitchables = new ArrayList<Switchable>();
+		chestKeySwitchables.add(roster);
+		chestKey.setSwitchable(chestKeySwitchables);
+		models.add(chestKey);
+		
+		Switch platformSwitch = new Switch(world,32, 16*5, 0, 64+16*7, 64+16*24+4);
+		platformSwitch.addTag("platformSwitch");
+		platformSwitchables.add(chestKey);
+		platformSwitch.setSwitchable(platformSwitchables);
+		models.add(platformSwitch);
+		platformSwitch.setVisible(true);
+		
 		
 		//Load and begin music
 		backgroundMusic = Gdx.audio.newMusic(new FileHandle(cfg.getProperty("LVL2BKG@PATHS:AUDIO")));

@@ -30,7 +30,7 @@ import com.badlogic.gdx.utils.Array;
  *
  */
 
-public class Model {
+public class Model implements Switchable{
 	//Static Fields
 	private static final ArrayList<Model> flaggedForDestruction = new ArrayList<Model>();
 	
@@ -55,6 +55,7 @@ public class Model {
 	protected Body body;
 	protected Sprite sprite;
 	protected TagList tags;
+	protected boolean visible;
 	
 	public Model(World world, String cfgProfileName){
 		this(world, cfgProfileName, -1, -1);
@@ -65,6 +66,7 @@ public class Model {
 		textureHeight = 0;
 		textureWidth = 0;
 		tags = new TagList();
+		visible = true;
 		
 		//Stop here if use passed a null profile name
 		if(cfgProfileName.equals(null)){ return; }
@@ -101,11 +103,24 @@ public class Model {
 		sprite.draw(sb);
 	}
 	public void update(float dt){
-		return;
+		if(body!=null)
+		{
+			body.setActive(visible);
+		}
 	}
 	public void setPosition(float x, float y, float angle)
 	{
 		body.setTransform(x/PPM, y/PPM, angle);
+	}
+	
+	public void setVisible(boolean b)
+	{
+		visible = b;
+	}
+	
+	public boolean getVisible()
+	{
+		return visible;
 	}
 	
 	//TagList methods
@@ -137,5 +152,11 @@ public class Model {
 	}
 	public void flagForDestory(){
 		flaggedForDestruction.add(this);
+	}
+	@Override
+	public void switchState(boolean b) 
+	{
+		setVisible(b);
+		
 	}
 }

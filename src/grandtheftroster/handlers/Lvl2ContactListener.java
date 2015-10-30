@@ -1,6 +1,6 @@
 package grandtheftroster.handlers;
 
-import grandtheftroster.elements.Key;
+import grandtheftroster.elements.Switch;
 import grandtheftroster.elements.Model;
 import grandtheftroster.elements.MovingPlatform;
 import grandtheftroster.elements.Switch;
@@ -99,22 +99,12 @@ public class Lvl2ContactListener implements ContactListener {
 			gameWon = true;
 		}
 		//responsible for key switches and platforms appearing
-		if(model1 instanceof Key)
+		if(model1 instanceof Switch)
 		{
-			((Key)model1).touch(true);
-		}
-		/*
-		 if(model1.hasTag("Key"))
-		 {key.touch(true);}
-		 
-		 */
-		if(model1.hasTag("Key"))
-		{
-			MovingPlatform.iTouch(true);
-			
-			
+			((Switch)model1).setState(true);
 			
 		}
+		
 		
 	
 	}
