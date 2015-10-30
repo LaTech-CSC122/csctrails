@@ -1,6 +1,6 @@
 package grandtheftroster.handlers;
 
-import grandtheftroster.elements.Key;
+import grandtheftroster.elements.Switch;
 import grandtheftroster.elements.Model;
 import grandtheftroster.elements.MovingPlatform;
 import grandtheftroster.player.Player;
@@ -92,25 +92,17 @@ public class Lvl2ContactListener implements ContactListener {
 			System.out.println();
 			((Player) model0).handleBeginContact(model1);
 		}
-		else if(model0.hasTag("roster, chestKey")){
+		else if(model0.hasTag("roster")){
 			
 			gameWon = true;
 		}
-		
-		if(model1.hasTag("Key"))
+		//responsible for key switches and platforms appearing
+		if(model1 instanceof Switch)
 		{
-			Key.touch(true);
-			
+			((Switch)model1).setState(true);
 			
 		}
 		
-		if(model1.hasTag("Key"))
-		{
-			MovingPlatform.iTouch(true);
-			
-			
-			
-		}
 		
 	
 	}
@@ -124,7 +116,7 @@ public class Lvl2ContactListener implements ContactListener {
 			((Player) model0).handleEndContact(model1);
 		}
 		
-		//If the players foot collides with the ground
+		
 		
 	}
 
@@ -133,6 +125,8 @@ public class Lvl2ContactListener implements ContactListener {
 				!(fixtures[1].getBody().getUserData() instanceof Model)){ return; }
 		//Model model0 = (Model) fixtures[0].getBody().getUserData();
 		//Model model1 = (Model) fixtures[1].getBody().getUserData();
+		
+		
 		
 	}
 }

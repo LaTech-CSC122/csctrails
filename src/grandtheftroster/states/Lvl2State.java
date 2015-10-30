@@ -2,7 +2,12 @@ package grandtheftroster.states;
 
 import static grandtheftroster.elements.B2DVars.PPM;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -38,7 +43,11 @@ public class Lvl2State extends GameState{
 	//tiled
 	private TiledMap map;
 	private OrthogonalTiledMapRenderer tmr;
-
+	
+	//Audio
+	Music backgroundMusic;
+		
+	@SuppressWarnings("unchecked")
 	public Lvl2State(GameStateManager gsm) {
 		super(gsm, "LvL 2");
 		cl = new Lvl2ContactListener();
@@ -77,7 +86,6 @@ public class Lvl2State extends GameState{
 		new Model(world, "MODEL:BOUNDARY_BOTTOM");
 		//---Player
 		player = new Player(world, "MODEL:PLAYER", 64+16*1, 64+16*4);
-		//player = new Player(world, "MODEL:PLAYER", 64+16*27, 64+16*24);
 		models.add(player);
 		
 		//---Fans
@@ -95,35 +103,46 @@ public class Lvl2State extends GameState{
 		
 		//---Rope
 		models.add(new Rope(world, 64+16*18-5, 64+16*19, 16*5)); //18
-		//models.add(new Rope(world, 64+16*8, 64+16*20-3, 16*4));
 		models.add(new Rope(world, 64+16*18, 64+16*32, 16*3));
 		
-		//---Keys
-		Key chestKey = new Key (world, 32, 16*5, (2*3.412f)/2, 64+16*15, 64+8*6-9);
-		chestKey.addTag("chestKey");
-		models.add(chestKey);
-		Switch keySwitch = new Switch(world, 64+16*7, 64+16*24+4);
-		keySwitch.addTag("Key");
-		models.add(keySwitch);
 	
 		
-		
-		//old code incase we come back delete if want!
-		/*Switch keySwitch= new Switch(world, 64+16*13, 64+16*1+20);
-		keySwitch.addTag("key");
-		models.add(keySwitch);
-		Switch chestKeySwitch= new Switch(world, 64+16*7, 64+16*24+4);
-		chestKeySwitch.addTag("chestKey");
-		models.add(chestKeySwitch);*/
-		
 		//moving platforms
-		models.add(new MovingPlatform(world, 32, 16*5, (2*3.412f)/2, 64+16*15, 64+8*4-6) );
-		models.add(new MovingPlatform(world, 64, 16*4, (2*3.412f)/2, 64+16*14, 64+16*24-6) );
-		models.add(new MovingPlatform(world, 64, -16*6, (2*3.412f)/2, 64+16*24, 64+16*24-6) );
-		models.add(new MovingPlatform(world, 32, 16*7, (2*3.142f)/1.3f, 64+16*14, 64+16*28-6) );
-		// last one 2 is good but i like 1.3f better
+		ArrayList<Switchable> platformSwitchables = new ArrayList<Switchable>();
+		platformSwitchables.add(new MovingPlatform(world, 32, 16*5, (2*3.412f)/2, 64+16*15, 64+8*4-6) );
+		platformSwitchables.add(new MovingPlatform(world, 64, 16*4, (2*3.412f)/2, 64+16*14, 64+16*24-6) );
+		platformSwitchables.add(new MovingPlatform(world, 64, -16*6, (2*3.412f)/2, 64+16*24, 64+16*24-6) );
+		platformSwitchables.add(new MovingPlatform(world, 32, 16*7, (2*3.142f)/1.3f, 64+16*14, 64+16*28-6) );
+		models.addAll((Collection<? extends Model>) platformSwitchables);
+		
 		//---Roster
-		models.add(new Model(world, "MODEL:ROSTER", 16*6, 16*33));
+		Model roster = new Model(world, "MODEL:ROSTER",16*6, 16*33);
+		roster.setVisible(false);
+		models.add(roster);
+		
+		//---Keys
+		Switch chestKey = new Switch (world, 32, 16*5, (2*3.412f)/2, 64+16*15, 64+8*6-9);
+		chestKey.addTag("chestKey");
+		ArrayList<Switchable> chestKeySwitchables = new ArrayList<Switchable>();
+		chestKeySwitchables.add(roster);
+		chestKey.setSwitchable(chestKeySwitchables);
+		models.add(chestKey);
+		
+		Switch platformSwitch = new Switch(world,32, 16*5, 0, 64+16*7, 64+16*24+4);
+		platformSwitch.addTag("platformSwitch");
+		platformSwitchables.add(chestKey);
+		platformSwitch.setSwitchable(platformSwitchables);
+		models.add(platformSwitch);
+		platformSwitch.setVisible(true);
+		
+		
+		//Load and begin music
+		backgroundMusic = Gdx.audio.newMusic(new FileHandle(cfg.getProperty("LVL2BKG@PATHS:AUDIO")));
+		backgroundMusic.setLooping(true);
+		backgroundMusic.setVolume(0.04f); //originally 0.5f
+		backgroundMusic.play();
+		
+		
 	}
 
 
@@ -137,20 +156,21 @@ public class Lvl2State extends GameState{
 		}
 		
 		//Check to see if player died
-		if(!player.isAlive()&& hud.getLives()> 0){
+		if(!player.isAlive()&& hud.getLives()> 1){
 			player.revive();
 			player.setPosition(64+16*1, 64+16*4, 0);
 			hud.modifyLives(-1);
-			
 		}
-		else if(!player.isAlive() && hud.getLives()<= 0){
+		else if(!player.isAlive() && hud.getLives()<= 1){
 			hud.modifyAnky(+1);
 			gsm.setState(GameStateManager.GAME_OVER);
 		}
-		//Check for if the game has won
+		
+		//Check for if the game has been won
 		if(cl.getGameWon()){
 			gsm.setState(GameStateManager.LEVEL_THREE);
 		}
+		
 		hud.modifyTime(dt);
 	}
 
@@ -176,10 +196,14 @@ public class Lvl2State extends GameState{
 		sb.draw(cabFrame, 0, 0);
 		sb.end();
 		
-		
+		//Show Physics Engine
 		b2dDebugRenderer.render(world, b2dCamera.combined);
-		// TODO Auto-generated method stub
 		
 	}
-
+	
+	public void dispose(){
+		backgroundMusic.stop();
+		backgroundMusic.dispose();
+	}
+	
 }
