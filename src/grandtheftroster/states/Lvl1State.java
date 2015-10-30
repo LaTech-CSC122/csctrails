@@ -139,7 +139,7 @@ public class Lvl1State extends GameState {
 		//Load and begin music
 		backgroundMusic = Gdx.audio.newMusic(new FileHandle(cfg.getProperty("LVL1BKG@PATHS:AUDIO")));
 		backgroundMusic.setLooping(true);
-		backgroundMusic.setVolume(0.03f); //originally 0.5 set down for jumping sounds
+		backgroundMusic.setVolume(0.5f); //0.03 good to use when jumping sounds
 		backgroundMusic.play();
 	}
 
