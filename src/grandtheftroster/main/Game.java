@@ -1,10 +1,12 @@
 package grandtheftroster.main;
 
 
+import grandtheftroster.audio.AudioPlayer;
 import grandtheftroster.elements.HudCounter;
 import grandtheftroster.handlers.GameStateManager;
 import grandtheftroster.handlers.MyInput;
 import grandtheftroster.handlers.MyInputProcessor;
+import grandtheftroster.utilities.Configuration;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
@@ -38,6 +40,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class Game implements ApplicationListener {
 	
+	private static Configuration cfg;
+	
 	public static final String TITLE = "Grand Theft Roster";
 	public static final int V_WIDTH = 576; //448
 	public static final int V_HEIGHT = 640; //512
@@ -46,15 +50,23 @@ public class Game implements ApplicationListener {
 	public static final float STEP = 1 / 60f;
 	private float accum;
 	
+	static{
+		cfg = new Configuration();
+		cfg.loadConfiguration("res/config/paths/");
+	}
+	
+	
 	private SpriteBatch sb;
 	private OrthographicCamera camera;
 	private OrthographicCamera hudCamera;
 	private GameStateManager gsm;
 	private HudCounter hud;
 	private LwjglApplication app;
+	private AudioPlayer playlist;
 	
 	public void create() {
 		//TODO: Organize Game.create() method
+		loadAudio();
 		
 		Texture.setEnforcePotImages(false); // Prevents GL from forcing power of 2 images
 		Gdx.input.setInputProcessor(new MyInputProcessor()); // Set the input listener of the application - gha 15.9.21
@@ -67,6 +79,10 @@ public class Game implements ApplicationListener {
 		
 		gsm = new GameStateManager(this);
 		gsm.pushState(GameStateManager.LEVEL_TWO); 
+<<<<<<< HEAD
+=======
+		
+>>>>>>> df6b29d27d74de0c54d8ec18c5a4b001d6f8dc00
 	}
 	public void render() {
 		accum = Gdx.graphics.getDeltaTime();
@@ -90,4 +106,15 @@ public class Game implements ApplicationListener {
 	public OrthographicCamera getCamera() { return camera; }
 	public OrthographicCamera getHudCamera(){ return hudCamera; }
 	public HudCounter getHud(){ return hud; }
+	public AudioPlayer getPlaylist(){ return playlist; }
+	
+	
+	private void loadAudio(){
+		playlist = new AudioPlayer();
+		playlist.addSound("Level 1", cfg.getProperty("LVL1BKG@PATHS:AUDIO"), 0.5f, true);
+		playlist.addSound("Level 2", cfg.getProperty("LVL2BKG@PATHS:AUDIO"), 0.3f, true);
+		playlist.addSound("Level 3", cfg.getProperty("LVL3BKG@PATHS:AUDIO"), 0.4f, true);
+		playlist.setVolume(0.4f);
+		//playlist.setVolume(0);
+	}
 }

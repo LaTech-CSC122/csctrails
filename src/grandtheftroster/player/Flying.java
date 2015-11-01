@@ -6,6 +6,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.Animation;
 
 import grandtheftroster.elements.Model;
+import grandtheftroster.handlers.AnimationManager;
 import grandtheftroster.handlers.MyInput;
 
 public class Flying extends Activity{
@@ -40,9 +41,11 @@ public class Flying extends Activity{
 		if(MyInput.isPressed(MyInput.BUTTON_UP)){
 			body.setLinearVelocity(body.getLinearVelocity().x, 1f);
 			//flying sound
-			fly = Gdx.audio.newMusic(new FileHandle(cfg.getProperty("FLYING@PATHS:AUDIO")));
-			fly.setVolume(3.5f);
-			fly.play();
+			//fly = Gdx.audio.newMusic(new FileHandle(cfg.getProperty("FLYING@PATHS:AUDIO")));
+			//fly.setVolume(3.5f);
+			//fly.play();
+		
+			player.getVoicebox().play("flap");
 			
 			}
 	}

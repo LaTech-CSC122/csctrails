@@ -1,6 +1,7 @@
 package grandtheftroster.player;
 
 import grandtheftroster.elements.Model;
+import grandtheftroster.handlers.AnimationManager;
 import grandtheftroster.handlers.MyInput;
 
 import com.badlogic.gdx.graphics.g2d.Animation;

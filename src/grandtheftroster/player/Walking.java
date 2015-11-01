@@ -3,6 +3,7 @@ package grandtheftroster.player;
 import grandtheftroster.elements.Model;
 import grandtheftroster.elements.MovingElement;
 import grandtheftroster.elements.Switch;
+import grandtheftroster.handlers.AnimationManager;
 import grandtheftroster.handlers.MyInput;
 
 import java.util.ArrayList;
@@ -126,6 +127,7 @@ public class Walking extends Activity{
 	public void jump(){
 		if(contacts>0){
 			body.applyLinearImpulse(new Vector2(0f, JUMP_HEIGHT), body.getWorldCenter(), false);
+			player.getVoicebox().play("jump");
 		}
 	}
 	

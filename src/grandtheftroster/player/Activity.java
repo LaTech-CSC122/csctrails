@@ -1,7 +1,9 @@
 package grandtheftroster.player;
 
 import static grandtheftroster.elements.B2DVars.PPM;
+import grandtheftroster.audio.AudioPlayer;
 import grandtheftroster.elements.Model;
+import grandtheftroster.handlers.AnimationManager;
 import grandtheftroster.utilities.Configuration;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -26,6 +28,7 @@ public abstract class Activity
 	protected Body body;
 	protected AnimationManager am;
 	protected int state;
+	protected AudioPlayer voicebox;
 	
 	public Activity(Player p){
 		this.player = p;
@@ -33,6 +36,7 @@ public abstract class Activity
 		state = 0;
 		active = false;
 		am = new AnimationManager();
+		voicebox = player.getVoicebox();
 	}
 	
 	public void begin(){

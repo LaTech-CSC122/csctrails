@@ -43,9 +43,7 @@ public class Lvl3State extends GameState{
 	//tiled
 	private TiledMap map;
 	private OrthogonalTiledMapRenderer tmr;
-	
-	//Audio
-	Music backgroundMusic;
+
 
 	public Lvl3State(GameStateManager gsm) {
 		super(gsm, "LvL 3");
@@ -89,10 +87,7 @@ public class Lvl3State extends GameState{
 		models.add(new Model(world,"MODEL:ROSTER", 64+16*274, 64+16*9));
 		
 		//Load and begin music
-		backgroundMusic = Gdx.audio.newMusic(new FileHandle(cfg.getProperty("LVL3BKG@PATHS:AUDIO")));
-		backgroundMusic.setLooping(true);
-		backgroundMusic.setVolume(0.15f); 
-		backgroundMusic.play();
+		playlist.play("Level 3");
 				
 		}
 
@@ -154,7 +149,6 @@ public class Lvl3State extends GameState{
 	}
 
 	public void dispose(){
-		backgroundMusic.stop();
-		backgroundMusic.dispose();
+		playlist.stop("Level 3");
 	}
 }

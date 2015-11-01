@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.math.Vector2;
 
 import grandtheftroster.elements.Model;
+import grandtheftroster.handlers.AnimationManager;
 import grandtheftroster.handlers.MyInput;
 
 public class Hovering extends Activity{
