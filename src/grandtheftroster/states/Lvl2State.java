@@ -85,7 +85,7 @@ public class Lvl2State extends GameState{
 		new Model(world, "MODEL:BOUNDARY_SIDES");
 		new Model(world, "MODEL:BOUNDARY_BOTTOM");
 		//---Player
-		player = new Player(world, "MODEL:PLAYER", 64+16*1, 64+16*4);
+		player = new Player(world, "MODEL:PLAYER", 64+16*1, 64+16*10);
 		models.add(player);
 		
 		//---Fans
@@ -109,10 +109,10 @@ public class Lvl2State extends GameState{
 		
 		//moving platforms
 		ArrayList<Switchable> platformSwitchables = new ArrayList<Switchable>();
-		platformSwitchables.add(new MovingPlatform(world, 32, 16*5, (2*3.412f)/2, 64+16*15, 64+8*4-6) );
-		platformSwitchables.add(new MovingPlatform(world, 64, 16*4, (2*3.412f)/2, 64+16*14, 64+16*24-6) );
-		platformSwitchables.add(new MovingPlatform(world, 64, -16*6, (2*3.412f)/2, 64+16*24, 64+16*24-6) );
-		platformSwitchables.add(new MovingPlatform(world, 32, 16*7, (2*3.142f)/1.3f, 64+16*14, 64+16*28-6) );
+		platformSwitchables.add(new MovingPlatform(world, 32, 16*5, (2*3.412f)/2, 64+16*15, 64+8*4) );
+		platformSwitchables.add(new MovingPlatform(world, 64, 16*4, (2*3.412f)/2, 64+16*14, 64+16*24) );
+		platformSwitchables.add(new MovingPlatform(world, 64, -16*6, (2*3.412f)/2, 64+16*24, 64+16*24) );
+		platformSwitchables.add(new MovingPlatform(world, 32, 16*7, (2*3.142f)/1.3f, 64+16*14, 64+16*28) );
 		models.addAll((Collection<? extends Model>) platformSwitchables);
 		
 		//---Roster
@@ -197,7 +197,7 @@ public class Lvl2State extends GameState{
 		sb.end();
 		
 		//Show Physics Engine
-		b2dDebugRenderer.render(world, b2dCamera.combined);
+		//b2dDebugRenderer.render(world, b2dCamera.combined);
 		
 	}
 	
