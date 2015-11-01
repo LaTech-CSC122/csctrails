@@ -131,6 +131,7 @@ public class Lvl1State extends GameState {
 		
 		//Load and begin music
 		playlist.play("Level 1");
+
 	}
 
 				

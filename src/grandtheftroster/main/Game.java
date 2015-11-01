@@ -78,7 +78,7 @@ public class Game implements ApplicationListener {
 		hudCamera.setToOrtho(false, V_WIDTH*SCALE, V_HEIGHT*SCALE);
 		
 		gsm = new GameStateManager(this);
-		gsm.pushState(GameStateManager.LEVEL_THREE); 
+		gsm.pushState(GameStateManager.LEVEL_ONE); 
 		
 	}
 	public void render() {
