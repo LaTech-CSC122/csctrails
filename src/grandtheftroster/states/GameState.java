@@ -1,6 +1,7 @@
 package grandtheftroster.states;
 
 
+import grandtheftroster.audio.AudioPlayer;
 import grandtheftroster.elements.GlyphFont;
 import grandtheftroster.elements.HudCounter;
 import grandtheftroster.elements.Model;
@@ -42,6 +43,7 @@ public abstract class GameState {
 	protected OrthographicCamera hudCam;
 	protected ArrayList<Model> models; // A list of all Models that exist. Missing objects will not be rendered by default. - gha 15.9.20
 	protected HudCounter hud;
+	protected AudioPlayer playlist;
 	
 	//default assets
 	protected Texture cabFrame;
@@ -60,6 +62,7 @@ public abstract class GameState {
 		camera.update();
 		hud = game.getHud();
 		hudCam = game.getHudCamera();
+		playlist = game.getPlaylist();
 		//Field initialization
 		models = new ArrayList<Model>();
 		cabFrame = new Texture("res/images/cab frame.png");

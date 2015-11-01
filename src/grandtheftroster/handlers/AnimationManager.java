@@ -1,4 +1,4 @@
-package grandtheftroster.player;
+package grandtheftroster.handlers;
 
 import java.util.HashMap;
 

@@ -3,6 +3,7 @@ package grandtheftroster.player;
 import grandtheftroster.elements.Model;
 import grandtheftroster.elements.MovingElement;
 import grandtheftroster.elements.Switch;
+import grandtheftroster.handlers.AnimationManager;
 import grandtheftroster.handlers.MyInput;
 
 import java.util.ArrayList;

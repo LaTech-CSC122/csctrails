@@ -3,6 +3,7 @@ package grandtheftroster.player;
 import static grandtheftroster.elements.B2DVars.PPM;
 import grandtheftroster.elements.Model;
 import grandtheftroster.elements.Rope;
+import grandtheftroster.handlers.AnimationManager;
 import grandtheftroster.handlers.MyInput;
 
 import com.badlogic.gdx.graphics.g2d.Animation;

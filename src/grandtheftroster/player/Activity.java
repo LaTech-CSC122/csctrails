@@ -2,6 +2,7 @@ package grandtheftroster.player;
 
 import static grandtheftroster.elements.B2DVars.PPM;
 import grandtheftroster.elements.Model;
+import grandtheftroster.handlers.AnimationManager;
 import grandtheftroster.utilities.Configuration;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;

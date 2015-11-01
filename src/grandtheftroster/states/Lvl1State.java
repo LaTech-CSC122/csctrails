@@ -58,18 +58,13 @@ public class Lvl1State extends GameState {
 	private Lvl1ContactListener cl;
 	
 	//Model Fields
-	Thrower thrower;
-	Player player;
-	
-	//Fonts
-	BitmapFont font;
-	
+	private Thrower thrower;
+	private Player player;
+
 	//tiled
-	TiledMap map;
-	OrthogonalTiledMapRenderer tmr;
-	
-	//Audio
-	Music backgroundMusic;
+	private TiledMap map;
+	private OrthogonalTiledMapRenderer tmr;
+
 
 	public Lvl1State(GameStateManager gsm) {
 		super(gsm, "Play");
@@ -133,14 +128,9 @@ public class Lvl1State extends GameState {
 		models.add(thrower.throwObject(16*14, 16*28));
 		models.add(thrower.throwObject(16*14, 16*32));
 		
-		//Fonts
-		font = new BitmapFont();
 		
 		//Load and begin music
-		backgroundMusic = Gdx.audio.newMusic(new FileHandle(cfg.getProperty("LVL1BKG@PATHS:AUDIO")));
-		backgroundMusic.setLooping(true);
-		backgroundMusic.setVolume(0.03f); //originally 0.5 set down for jumping sounds
-		backgroundMusic.play();
+		playlist.play("Level 1");
 	}
 
 				
@@ -215,12 +205,11 @@ public class Lvl1State extends GameState {
 		sb.end();
 				
 		// Render Box2d world - development purposes only
-		b2dDebugRenderer.render(world, b2dCamera.combined);
+		//b2dDebugRenderer.render(world, b2dCamera.combined);
 	}
 	
 	public void dispose(){
-		backgroundMusic.stop();
-		backgroundMusic.dispose();
+		playlist.stop("Level 1");
 	}
 }
 

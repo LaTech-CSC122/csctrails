@@ -43,9 +43,7 @@ public class Lvl2State extends GameState{
 	//tiled
 	private TiledMap map;
 	private OrthogonalTiledMapRenderer tmr;
-	
-	//Audio
-	Music backgroundMusic;
+
 		
 	@SuppressWarnings("unchecked")
 	public Lvl2State(GameStateManager gsm) {
@@ -93,7 +91,7 @@ public class Lvl2State extends GameState{
 		models.add(new Fan(world, 64+16*25, 64+16*2, 32*6));
 		
 		models.add(new Fan(world, 64+16*1, 64+16*10, 16*9));
-		models.add(new Fan(world, 64+16*3, 64+16*10, 16*9));
+		//models.add(new Fan(world, 64+16*3, 64+16*10, 16*9));
 		
 		models.add(new Fan(world, 64+16*27, 64+16*24, 16*3));
 		
@@ -114,6 +112,8 @@ public class Lvl2State extends GameState{
 		platformSwitchables.add(new MovingPlatform(world, 64, -16*6, (2*3.412f)/2, 64+16*24, 64+16*24-6) );
 		platformSwitchables.add(new MovingPlatform(world, 32, 16*7, (2*3.142f)/1.3f, 64+16*14, 64+16*28-6) );
 		models.addAll((Collection<? extends Model>) platformSwitchables);
+		
+		
 		
 		//---Roster
 		Model roster = new Model(world, "MODEL:ROSTER",16*6, 16*33);
@@ -137,10 +137,7 @@ public class Lvl2State extends GameState{
 		
 		
 		//Load and begin music
-		backgroundMusic = Gdx.audio.newMusic(new FileHandle(cfg.getProperty("LVL2BKG@PATHS:AUDIO")));
-		backgroundMusic.setLooping(true);
-		backgroundMusic.setVolume(0.04f); //originally 0.5f
-		backgroundMusic.play();
+		playlist.play("Level 2");
 		
 		
 	}
@@ -202,8 +199,7 @@ public class Lvl2State extends GameState{
 	}
 	
 	public void dispose(){
-		backgroundMusic.stop();
-		backgroundMusic.dispose();
+		playlist.stop("Level 2");
 	}
 	
 }
