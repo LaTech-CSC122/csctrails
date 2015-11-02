@@ -10,7 +10,7 @@ public class SoundEntry extends AudioEntry{
 	
 	public SoundEntry(String path, float gain){
 		super(path, gain, false);
-		Gdx.audio.newSound(new FileHandle(path));
+		sound = Gdx.audio.newSound(new FileHandle(path));
 	}
 
 	@Override
@@ -25,6 +25,7 @@ public class SoundEntry extends AudioEntry{
 
 	@Override
 	public void play(float volume) {
+		//System.out.println("Playing Sound: "+ (sound!=null));
 		if(loop){ sound.loop(volume*gain); }
 		else{ sound.play(volume*gain); }
 	}

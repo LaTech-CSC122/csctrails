@@ -78,7 +78,7 @@ public class Game implements ApplicationListener {
 		hudCamera.setToOrtho(false, V_WIDTH*SCALE, V_HEIGHT*SCALE);
 		
 		gsm = new GameStateManager(this);
-		gsm.pushState(GameStateManager.LEVEL_ONE); 
+		gsm.pushState(GameStateManager.LEVEL_TWO); 
 		
 	}
 	public void render() {
@@ -111,6 +111,7 @@ public class Game implements ApplicationListener {
 		playlist.addSound("Level 1", cfg.getProperty("LVL1BKG@PATHS:AUDIO"), 0.5f, true);
 		playlist.addSound("Level 2", cfg.getProperty("LVL2BKG@PATHS:AUDIO"), 0.3f, true);
 		playlist.addSound("Level 3", cfg.getProperty("LVL3BKG@PATHS:AUDIO"), 0.4f, true);
-		playlist.setVolume(0.75f);
+		playlist.setVolume(0.4f);
+		//playlist.setVolume(0);
 	}
 }
