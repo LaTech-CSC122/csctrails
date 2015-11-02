@@ -25,7 +25,6 @@ public class SoundEntry extends AudioEntry{
 
 	@Override
 	public void play(float volume) {
-		//System.out.println("Playing Sound: "+ (sound!=null));
 		if(loop){ sound.loop(volume*gain); }
 		else{ sound.play(volume*gain); }
 	}
