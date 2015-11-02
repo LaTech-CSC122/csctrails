@@ -114,7 +114,7 @@ public class Player extends Model{
 		voicebox.addSound("hit", cfg.getProperty("HIT@PATHS:AUDIO"), 0.6f, false);
 		voicebox.addSound("flap", cfg.getProperty("FLYING@PATHS:AUDIO"), 1f, false);
 		voicebox.setVolume(1f);
-		//System.out.println(cfg.hasProperty("FLYING@PATHS:AUDIO"));
+		
 	}
 	
 	public class ActivityManager{

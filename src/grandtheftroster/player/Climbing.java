@@ -28,7 +28,6 @@ public class Climbing extends Activity{
 	@Override
 	public void begin() {
 		super.begin();
-		System.out.println("Activity: Climbing");
 		body.setGravityScale(0f);
 		body.setLinearVelocity(0f, 0f);
 		

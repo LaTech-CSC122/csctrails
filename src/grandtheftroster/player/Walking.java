@@ -36,7 +36,6 @@ public class Walking extends Activity{
 	@Override
 	public void begin() {
 		super.begin();
-		System.out.println("Activity: Walking");
 	}
 	@Override
 	public void dispose() {}

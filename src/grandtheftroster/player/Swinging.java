@@ -35,13 +35,10 @@ public class Swinging extends Activity{
 		radius = 50/PPM;
 	}
 	
-	//****READ what I am thinking is we use math.sin() to create a pendulum
-	//****Type effect which causes it to go back and forth in a timed manner
 
 	
 	public void begin() {
 		super.begin();
-		System.out.println("Activity: Swinging");
 		time = (float)Math.acos(0);
 	}
 
@@ -65,7 +62,7 @@ public class Swinging extends Activity{
 	protected void handleState(float dt) {
 		am.setState(state);
 		am.resetAnimation();
-		//am.update(1.5f);
+
 	}
 
 	public void handleBeginContact(Model model) {

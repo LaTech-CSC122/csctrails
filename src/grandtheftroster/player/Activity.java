@@ -8,8 +8,6 @@ import grandtheftroster.utilities.Configuration;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.Contact;
-import com.badlogic.gdx.utils.Array;
 
 
 public abstract class Activity
@@ -28,7 +26,6 @@ public abstract class Activity
 	protected Body body;
 	protected AnimationManager am;
 	protected int state;
-	protected AudioPlayer voicebox;
 	
 	public Activity(Player p){
 		this.player = p;
@@ -36,7 +33,6 @@ public abstract class Activity
 		state = 0;
 		active = false;
 		am = new AnimationManager();
-		voicebox = player.getVoicebox();
 	}
 	
 	public void begin(){
@@ -58,26 +54,5 @@ public abstract class Activity
 		am.draw(sb, x, y);
 	}
 	
-	protected boolean isContacting(String tag){
-		Array<Contact> contacts = body.getWorld().getContactList();
-		for(Contact c:contacts){
-			Model m1 = (Model) c.getFixtureA().getBody().getUserData();
-			Model m2 = (Model) c.getFixtureB().getBody().getUserData();
-			if(m1.equals(player) && m2.hasTag(tag)){ 
-				for(int i = 0; i<m1.getTags().length; i++){
-					//System.out.print(m1.getTags()[i] + " | ");
-				}
-				//System.out.println();
-				return true;
-			}
-			if(m2.equals(player) && m1.hasTag(tag)){ 
-				for(int i = 0; i<m1.getTags().length; i++){
-					//System.out.print(m1.getTags()[i] + " | ");
-				}
-				//System.out.println();
-				return true;
-			}
-		}
-		return false;
-	}
+	
 }

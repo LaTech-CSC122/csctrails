@@ -24,7 +24,6 @@ public class Hovering extends Activity{
 
 	public void begin() {
 		super.begin();
-		System.out.println("Activity: Hovering");
 		if(body.getLinearVelocity().y<-0.5f){
 				body.setLinearVelocity(0f, -.5f);
 		}

@@ -79,10 +79,7 @@ public class Game implements ApplicationListener {
 		
 		gsm = new GameStateManager(this);
 		gsm.pushState(GameStateManager.LEVEL_TWO); 
-<<<<<<< HEAD
-=======
-		
->>>>>>> df6b29d27d74de0c54d8ec18c5a4b001d6f8dc00
+
 	}
 	public void render() {
 		accum = Gdx.graphics.getDeltaTime();
