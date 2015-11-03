@@ -3,15 +3,10 @@ package grandtheftroster.elements;
 public class HudCounter {
 	
 
-	private static float MAX_TIME_A = 31;
-	private static float MAX_TIME_B = 36;
-	
 	private int defaultLives;
 	private float defaultTime;
 	private int defaultAnky;
 	private int defaultclassScore;
-	
-	
 	
 	private int lives;
 	private float time;
@@ -19,9 +14,6 @@ public class HudCounter {
 	private int classScore;
 	
 
-
-
-	
 	public HudCounter(int defaultLives, float defaultTime, int defaultScore){
 		this.defaultLives = defaultLives;
 		this.defaultTime = defaultTime;
@@ -29,10 +21,7 @@ public class HudCounter {
 		time = 0;
 		anky = 0;
 		classScore = 0;
-		
-
-
-	}
+		}
 	
 	public HudCounter() {
 		defaultLives = 0;
@@ -43,10 +32,6 @@ public class HudCounter {
 		anky = 0;
 		defaultclassScore = 0;
 		anky = 0;
-		
-		
-
-
 	}
 	
 	public void resetLives(){ lives = defaultLives; }
@@ -69,10 +54,9 @@ public class HudCounter {
 	public void modifyClassScore(int delta){ classScore += delta; }
 	public int getClassScore(){ return classScore; }
 	
-	
+	//TODO: Improve implementation. Perhaps an array of String and a loop
 	public String getScore(){ 
 		int score = (int)time - lives * 15;
-		//System.out.println(score);
 		if(score <= 100)
 		{
 			return ("A+");
@@ -112,29 +96,15 @@ public class HudCounter {
 		return ("N/A");
 		
 	}
-	public String getLeader(){
-	if(anky > classScore){return anky-classScore + " win lead for Anky. Try harder!";} 
-	else if (anky < classScore) {return classScore-anky + " win lead for the class! Keep it up.";}
-	else {return anky + " win tie between Anky and the class. Don't quit now!";}
-	}
 	
-	
-
-		
-	
-
-
+	//TODO: This should probably include all non-default fields. Check all implementations to ensure a safe change
 	public void resetAll(){
 		lives = defaultLives;
 		time = defaultTime;
-
-	
 	} 
 	
 	
-	
-
-	}
+}
 
 
 

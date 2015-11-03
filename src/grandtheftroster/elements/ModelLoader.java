@@ -134,7 +134,6 @@ public class ModelLoader {
 				shape = cShape;
 		}
 		else if(shapeType.equals("CHAINSHAPE_POINTS")){
-			//System.out.println(shapeType);
 			ChainShape cShape = new ChainShape();
 			cShape.createChain(points);
 			shape = cShape;

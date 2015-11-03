@@ -43,9 +43,7 @@ public class MovingPlatform extends Model implements MovingElement {
 	}
 		private void createBody(World world, int width, int xpos, int ypos){
 			BodyDef bdef = new BodyDef();
-			bdef.type = B2DVars.STATIC;
-			//bdef.position.set(0, -length/2/PPM);
-			
+			bdef.type = B2DVars.STATIC;			
 			
 			PolygonShape shape = new PolygonShape();
 			shape.setAsBox(width/2/PPM, 0/PPM);
@@ -53,7 +51,6 @@ public class MovingPlatform extends Model implements MovingElement {
 			
 			FixtureDef fdef = new FixtureDef();
 			fdef.shape = shape;
-			//fdef.isSensor = true;
 			
 			body = world.createBody(bdef);
 			body.createFixture(fdef);
@@ -90,7 +87,6 @@ public class MovingPlatform extends Model implements MovingElement {
 	public void draw(SpriteBatch sb)
 	{
 		if(!body.isActive()){return;}
-		//Vector2 pos = body.getPosition()
 		int repeat = width/movingPlatform.getWidth();
 		float xpos = body.getPosition().x*PPM;
 		float ypos = body.getPosition().y*PPM - movingPlatform.getHeight();
@@ -100,13 +96,5 @@ public class MovingPlatform extends Model implements MovingElement {
 		sb.draw(movingPlatform,(int)(xpos+i*movingPlatform.getWidth()),(int)(ypos));
 		}
 	}
-
-	/*@Override
-	public void switchState(boolean b) {
-		// TODO Auto-generated method stub
-		
-		setVisible(b);
-		
-	}*/
 
 }

@@ -26,7 +26,6 @@ public class Rope extends Model {
 	private void createBody(World world, int xpos, int ypos, int length){
 		BodyDef bdef = new BodyDef();
 		bdef.type = B2DVars.STATIC;
-		//bdef.position.set(0, -length/2/PPM);
 		
 		
 		ChainShape shape = new ChainShape();
@@ -57,10 +56,9 @@ public class Rope extends Model {
 		//Texture Offset
 		pos.sub(textureWidth/2, textureHeight);
 		//Rotational Offset to reset origin
-		//pos.add(length*PPM/2*(float)Math.sin(angle), length*PPM/2*(1-(float)Math.cos(angle)));
 		pos.add(textureHeight/2*(float)Math.sin(angle), textureHeight/2*(1-(float)Math.cos(angle)));
 		
-		sprite.setPosition(pos.x, pos.y); // TODO: offset to align with Box2D Body - gha 15.9.20
+		sprite.setPosition(pos.x, pos.y);
 		sprite.setRotation((float) Math.toDegrees(body.getAngle()));
 		sprite.draw(sb);
 	}

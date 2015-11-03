@@ -50,8 +50,8 @@ public class Model implements Switchable{
 	
 	
 	//Instance Field Variables	
-	protected int textureHeight; // moved from subs - gha 15.9.29
-	protected int textureWidth; // moved from subs - gha 15.9.29
+	protected int textureHeight;
+	protected int textureWidth;
 	protected Body body;
 	protected Sprite sprite;
 	protected TagList tags;
@@ -98,13 +98,13 @@ public class Model implements Switchable{
 		
 	}
 
-	//Accessors
+	//General
 	public Body getBody(){ return body; }
 	public void draw(SpriteBatch sb){
 		if(!visible){ return; }
 		if(sprite == null) return;
 		Vector2 pos = body.getPosition();
-		sprite.setPosition(pos.x*PPM - textureWidth/2, pos.y*PPM - textureHeight/2); // TODO: offset to align with Box2D Body - gha 15.9.20
+		sprite.setPosition(pos.x*PPM - textureWidth/2, pos.y*PPM - textureHeight/2);
 		sprite.setRotation((float) Math.toDegrees(body.getAngle()));
 		sprite.draw(sb);
 	}
@@ -123,7 +123,6 @@ public class Model implements Switchable{
 	{
 		visible = b;
 	}
-	
 	public boolean getVisible()
 	{
 		return visible;

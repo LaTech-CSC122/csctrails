@@ -1,17 +1,12 @@
 package grandtheftroster.elements;
 
 import static grandtheftroster.elements.B2DVars.PPM;
-import static grandtheftroster.elements.B2DVars.PPM;
+import grandtheftroster.utilities.Configuration;
 
 import java.util.ArrayList;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.physics.box2d.World;
-
-import grandtheftroster.utilities.Configuration;
-
 import com.badlogic.gdx.physics.box2d.World;
 
 public class Switch extends Model implements Switchable{
@@ -81,7 +76,6 @@ public class Switch extends Model implements Switchable{
 	
 	
 	//responsible for keys on
-	
 	public void setSwitchable(ArrayList<Switchable> s) 
 	{
 		switchable.addAll(s);
@@ -98,19 +92,14 @@ public class Switch extends Model implements Switchable{
 
 	@Override
 	public void switchState(boolean b) {
-		// TODO Auto-generated method stub
 		setVisible(b);
 		
 	}
-	
-	//grabs variable from lvl2contactlist
 	
 	@Override
 	public void draw(SpriteBatch sb)
 	{
 		if(!body.isActive()){return;}
-		//sb.draw(switchOff,(int)(body.getPosition().x*PPM),(int)(body.getPosition().y*PPM));
-		
 		if(isOn)
 		{
 			sb.draw(switchOn,(int)(body.getPosition().x*PPM)- switchOn.getWidth()/2,(int)(body.getPosition().y*PPM) - switchOn.getHeight()/2);
