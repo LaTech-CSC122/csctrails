@@ -2,6 +2,8 @@ package grandtheftroster.states;
 
 
 import static grandtheftroster.elements.B2DVars.PPM;
+
+import grandtheftroster.elements.Boss;
 import grandtheftroster.elements.GlyphFont;
 import grandtheftroster.elements.Model;
 import grandtheftroster.elements.ModelLoader;
@@ -105,7 +107,7 @@ public class Lvl1State extends GameState {
 		//Key
 		models.add(new Model(world, "MODEL:ROSTER", 16*28, 16*33));
 		//Boss
-		models.add(new Model(world, "MODEL:BOSS", Game.V_WIDTH-16*11, Game.V_HEIGHT-16*7-24));
+		models.add(new Boss(world, Boss.PUSHINGRIGHT, Game.V_WIDTH-16*11, Game.V_HEIGHT-16*7-24));
 		//Player
 		player = new Player(world, "MODEL:PLAYER", 16*5, 16*37);
 		models.add(player);
@@ -202,7 +204,7 @@ public class Lvl1State extends GameState {
 		sb.end();
 				
 		// Render Box2d world - development purposes only
-		//b2dDebugRenderer.render(world, b2dCamera.combined);
+		b2dDebugRenderer.render(world, b2dCamera.combined);
 	}
 	
 	public void dispose(){
