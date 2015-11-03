@@ -83,21 +83,23 @@ public class Lvl2State extends GameState{
 		new Model(world, "MODEL:BOUNDARY_SIDES");
 		new Model(world, "MODEL:BOUNDARY_BOTTOM");
 		//---Player
-		player = new Player(world, "MODEL:PLAYER", 64+16*1, 64+16*10);
+		player = new Player(world, "MODEL:PLAYER", 64+16*1, 64+16*3);
 		models.add(player);
 		
+		//---Boss
+		Model boss = new Model(world, "MODEL:BOSS", 64+16*1, Game.V_HEIGHT-(64+16*1)-24);
+		boss.flip();
+		models.add(boss);
+		
+		
 		//---Fans
-		models.add(new Fan(world, 64+16*27, 64+16*2, 32*6));
 		models.add(new Fan(world, 64+16*25, 64+16*2, 32*6));
-		
 		models.add(new Fan(world, 64+16*1, 64+16*10, 16*9));
-		//models.add(new Fan(world, 64+16*3, 64+16*10, 16*9));
-		
 		models.add(new Fan(world, 64+16*27, 64+16*24, 16*3));
 		
 		//---Springs
-		models.add(new Spring(world, 64+16*13, 64+16*6+2));
-		models.add(new Spring(world, 64+16*5, 64+16*2+2));
+		models.add(new Spring(world, 64+16*13, 64+16*6));
+		models.add(new Spring(world, 64+16*5, 64+16*2));
 		
 		//---Rope
 		models.add(new Rope(world, 64+16*18-5, 64+16*19, 16*5)); //18
@@ -111,24 +113,29 @@ public class Lvl2State extends GameState{
 		platformSwitchables.add(new MovingPlatform(world, 64, 16*4, (2*3.412f)/2, 64+16*14, 64+16*24) );
 		platformSwitchables.add(new MovingPlatform(world, 64, -16*6, (2*3.412f)/2, 64+16*24, 64+16*24) );
 		platformSwitchables.add(new MovingPlatform(world, 32, 16*7, (2*3.142f)/1.3f, 64+16*14, 64+16*28) );
+		for(Switchable s:platformSwitchables){
+			if(s instanceof MovingPlatform){
+				((MovingPlatform) s).setVisible(false);
+			}
+		}
 		models.addAll((Collection<? extends Model>) platformSwitchables);
 		
 		
 		
 		//---Roster
-		Model roster = new Model(world, "MODEL:ROSTER",16*6, 16*33);
+		Model roster = new Model(world, "MODEL:ROSTER",16*7, 16*33);
 		roster.setVisible(false);
 		models.add(roster);
 		
 		//---Keys
-		Switch chestKey = new Switch (world, 32, 16*5, (2*3.412f)/2, 64+16*15, 64+8*6-9);
+		Switch chestKey = new Switch (world, 32, 16*5, (2*3.412f)/2, 64+16*15, 64+8*6-10);
 		chestKey.addTag("chestKey");
 		ArrayList<Switchable> chestKeySwitchables = new ArrayList<Switchable>();
 		chestKeySwitchables.add(roster);
 		chestKey.setSwitchable(chestKeySwitchables);
 		models.add(chestKey);
 		
-		Switch platformSwitch = new Switch(world,32, 16*5, 0, 64+16*7, 64+16*24+4);
+		Switch platformSwitch = new Switch(world,32, 16*5, 0, 64+16*7, 64+16*25-10);
 		platformSwitch.addTag("platformSwitch");
 		platformSwitchables.add(chestKey);
 		platformSwitch.setSwitchable(platformSwitchables);

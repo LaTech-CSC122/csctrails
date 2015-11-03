@@ -78,8 +78,7 @@ public class Game implements ApplicationListener {
 		hudCamera.setToOrtho(false, V_WIDTH*SCALE, V_HEIGHT*SCALE);
 		
 		gsm = new GameStateManager(this);
-		gsm.pushState(GameStateManager.LEVEL_TWO); 
-
+		gsm.pushState(GameStateManager.LEVEL_THREE);
 	}
 	public void render() {
 		accum = Gdx.graphics.getDeltaTime();

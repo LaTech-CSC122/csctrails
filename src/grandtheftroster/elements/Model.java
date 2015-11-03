@@ -127,6 +127,10 @@ public class Model implements Switchable{
 	{
 		return visible;
 	}
+	public void flip(){
+		//if(sprite == null){ return; }
+		sprite.flip(true, false);
+	}
 	
 	//TagList methods
 	public void addTag(String t){ tags.add(t); }
