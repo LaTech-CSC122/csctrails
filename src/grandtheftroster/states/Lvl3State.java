@@ -47,6 +47,7 @@ public class Lvl3State extends GameState{
 
 	public Lvl3State(GameStateManager gsm) {
 		super(gsm, "LvL 3");
+		
 		cl = new Lvl3ContactListener();
 		world = new World(new Vector2(0f, -3f), false);
 		world.setContactListener(cl);
@@ -78,13 +79,16 @@ public class Lvl3State extends GameState{
 		tmr.setView(camera);
 		
 		
+		Model boss = new Model(world, "MODEL:BOSS", 64+16*273, 64+16*8+24);
+		models.add(boss);
+		
 		//Place Models
-		player = new Player(world, "MODEL:PLAYER", 64+16*4, 64+16*14); //4/14
-		//player = new Player(world, "MODEL:PLAYER", 64+16*128*2, 64+16*18); //4/14
-		//player.setActivity(player.ACTIVITY_FLYING);
+		//player = new Player(world, "MODEL:PLAYER", 64+16*4, 64+16*14); //4/14
+		player = new Player(world, "MODEL:PLAYER", 64+16*128*2, 64+16*18); //4/14
+		player.setActivity(player.ACTIVITY_FLYING);
 		models.add(player);
 		models.add(new Model(world,"MODEL:REDBULL", 64+16*9, 64+16*12+8));
-		models.add(new Model(world,"MODEL:ROSTER", 64+16*274, 64+16*9));
+		models.add(new Model(world,"MODEL:ROSTER", 64+16*275, 64+16*9));
 		
 		//Load and begin music
 		playlist.play("Level 3");
@@ -144,8 +148,7 @@ public class Lvl3State extends GameState{
 		sb.draw(cabFrame, 0, 0);
 		sb.end();
 		
-		b2dDebugRenderer.render(world, b2dCamera.combined);
-		// TODO Auto-generated method stub		
+		//b2dDebugRenderer.render(world, b2dCamera.combined);	
 	}
 
 	public void dispose(){

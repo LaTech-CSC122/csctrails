@@ -68,10 +68,6 @@ public class Lvl1State extends GameState {
 
 	public Lvl1State(GameStateManager gsm) {
 		super(gsm, "Play");
-	
-		
-		//HUD
-		hud.resetAll();
 		
 		//Box2D World
 		world = new World(new Vector2(0f, -3f), false);

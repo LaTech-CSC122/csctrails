@@ -72,6 +72,7 @@ public class Game implements ApplicationListener {
 		Gdx.input.setInputProcessor(new MyInputProcessor()); // Set the input listener of the application - gha 15.9.21
 		sb = new SpriteBatch();
 		hud = new HudCounter(3, 0, 0);
+		hud.resetAll();
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, V_WIDTH*SCALE, V_HEIGHT*SCALE);  // Set the view of the main camera - gha 15.9.21
 		hudCamera = new OrthographicCamera();
