@@ -107,13 +107,16 @@ public class Lvl1State extends GameState {
 		//Key
 		models.add(new Model(world, "MODEL:ROSTER", 16*28, 16*33));
 		//Boss
-		models.add(new Boss(world, Boss.PUSHINGRIGHT, Game.V_WIDTH-16*11, Game.V_HEIGHT-16*7-24));
+		Boss b = new Boss(world, Boss.PUSHINGLEFT, Game.V_WIDTH-16*11, Game.V_HEIGHT-16*7-24);
+		models.add(b);
+		b.update((2.5f)/9*5);
 		//Player
 		player = new Player(world, "MODEL:PLAYER", 16*5, 16*37);
 		models.add(player);
 		//Thrower
 		thrower = new Thrower(world, 16, 2.5f);
-		thrower.setPosistion(20*19, 16*30);
+		thrower.setPosistion(20*19+4, 16*30);
+		models.add(thrower.throwObject(20*19+4, 16*30));
 		models.add(thrower.throwObject(16*24, 16*11));
 		models.add(thrower.throwObject(16*14, 16*11));
 		models.add(thrower.throwObject(16*24, 16*15));
@@ -204,7 +207,7 @@ public class Lvl1State extends GameState {
 		sb.end();
 				
 		// Render Box2d world - development purposes only
-		b2dDebugRenderer.render(world, b2dCamera.combined);
+		//b2dDebugRenderer.render(world, b2dCamera.combined);
 	}
 	
 	public void dispose(){

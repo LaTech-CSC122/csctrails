@@ -1,6 +1,8 @@
 package grandtheftroster.elements;
 
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.World;
 import static grandtheftroster.elements.B2DVars.PPM;
 
@@ -20,6 +22,8 @@ public class Boss extends Model {
 		cfg = new Configuration();
 		cfg.loadConfiguration("res/config/paths/");
 	}
+
+	
 	
 	private int state;
 	
@@ -28,26 +32,29 @@ public class Boss extends Model {
 		body.setTransform(xpos/PPM, ypos/PPM, 0);
 		loadAnimation();
 		this.state = state;
+		am.setState(state);
 		
 	}
 
 	private void loadAnimation() {
 		am = new AnimationManager();
-		am.addAnimation(AnimationManager.createAnimation(.1f, 9, 1, false, false,
+		am.addAnimation(AnimationManager.createAnimation(5/18f, 48, 48, false, false,
 				cfg.getProperty("BOSS_PUSHING@PATHS:SPRITES")), PUSHINGLEFT);
-		am.addAnimation(AnimationManager.createAnimation(.1f, 9, 1, false, false,
+		am.addAnimation(AnimationManager.createAnimation(.1f, 48, 48, false, false,
 				cfg.getProperty("BOSS_PUSHING@PATHS:SPRITES")), FACINGLEFT);
-		am.addAnimation(AnimationManager.createAnimation(.1f, 9, 1, true, false,
+		am.addAnimation(AnimationManager.createAnimation(.1f, 48, 48, true, false,
 				cfg.getProperty("BOSS_PUSHING@PATHS:SPRITES")), PUSHINGRIGHT);
-		am.addAnimation(AnimationManager.createAnimation(.1f, 9, 1, true, false,
+		am.addAnimation(AnimationManager.createAnimation(.1f, 48, 48, true, false,
 				cfg.getProperty("BOSS_PUSHING@PATHS:SPRITES")), FACINGRIGHT);
 		am.setState(FACINGLEFT);
+		am.resetAnimation();
+		
 	}
 	
 	public void update(float dt)
 	{
 		super.update(dt);
-		am.setState(state);
+		//am.setState(state);
 		if(state == PUSHINGLEFT || state == PUSHINGRIGHT)
 		{
 			am.update(dt);
