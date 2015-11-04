@@ -83,9 +83,9 @@ public class Lvl3State extends GameState{
 		models.add(boss);
 		
 		//Place Models
-		//player = new Player(world, "MODEL:PLAYER", 64+16*4, 64+16*14); //4/14
-		player = new Player(world, "MODEL:PLAYER", 64+16*128*2, 64+16*18); //4/14
-		player.setActivity(player.ACTIVITY_FLYING);
+		player = new Player(world, "MODEL:PLAYER", 64+16*4, 64+16*14); //4/14
+		//player = new Player(world, "MODEL:PLAYER", 64+16*128*2, 64+16*18); //4/14
+		//player.setActivity(player.ACTIVITY_FLYING);
 		models.add(player);
 		models.add(new Model(world,"MODEL:REDBULL", 64+16*9, 64+16*12+8));
 		models.add(new Model(world,"MODEL:ROSTER", 64+16*275, 64+16*9));

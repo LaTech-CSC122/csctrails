@@ -42,6 +42,7 @@ public class GameOverState extends GameState {
 		if(MyInput.isPressed(MyInput.BUTTON_ENTER)){ 
 			gsm.setState(GameStateManager.LEVEL_ONE);
 			hud.resetAll();
+			
 		}
 	}
 

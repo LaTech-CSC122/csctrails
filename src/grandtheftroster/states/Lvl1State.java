@@ -111,7 +111,7 @@ public class Lvl1State extends GameState {
 		models.add(b);
 		b.update((2.5f)/9*5);
 		//Player
-		player = new Player(world, "MODEL:PLAYER", 16*5, 16*37);
+		player = new Player(world, "MODEL:PLAYER", 16*5, 16*7); //37
 		models.add(player);
 		//Thrower
 		thrower = new Thrower(world, 16, 2.5f);
@@ -178,7 +178,8 @@ public class Lvl1State extends GameState {
 		}
 		else if(!player.isAlive() && hud.getLives()<=1){
 			hud.modifyAnky(+1);
-			gsm.setState(GameStateManager.GAME_OVER);			
+			gsm.setState(GameStateManager.GAME_OVER);
+			
 		}
 
 	}
