@@ -11,6 +11,7 @@ import grandtheftroster.elements.Thrower;
 import grandtheftroster.elements.Thrown;
 import grandtheftroster.handlers.GameStateManager;
 import grandtheftroster.handlers.Lvl1ContactListener;
+import grandtheftroster.handlers.MyInput;
 import grandtheftroster.main.Game;
 import grandtheftroster.player.Player;
 import grandtheftroster.utilities.Configuration;
@@ -136,7 +137,10 @@ public class Lvl1State extends GameState {
 	}
 
 				
-	public void handleInput() {		
+	public void handleInput() {	
+		if(MyInput.isPressed(MyInput.BUTTON_ESC)) {
+			game.shutdown();
+		}
 	}
 	
 	public void update(float dt) {
@@ -144,6 +148,7 @@ public class Lvl1State extends GameState {
 		handleInput();
 		world.step(dt, 6, 2);
 		hud.modifyTime(dt);
+		handleInput();
 		
 		//Clean up inactive models
 		ArrayList<Model> modelsToDestroy = Model.getDestoryList();

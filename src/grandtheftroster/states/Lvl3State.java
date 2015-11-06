@@ -7,6 +7,7 @@ import grandtheftroster.elements.Model;
 import grandtheftroster.elements.ModelLoader;
 import grandtheftroster.handlers.GameStateManager;
 import grandtheftroster.handlers.Lvl3ContactListener;
+import grandtheftroster.handlers.MyInput;
 import grandtheftroster.main.Game;
 import grandtheftroster.player.Player;
 import grandtheftroster.utilities.Configuration;
@@ -83,9 +84,7 @@ public class Lvl3State extends GameState{
 		models.add(boss);
 		
 		//Place Models
-		player = new Player(world, "MODEL:PLAYER", 64+16*4, 64+16*14); //4/14
-		//player = new Player(world, "MODEL:PLAYER", 64+16*128*2, 64+16*18); //4/14
-		//player.setActivity(player.ACTIVITY_FLYING);
+		player = new Player(world, "MODEL:PLAYER", 64+16*4, 64+16*14);
 		models.add(player);
 		models.add(new Model(world,"MODEL:REDBULL", 64+16*9, 64+16*12+8));
 		models.add(new Model(world,"MODEL:ROSTER", 64+16*275, 64+16*9));
@@ -96,11 +95,16 @@ public class Lvl3State extends GameState{
 		}
 
 
-	public void handleInput() {}
+	public void handleInput() {
+		if(MyInput.isPressed(MyInput.BUTTON_ESC)) {
+			game.shutdown();
+		}
+	}
 
 	public void update(float dt) {
 		//Update World
 		world.step(dt, 6, 2);
+		handleInput();
 		
 		//Update Models
 		for(Model m:models){
@@ -142,9 +146,9 @@ public class Lvl3State extends GameState{
 		//SpriteBatch to hudCam
 		sb.setProjectionMatrix(hudCam.combined);
 		sb.begin();
-		gfont16.draw("Time " + (int) hud.getTime(), GlyphFont.COLOR_WHITE, 8+64, Game.V_HEIGHT-20-64); //-10 originally
-		gfont16.draw(hud.getScore(), GlyphFont.COLOR_WHITE, 64+16*13, Game.V_HEIGHT-20-64); // -10 originally
-		gfont16.draw("Lives INF", GlyphFont.COLOR_WHITE, Game.V_WIDTH-64-16*9-8, Game.V_HEIGHT-20-64); // -10 originally
+		gfont16.draw("Time " + (int) hud.getTime(), GlyphFont.COLOR_WHITE, 8+64, Game.V_HEIGHT-20-64);
+		gfont16.draw(hud.getScore(), GlyphFont.COLOR_WHITE, 64+16*13, Game.V_HEIGHT-20-64); 
+		gfont16.draw("Lives INF", GlyphFont.COLOR_WHITE, Game.V_WIDTH-64-16*9-8, Game.V_HEIGHT-20-64); 
 		sb.draw(cabFrame, 0, 0);
 		sb.end();
 		

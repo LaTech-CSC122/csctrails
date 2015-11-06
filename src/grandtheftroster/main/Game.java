@@ -43,8 +43,8 @@ public class Game implements ApplicationListener {
 	private static Configuration cfg;
 	
 	public static final String TITLE = "Grand Theft Roster";
-	public static final int V_WIDTH = 576; //448
-	public static final int V_HEIGHT = 640; //512
+	public static final int V_WIDTH = 576;
+	public static final int V_HEIGHT = 640;
 	public static final int SCALE = 1;
 	
 	public static final float STEP = 1 / 60f;
@@ -65,7 +65,7 @@ public class Game implements ApplicationListener {
 	private AudioPlayer playlist;
 	
 	public void create() {
-		//TODO: Organize Game.create() method
+		
 		loadAudio();
 		
 		Texture.setEnforcePotImages(false); // Prevents GL from forcing power of 2 images
@@ -79,7 +79,7 @@ public class Game implements ApplicationListener {
 		hudCamera.setToOrtho(false, V_WIDTH*SCALE, V_HEIGHT*SCALE);
 		
 		gsm = new GameStateManager(this);
-		gsm.pushState(GameStateManager.LEVEL_ONE);
+		gsm.pushState(GameStateManager.SPLASH_SCREEN);
 	}
 	public void render() {
 		accum = Gdx.graphics.getDeltaTime();
@@ -112,6 +112,5 @@ public class Game implements ApplicationListener {
 		playlist.addSound("Level 2", cfg.getProperty("LVL2BKG@PATHS:AUDIO"), 0.3f, true);
 		playlist.addSound("Level 3", cfg.getProperty("LVL3BKG@PATHS:AUDIO"), 0.4f, true);
 		playlist.setVolume(0.4f);
-		//playlist.setVolume(0);
 	}
 }
