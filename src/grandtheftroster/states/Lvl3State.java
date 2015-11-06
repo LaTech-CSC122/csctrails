@@ -144,7 +144,7 @@ public class Lvl3State extends GameState{
 		sb.draw(cabFrame, 0, 0);
 		sb.end();
 		
-		b2dDebugRenderer.render(world, b2dCamera.combined);
+		//b2dDebugRenderer.render(world, b2dCamera.combined);
 		// TODO Auto-generated method stub		
 	}
 
