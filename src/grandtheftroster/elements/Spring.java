@@ -6,7 +6,7 @@ import com.badlogic.gdx.physics.box2d.World;
 
 public class Spring extends Model {
 	
-	//TODO: Decide if this class is necessary
+	
 	
 	public Spring(World world, int xpos, int ypos)
 	{

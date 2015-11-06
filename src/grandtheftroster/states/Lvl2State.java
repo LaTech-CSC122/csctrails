@@ -21,6 +21,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import grandtheftroster.elements.*;
 import grandtheftroster.handlers.GameStateManager;
 import grandtheftroster.handlers.Lvl2ContactListener;
+import grandtheftroster.handlers.MyInput;
 import grandtheftroster.main.Game;
 import grandtheftroster.player.Player;
 import grandtheftroster.utilities.Configuration;
@@ -148,10 +149,15 @@ public class Lvl2State extends GameState{
 	}
 
 
-	public void handleInput() {}
+	public void handleInput() {
+		if(MyInput.isPressed(MyInput.BUTTON_ESC)) {
+			game.shutdown();
+		}
+	}
 
 	public void update(float dt) {
 		world.step(dt, 6, 2);
+		handleInput();
 		
 		for(Model m:models){
 			m.update(dt);
@@ -192,9 +198,9 @@ public class Lvl2State extends GameState{
 		//SpriteBatch to hudCam
 		sb.setProjectionMatrix(hudCam.combined);
 		sb.begin();
-		gfont16.draw("Time " + (int) hud.getTime(), GlyphFont.COLOR_WHITE, 8+64, Game.V_HEIGHT-20-64); //-10 originally
-		gfont16.draw(hud.getScore(), GlyphFont.COLOR_WHITE, 64+16*13, Game.V_HEIGHT-20-64); // -10 originally
-		gfont16.draw("Lives " + hud.getLives(), GlyphFont.COLOR_WHITE, Game.V_WIDTH-64-16*8, Game.V_HEIGHT-20-64); // -10 originally
+		gfont16.draw("Time " + (int) hud.getTime(), GlyphFont.COLOR_WHITE, 8+64, Game.V_HEIGHT-20-64); 
+		gfont16.draw(hud.getScore(), GlyphFont.COLOR_WHITE, 64+16*13, Game.V_HEIGHT-20-64);
+		gfont16.draw("Lives " + hud.getLives(), GlyphFont.COLOR_WHITE, Game.V_WIDTH-64-16*8, Game.V_HEIGHT-20-64);
 		sb.draw(cabFrame, 0, 0);
 		sb.end();
 		
