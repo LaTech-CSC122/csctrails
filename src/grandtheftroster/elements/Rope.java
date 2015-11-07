@@ -48,6 +48,7 @@ public class Rope extends Model {
 		return length;
 	}
 	
+	@Override
 	public void draw(SpriteBatch sb){ 
 		if(sprite == null) return;
 		float angle =  body.getAngle();

@@ -63,8 +63,6 @@ public class SplashScreenState extends GameState {
 			gfont16.draw("Presents", GlyphFont.COLOR_WHITE, GlyphFont.ALIGN_CENTER, Game.V_WIDTH/2, Game.V_HEIGHT/3*2-markoLogo.getHeight()/2-32-64);
 		}
 		else if(state == 1){
-			//gfont16.draw("Grand Theft", GlyphFont.COLOR_WHITE, GlyphFont.ALIGN_CENTER, Game.V_WIDTH/2, Game.V_HEIGHT/8*5);
-			//gfont16.draw("Roster", GlyphFont.COLOR_WHITE, GlyphFont.ALIGN_CENTER, Game.V_WIDTH/2, Game.V_HEIGHT/8*5-32);
 			sb.draw(gameLogo, Game.V_WIDTH/2-gameLogo.getWidth()/2, Game.V_HEIGHT/3*2-gameLogo.getHeight()/2-64);
 		}
 		int startingY = 64+16*3;

@@ -2,7 +2,6 @@ package grandtheftroster.states;
 
 
 import static grandtheftroster.elements.B2DVars.PPM;
-
 import grandtheftroster.elements.Boss;
 import grandtheftroster.elements.GlyphFont;
 import grandtheftroster.elements.Model;
@@ -19,11 +18,8 @@ import grandtheftroster.utilities.Configuration;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -39,10 +35,6 @@ import com.badlogic.gdx.physics.box2d.World;
  * place. It is ran using the event listeners declared by
  * its super class, GameState to run the game-state. See
  * in-line comment headers for more details
- *
- * Change Log:
- * 15.9.21gha: First Edition
- * 
  */
 public class Lvl1State extends GameState {
 	
@@ -108,16 +100,17 @@ public class Lvl1State extends GameState {
 		//Key
 		models.add(new Model(world, "MODEL:ROSTER", 16*28, 16*33));
 		//Boss
-		Boss b = new Boss(world, Boss.PUSHINGLEFT, Game.V_WIDTH-16*11, Game.V_HEIGHT-16*7-24);
+		Boss b = new Boss(world, Boss.PUSHINGLEFT, Game.V_WIDTH-16*13, Game.V_HEIGHT-16*7-24);
 		models.add(b);
 		b.update((2.5f)/9*5);
+		models.add(new Model(world, "MODEL:CHAIR",Game.V_WIDTH-16*12, Game.V_HEIGHT-16*9-7));
 		//Player
-		player = new Player(world, "MODEL:PLAYER", 16*5, 16*7); //37
+		player = new Player(world, "MODEL:PLAYER", 16*5, 16*7);
 		models.add(player);
 		//Thrower
 		thrower = new Thrower(world, 16, 2.5f);
-		thrower.setPosistion(20*19+4, 16*30);
-		models.add(thrower.throwObject(20*19+4, 16*30));
+		thrower.setPosistion(Game.V_WIDTH-16*14, 16*30);
+		models.add(thrower.throwObject(Game.V_WIDTH-16*14, 16*30));
 		models.add(thrower.throwObject(16*24, 16*11));
 		models.add(thrower.throwObject(16*14, 16*11));
 		models.add(thrower.throwObject(16*24, 16*15));

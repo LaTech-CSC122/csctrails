@@ -76,11 +76,9 @@ public class Thrown extends Model{
 	
 	public void pushRight(){
 		body.setLinearVelocity(speed, body.getLinearVelocity().y);
-		//body.setAngularVelocity(-speed*314/(radius)); cut off rotation for chair implementation 
 	}
 	public void pushLeft(){
 		body.setLinearVelocity(-speed, body.getLinearVelocity().y);
-		//body.setAngularVelocity(speed*314/(radius)); cut off rotation for chair implementation
 	}
 	
 	public void addGroundContact(){
@@ -95,6 +93,7 @@ public class Thrown extends Model{
 	}
 	public int getGroundContact(){ return groundContact; }
 
+	@Override
 	public boolean destory(){
 		if(!super.destory()){ return false; }
 		if(thrower != null){

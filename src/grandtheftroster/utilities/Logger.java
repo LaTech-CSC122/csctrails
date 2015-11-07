@@ -23,8 +23,6 @@ public class Logger {
 			System.out.println("Error: Could not create BufferedWritter");
 			System.out.println(e.toString());
 		}
-		
-		
 	}
 
 	public void log(String message) {

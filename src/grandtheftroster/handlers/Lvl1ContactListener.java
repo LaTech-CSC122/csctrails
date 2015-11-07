@@ -17,10 +17,6 @@ import com.badlogic.gdx.physics.box2d.Manifold;
  * will serve as an event handle for every collision.
  * This gives a location to program what happens when
  * collisions occur.
- * 
- * Change Log:
- * 15.9.21gha: First Edition
- *
  */
 
 public class Lvl1ContactListener implements ContactListener {
@@ -44,7 +40,6 @@ public class Lvl1ContactListener implements ContactListener {
 		fixtures[0] = fixtures[1];
 		fixtures[1] = c.getFixtureA();
 		handleBeginContact(fixtures);
-		
 	}
 	
 	// called when two fixtures no longer collide
@@ -145,12 +140,10 @@ public class Lvl1ContactListener implements ContactListener {
 		if(model0.hasTag("thrown") && model1.hasTag("platform, left")){
 			Thrown t = (Thrown) fixtures[0].getBody().getUserData();
 			t.pushLeft();
-			//t.addGroundContact();
 		}
 		else if(model0.hasTag("thrown") && model1.hasTag("platform, right")){
 			Thrown t = (Thrown) fixtures[0].getBody().getUserData();
 			t.pushRight();
-			//t.addGroundContact();
 		}
 	}
 }

@@ -26,10 +26,6 @@ import com.badlogic.gdx.utils.Array;
  * This is the superclass of all GameStates. It sets the interface
  * that will exist between the Game State Manager and each Game State.
  * Essential objects are already imported and instantiated.
- * 
- * Change Log:
- * 15.9.20gha: First Edition
- *
  */
 
 public abstract class GameState {

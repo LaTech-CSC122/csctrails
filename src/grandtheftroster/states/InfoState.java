@@ -8,19 +8,14 @@ import grandtheftroster.main.Game;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.GL10;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 
 
 
 
 public class InfoState extends GameState {
 	
-	//BitmapFont font;
-	//GlyphFont gfont;
 	public InfoState(GameStateManager gsm){
 		super(gsm, "Main Menu");
-		//font = new BitmapFont();
-		//gfont = new GlyphFont("res/images/retro font.png", 8, sb); 
 	}
 	
 	@Override
@@ -44,10 +39,6 @@ public class InfoState extends GameState {
 		//SpriteBatch to GPU
 		sb.setProjectionMatrix(hudCam.combined);
 		sb.begin();
-			//font.draw(sb, "Main Menu", Game.V_WIDTH/2-35, Game.V_HEIGHT/2);
-			//font.draw(sb, "Press ENTER to continue.", 10, Game.V_HEIGHT-10);
-			//font.draw(sb, "Press ESC to quit.", 10, Game.V_HEIGHT-25);
-			//gfont16.draw("*Main Menu*", GlyphFont.ALIGN_CENTER, Game.V_WIDTH/2, Game.V_HEIGHT/2+220);
 			gfont16.draw("Press ENTER to continue",  GlyphFont.ALIGN_CENTER, Game.V_WIDTH/2, Game.V_HEIGHT/2-180); //originally -10
 			gfont16.draw("Press ESC to quit",  GlyphFont.ALIGN_CENTER, Game.V_WIDTH/2, Game.V_HEIGHT/2-200); //originally -25
 			gfont16.draw("Controls:", GlyphFont.ALIGN_CENTER, Game.V_WIDTH/2, Game.V_HEIGHT/2+20);
@@ -62,14 +53,11 @@ public class InfoState extends GameState {
 					GlyphFont.ALIGN_CENTER, Game.V_WIDTH/2, Game.V_HEIGHT/2+140);
 			gfont8.draw("to retrieve the class roster from the infamous ANKY.",
 					GlyphFont.ALIGN_CENTER, Game.V_WIDTH/2, Game.V_HEIGHT/2+130);
-			//gfont16.draw("Hunter", GlyphFont.ALIGN_CENTER, Game.V_WIDTH/2, Game.V_HEIGHT-64-32);
 			for(Model i:models){
 				i.draw(sb);
 			}
 			sb.draw(cabFrame, 0, 0);
 		sb.end();
-		
-		
 	}
 
 }

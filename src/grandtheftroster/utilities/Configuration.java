@@ -27,7 +27,6 @@ public class Configuration {
 		if((id.indexOf(":") != id.lastIndexOf(":")) || !id.contains(":")){ return null; }
 		if((id.indexOf("@") != id.lastIndexOf("@")) || !id.contains("@")){ return null; }
 		// change "BODY_WIDTH@MODEL:KEY" to "MODEL", "KEY" and "BODY_WIDTH"
-		//System.out.println(id);
 		String profile = id.substring(id.indexOf("@")+1);
 		String property = id.substring(0, id.indexOf("@"));
 		if(configuration.containsKey(profile)){

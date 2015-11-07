@@ -22,14 +22,13 @@ public class GameOverState extends GameState {
 		cfg.loadConfiguration("res/config/paths/audio paths.config");
 	}
 	
-	private BitmapFont font;
 	private Texture wastedGraphic;
 	private Music backgroundMusic;
 	
 	public GameOverState(GameStateManager gsm) {
 		super(gsm, "Game Over");
         wastedGraphic = new Texture("res/images/failure_wasted/failure_wasted_ingame2x.png"); //wasted logo
-		font = new BitmapFont();
+		new BitmapFont();
 		backgroundMusic = Gdx.audio.newMusic(new FileHandle(cfg.getProperty("THEME@PATHS:AUDIO")));
 		backgroundMusic.setVolume(0.5f);
 		backgroundMusic.setLooping(true);
@@ -58,8 +57,7 @@ public class GameOverState extends GameState {
 		
 		sb.setProjectionMatrix(hudCam.combined);
 		sb.begin(); //lives lost is a placeholder in case we give a power up that gives extra lives.
-            sb.draw(wastedGraphic, Game.V_WIDTH/2-wastedGraphic.getWidth()/2, Game.V_HEIGHT/3*2-wastedGraphic.getHeight()/2); //"wasted" graphic
-            //gfont16.draw("*** Game Over ***", GlyphFont.COLOR_WHITE, GlyphFont.ALIGN_CENTER, Game.V_WIDTH/2, Game.V_HEIGHT*3/4); text-based "game over"
+		sb.draw(wastedGraphic, Game.V_WIDTH/2-wastedGraphic.getWidth()/2, Game.V_HEIGHT/3*2-wastedGraphic.getHeight()/2); //"wasted" graphic
 
 			int middleX = Game.V_WIDTH/2+16;
 			int middleY = Game.V_HEIGHT*2/3-16*4;

@@ -1,13 +1,26 @@
 package grandtheftroster.states;
 
 import static grandtheftroster.elements.B2DVars.PPM;
+import grandtheftroster.elements.Fan;
+import grandtheftroster.elements.GlyphFont;
+import grandtheftroster.elements.Model;
+import grandtheftroster.elements.ModelLoader;
+import grandtheftroster.elements.MovingPlatform;
+import grandtheftroster.elements.Rope;
+import grandtheftroster.elements.Spring;
+import grandtheftroster.elements.Switch;
+import grandtheftroster.elements.Switchable;
+import grandtheftroster.handlers.GameStateManager;
+import grandtheftroster.handlers.Lvl2ContactListener;
+import grandtheftroster.handlers.MyInput;
+import grandtheftroster.main.Game;
+import grandtheftroster.player.Player;
+import grandtheftroster.utilities.Configuration;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -17,14 +30,6 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
-
-import grandtheftroster.elements.*;
-import grandtheftroster.handlers.GameStateManager;
-import grandtheftroster.handlers.Lvl2ContactListener;
-import grandtheftroster.handlers.MyInput;
-import grandtheftroster.main.Game;
-import grandtheftroster.player.Player;
-import grandtheftroster.utilities.Configuration;
 
 public class Lvl2State extends GameState{
 	
@@ -37,6 +42,7 @@ public class Lvl2State extends GameState{
 	
 	private World world;
 	private Player player;
+	@SuppressWarnings("unused")
 	private Box2DDebugRenderer b2dDebugRenderer;
 	private OrthographicCamera b2dCamera;
 	private Lvl2ContactListener cl;
@@ -46,6 +52,7 @@ public class Lvl2State extends GameState{
 	private OrthogonalTiledMapRenderer tmr;
 
 		
+
 	@SuppressWarnings("unchecked")
 	public Lvl2State(GameStateManager gsm) {
 		super(gsm, "LvL 2");
@@ -144,7 +151,7 @@ public class Lvl2State extends GameState{
 		platformSwitch.setVisible(true);
 		
 		
-		//Load and begin music
+		//begin music
 		playlist.play("Level 2");
 	}
 

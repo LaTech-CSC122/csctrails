@@ -20,11 +20,6 @@ import java.util.Stack;
  * 2. The GSM is responsible to passing the render, update, dispose
  *    etc. commands from the application listener to whichever
  *    game-state is the current game-state.
- *    
- *
- * Change Log:
- * 15.9.20gha: First Edition
- * 
  */
 
 public class GameStateManager {
@@ -109,18 +104,3 @@ public class GameStateManager {
 	}
 	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

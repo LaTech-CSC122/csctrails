@@ -14,8 +14,6 @@ public class Hovering extends Activity{
 	
 	private static final float SPEED = 0.01f;
 
-
-
 	public Hovering(Player p) {
 		super(p);
 		loadAnimations();

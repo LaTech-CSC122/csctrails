@@ -10,10 +10,6 @@ import com.badlogic.gdx.Input.Keys;
  * calls on it as an event handle for input. The InPr makes 
  * changes to the static fields of MyInput to store data on
  * the state of the buttons.
- *
- * Change Log:
- * 15.9.21gha: First Edition
- * 
  */
 
 public class MyInputProcessor extends InputAdapter {

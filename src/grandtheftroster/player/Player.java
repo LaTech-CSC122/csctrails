@@ -80,13 +80,6 @@ public class Player extends Model{
 		ACTIVITY_SWINGING.handleEndContact(model);
 		ACTIVITY_SWINGING.handleEndContact(model);
 		//do any handleing needed in player		
-		
-		//if(actMan.getActivity()==ACTIVITY_HOVERING && model.hasTag("fan")){
-		//	actMan.setActivity(ACTIVITY_WALKING);
-		//}
-		
-		
-		
 	}
 	
 	//Getters and Mutators
@@ -125,7 +118,6 @@ public class Player extends Model{
 			activity.begin();
 		}
 		public Activity getActivity(){ return activity; }
-		
 	}
 	
 }

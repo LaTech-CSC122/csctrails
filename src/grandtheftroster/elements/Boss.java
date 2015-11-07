@@ -1,13 +1,11 @@
 package grandtheftroster.elements;
 
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.physics.box2d.World;
 import static grandtheftroster.elements.B2DVars.PPM;
-
 import grandtheftroster.handlers.AnimationManager;
 import grandtheftroster.utilities.Configuration;
+
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.physics.box2d.World;
 
 public class Boss extends Model {
 	private AnimationManager am;
@@ -54,7 +52,6 @@ public class Boss extends Model {
 	public void update(float dt)
 	{
 		super.update(dt);
-		//am.setState(state);
 		if(state == PUSHINGLEFT || state == PUSHINGRIGHT)
 		{
 			am.update(dt);

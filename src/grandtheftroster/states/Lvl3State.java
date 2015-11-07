@@ -1,7 +1,6 @@
 package grandtheftroster.states;
 
 import static grandtheftroster.elements.B2DVars.PPM;
-
 import grandtheftroster.elements.GlyphFont;
 import grandtheftroster.elements.Model;
 import grandtheftroster.elements.ModelLoader;
@@ -13,8 +12,6 @@ import grandtheftroster.player.Player;
 import grandtheftroster.utilities.Configuration;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -23,7 +20,6 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
-import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.World;
 
 public class Lvl3State extends GameState{
@@ -37,6 +33,7 @@ public class Lvl3State extends GameState{
 	
 	private World world;
 	private Player player;
+	@SuppressWarnings("unused")
 	private Box2DDebugRenderer b2dDebugRenderer;
 	private OrthographicCamera b2dCamera;
 	private Lvl3ContactListener cl;
@@ -155,6 +152,7 @@ public class Lvl3State extends GameState{
 		//b2dDebugRenderer.render(world, b2dCamera.combined);	
 	}
 
+	@Override
 	public void dispose(){
 		playlist.stop("Level 3");
 	}

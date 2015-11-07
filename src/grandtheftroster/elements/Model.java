@@ -22,12 +22,6 @@ import com.badlogic.gdx.utils.Array;
  * Additional data and functionality could include a characters
  * health, a model's weight, or the ability to change the sprite 
  * during game play. 
- * 
- * Change Log:
- * 15.9.20gha: First Edition
- * 15.9.29gha: Moved getSprite functionality from sub to super
- *             Moved variables from sub to super
- *
  */
 
 public class Model implements Switchable{

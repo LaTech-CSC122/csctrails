@@ -32,10 +32,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
  * 
  * In addition to the GSM, a few other important task are completed
  * here such. Each task should be documented in-line.
- *
- * Change Log:
- * 15.9.21gha: First edition
- * 
  */
 
 public class Game implements ApplicationListener {
@@ -79,9 +75,10 @@ public class Game implements ApplicationListener {
 		hudCamera.setToOrtho(false, V_WIDTH*SCALE, V_HEIGHT*SCALE);
 		
 		gsm = new GameStateManager(this);
-		gsm.pushState(GameStateManager.SPLASH_SCREEN);
+		gsm.pushState(GameStateManager.LEVEL_ONE);
 	}
 	public void render() {
+		handleInput();
 		accum = Gdx.graphics.getDeltaTime();
 		gsm.update(accum);
 		gsm.render();
@@ -91,6 +88,7 @@ public class Game implements ApplicationListener {
 	public void dispose() {
 		gsm.destoryAll();
 	}	
+	
 	public void resize(int w, int h) {}
 	public void pause() {}
 	public void resume() {}
@@ -112,5 +110,18 @@ public class Game implements ApplicationListener {
 		playlist.addSound("Level 2", cfg.getProperty("LVL2BKG@PATHS:AUDIO"), 0.3f, true);
 		playlist.addSound("Level 3", cfg.getProperty("LVL3BKG@PATHS:AUDIO"), 0.4f, true);
 		playlist.setVolume(0.4f);
+	}
+	
+	private void handleInput(){
+		if(MyInput.isPressed(MyInput.BUTTON_1)){
+			gsm.setState(GameStateManager.LEVEL_ONE);
+		}
+		if(MyInput.isPressed(MyInput.BUTTON_2)){
+			gsm.setState(GameStateManager.LEVEL_TWO);
+		}
+		if(MyInput.isPressed(MyInput.BUTTON_3)){
+			gsm.setState(GameStateManager.LEVEL_THREE);
+		}
+		
 	}
 }
