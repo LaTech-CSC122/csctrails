@@ -96,6 +96,10 @@ public class Lvl3State extends GameState{
 		if(MyInput.isPressed(MyInput.BUTTON_ESC)) {
 			game.shutdown();
 		}
+		if(MyInput.isPressed(MyInput.BUTTON_W)) {
+			player.setPosition(64+16*255, 64+16*18, 0);
+			player.setActivity(player.ACTIVITY_FLYING);
+		}
 	}
 
 	public void update(float dt) {
