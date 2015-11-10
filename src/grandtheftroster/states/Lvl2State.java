@@ -106,11 +106,11 @@ public class Lvl2State extends GameState{
 		models.add(new Fan(world, 64+16*27, 64+16*24, 16*3));
 		
 		//---Springs
-		models.add(new Spring(world, 64+16*13, 64+16*6));
-		models.add(new Spring(world, 64+16*5, 64+16*2));
+		models.add(new Spring(world, 64+16*13+4, 64+16*6-6));
+		models.add(new Spring(world, 64+16*5+4, 64+16*2-6));
 		
 		//---Rope
-		models.add(new Rope(world, 64+16*18-5, 64+16*19, 16*5)); //18
+		models.add(new Rope(world, 64+16*18-5, 64+16*19, 16*5));
 		models.add(new Rope(world, 64+16*18, 64+16*32, 16*3));
 		
 	

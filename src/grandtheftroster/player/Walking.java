@@ -2,6 +2,7 @@ package grandtheftroster.player;
 
 import grandtheftroster.elements.Model;
 import grandtheftroster.elements.MovingElement;
+import grandtheftroster.elements.Spring;
 import grandtheftroster.elements.Switch;
 import grandtheftroster.handlers.AnimationManager;
 import grandtheftroster.handlers.MyInput;
@@ -69,7 +70,10 @@ public class Walking extends Activity{
 
 	public void handleBeginContact(Model model){
 		if(model.hasTag("ground")){ contacts++; }
-		if(active && model.hasTag("spring")){body.setLinearVelocity(0, 2);;}
+		if(active && model.hasTag("spring")){
+			body.setLinearVelocity(0, 2);
+			((Spring) model).action();
+		}
 		if(active && model.hasTag("ladder")){ player.setActivity(player.ACTIVITY_CLIMBING); }
 		if(active && model.hasTag("fan")){ player.setActivity(player.ACTIVITY_HOVERING); }
 		if(active && model.hasTag("switch,key")){

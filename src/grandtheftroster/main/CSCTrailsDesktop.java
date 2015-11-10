@@ -32,6 +32,7 @@ public class CSCTrailsDesktop {
 		Game game = new Game();
 		//Create a new LwjglApplication, passing it the cfg and Game listener - gha 15.9.21
 		game.setApplication(new LwjglApplication(game, cfg));
+	
 		
 	}
 	
