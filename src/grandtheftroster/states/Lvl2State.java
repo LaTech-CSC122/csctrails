@@ -115,7 +115,7 @@ public class Lvl2State extends GameState{
 		
 	
 		
-		//moving platforms
+		//moving platforms 
 		ArrayList<Switchable> platformSwitchables = new ArrayList<Switchable>();
 		platformSwitchables.add(new MovingPlatform(world, 32, 16*5, (2*3.412f)/2, 64+16*15, 64+8*4) );
 		platformSwitchables.add(new MovingPlatform(world, 64, 16*4, (2*3.412f)/2, 64+16*14, 64+16*24) );
@@ -127,6 +127,8 @@ public class Lvl2State extends GameState{
 			}
 		}
 		models.addAll((Collection<? extends Model>) platformSwitchables);
+		
+		models.add(new MovingPlatform(world, 64, -16*4, (2*3.412f)/2, 64+16*22, 64+8*4) );
 		
 		
 		
