@@ -105,7 +105,7 @@ public class Lvl1State extends GameState {
 		b.update((2.5f)/9*5);
 		models.add(new Model(world, "MODEL:CHAIR",Game.V_WIDTH-16*12, Game.V_HEIGHT-16*9-7));
 		//Player
-		player = new Player(world, "MODEL:PLAYER", 16*5, 16*7);
+		player = new Player(world, "MODEL:PLAYER", 16*5, 16*37);
 		models.add(player);
 		//Thrower
 		thrower = new Thrower(world, 16, 2.5f);

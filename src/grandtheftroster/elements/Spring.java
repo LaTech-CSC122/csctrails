@@ -12,7 +12,6 @@ import com.badlogic.gdx.physics.box2d.World;
 
 public class Spring extends Model {
 	private Animation am;
-	private TextureRegion currentFrame;
 	private float time;
 	
 	public Spring(World world, int xpos, int ypos)
@@ -43,14 +42,13 @@ public class Spring extends Model {
 	@Override
 	public void update(float dt){
 		time += dt;
-		currentFrame = am.getKeyFrame(time);
 	}
 	
 	@Override
 	public void draw(SpriteBatch sb){
-		float xpos = body.getPosition().x*PPM - currentFrame.getRegionWidth()/2;
-		float ypos = body.getPosition().y*PPM - currentFrame.getRegionHeight() +14;
-		sb.draw(currentFrame, xpos, ypos);
+		float xpos = body.getPosition().x*PPM - am.getKeyFrame(time).getRegionWidth()/2;
+		float ypos = body.getPosition().y*PPM - am.getKeyFrame(time).getRegionHeight() +14;
+		sb.draw(am.getKeyFrame(time), xpos, ypos);
 	}
 	
 	public void action(){
