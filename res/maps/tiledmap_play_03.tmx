@@ -1,32 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="144" height="20" tilewidth="32" tileheight="32">
- <tileset firstgid="1" name="spikes" tilewidth="32" tileheight="32">
-  <image source="table_spikes.png" width="32" height="32"/>
- </tileset>
- <tileset firstgid="2" name="brick block" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="brick block" tilewidth="32" tileheight="32">
   <image source="brick_block.png" width="32" height="32"/>
  </tileset>
- <tileset firstgid="3" name="truss_platform" tilewidth="32" tileheight="32">
+ <tileset firstgid="2" name="truss_platform" tilewidth="32" tileheight="32">
   <image source="truss_platform.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="3" name="spikes" tilewidth="32" tileheight="32">
+  <image source="scaffold_spikes.png" width="32" height="32"/>
+ </tileset>
+ <tileset firstgid="4" name="scaffold_platform_sheet" tilewidth="32" tileheight="32">
+  <image source="scaffold_platform_sheet.png" width="128" height="64"/>
  </tileset>
  <layer name="lethal blocks" width="144" height="20">
   <data encoding="base64" compression="zlib">
-   eJztlsEOgzAMQ9n+/6O5MAlNU+jidXXCe1JOxklJLcS2AQAA1OVJUV9UlsiP5q+N6BGd8hPBOXMzryA/dc6Z9ZGfMS3izj71jrNzVX+V70h2XtbntBeVVb073EvW56SpzOw9Y67T7jtk+ay/1+hzbvlxylaVeYpPvf9Z/z9Zn9t+M75K7+eany77/advxT4r5mdGzzvPU/5DyI+fFuF0lpdXgfz01q6omJ/HUb/sifaZaNdnr1IAAKvZAbdwBE0=
+   eJztmeEKgzAMhIVtsvn+DzwFhSGa1cuSXtf7IL9iak3OtNVhEEIIIdrmMdvdsHG2abX9tT37WsmZ5zn2sSjP1Rh8r9UY5tLKPEv8Fp7Yb/E1cnHGP8wzQnclfgvpB68LGmeR/X4sWM/hua83Pru/W/Qc560xet8SonrqGVactZdjqmf2PJn1Y5HdR7L1isahvdfSXUSuS4gcO+K+Ef0OrQvaR5i0vHB0fh8Prjv6NsCoH/SbAtOeqiX9eOvviY+oNVt+kbiWzgA19ROxLrDlNzMOXRPRXG/jeqhxfkfHzD67MJ2Vos5YPeknYo/MtI+Rfsp8EWMy+bL1yqifW4Fta+tVX8SY8l3P9Wcs8v/d8+9DCCF+yRtaZBE1
   </data>
  </layer>
  <layer name="spikes" width="144" height="20">
   <data encoding="base64" compression="zlib">
-   eJzt0DEKADAIBDD9/6e7dpIKLtIEnDxvMAIAAAAAAAAAAIDf5cNU2U7PRKdd/9f3LcBmB0qSAF8=
+   eJztwQENAAAAwqD3T20ON6AAAAAAAAAAAAAAAD4MLQAAAQ==
   </data>
  </layer>
  <layer name="platforms" width="144" height="20">
   <data encoding="base64" compression="zlib">
-   eJzt1jEKACAMA8BC//9nd6Fihy56B/lBIIkAAAAAAACAN+UWAJhwuzM2iZOqGzpDh/8LwC8WcLoANA==
+   eJzt1jEKACAMA8DS/z/aXajYoYveQX4QSCIAAAAAAADgTbkFACbc7oxN4qTqhs7Q4f8C8IsFr3cAIw==
   </data>
  </layer>
  <layer name="other blocks" width="144" height="20">
   <data encoding="base64" compression="zlib">
-   eJzt0jEKgEAMAMHj/v9osVcQtxDJDKRLEciuBQAw0/76AH5NPxT6odAPhX4o9EOhHwr9zLIv5snOXSf6meXtv/XDST8U+qHQD4V+AJjsAPcEAEc=
+   eJzt0jEKgDAQRcEUKur9D6yCgoU2fiGEzMBW2WIhrxQAaNda+wCaNtc+gKbph4R+SOiHhH5I6IeEfkjopy/Hf4/7DOdMDzv392vnrRP99OXrf+uHg35I6IeEfkj83c/y9RAAqGADuQYBBg==
   </data>
  </layer>
 </map>
